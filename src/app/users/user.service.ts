@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class UserService {
@@ -12,29 +12,29 @@ export class UserService {
     console.error(errMsg); // log to console instead
   }
   // noinspection JSDeprecatedSymbols
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   // get("/api/users")
   getUsers(): Promise<void | User[]> {
-    return this.http.get(this.usersUrl)
+    return this.http.get<User[]>(this.usersUrl)
       .toPromise()
-      .then(response => response.json() as User[])
+      .then(response => response as User[])
       .catch(UserService.handleError);
   }
 
   // post("/api/users")
   createUser(newUser: User): Promise<void | User> {
-    return this.http.post(this.usersUrl, newUser)
+    return this.http.post<User>(this.usersUrl, newUser)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(response => response as User)
       .catch(UserService.handleError);
   }
 
   // get("/api/users/:id")
   getUser(): Promise<void | User> {
-    return this.http.get(this.usersUrl)
+    return this.http.get<User>(this.usersUrl)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(response => response as User)
       .catch(UserService.handleError);
   }
 
@@ -42,16 +42,16 @@ export class UserService {
   deleteUser(delUserId: String): Promise<void | String> {
     return this.http.delete(this.usersUrl + '/' + delUserId)
       .toPromise()
-      .then(response => response.json() as String)
+      .then(response => response as String)
       .catch(UserService.handleError);
   }
 
   // put("/api/users/:id")
   updateUser(putUser: User): Promise<void | User> {
     const putUrl = this.usersUrl + '/' + putUser._id;
-    return this.http.put(putUrl, putUser)
+    return this.http.put<User>(putUrl, putUser)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(response => response as User)
       .catch(UserService.handleError);
   }
 }

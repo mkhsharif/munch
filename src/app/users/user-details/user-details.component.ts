@@ -13,7 +13,7 @@ export class UserDetailsComponent implements OnInit {
     userName: 'mock1',
     email: 'mock@mock.com',
     phone: '555-5555',
-    points: 9000,
+    points: 0,
     pword: 'mock',
     friends: {},
     shoutouts: {},
