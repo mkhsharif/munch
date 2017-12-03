@@ -9,7 +9,7 @@ var app = express();
 app.use(bodyParser.json());
 
 // Create link to Angular build directory
-var distDir = __dirname + "../dist/";
+var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to
@@ -46,6 +46,9 @@ function handleError(res, reason, message, code) {
  *    GET: finds all users
  *    POST: creates a new user
  */
+app.get('/', function(req, res) {
+  res.sendFile(path.join(distDir + 'index.html'));
+});
 
 app.get("/api/users", function(req, res) {
   db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
