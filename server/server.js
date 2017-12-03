@@ -41,7 +41,9 @@ function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
-
+app.get('*', function (req, res) {
+  res.sendfile('../src/index.html')
+});
 /*  "/api/users"
  *    GET: finds all users
  *    POST: creates a new user
