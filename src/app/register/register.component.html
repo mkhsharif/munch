@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Munch</h1>
+  <form (ngSubmit)="createUser()" #register="ngForm">
+    <h2>Sign Up</h2>
+    <fieldset>
+      <legend><span class="number">1</span>Your basic info</legend>
+      <div class="form-group">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="user_name" class="form-control"
+               required
+               [(ngModel)]="user.userName">
+      </div>
+
+      <div class="form-group">
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="user_email">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password">
+      </div>
+
+      <button type="submit" class="btn btn-success"
+      [disabled]="!register.form.valid">Sign Up</button>
+    </fieldset>
+  </form>
+</div>
