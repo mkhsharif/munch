@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {QueryOverallComponent} from './queries/query-overall/query-overall.component';
+import {PreferenceListComponent} from './munch-query/preferences/preference-list/preference-list.component';
 
 const routes: Routes = [
-  { path: 'munch-setup', component: QueryOverallComponent}
+  { path: 'munch-setup', component: PreferenceListComponent}
 ];
 
 @NgModule({

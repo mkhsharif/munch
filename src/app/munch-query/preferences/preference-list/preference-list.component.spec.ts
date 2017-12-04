@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueryCategoryComponent } from './query-category.component';
+import { PreferenceListComponent } from './preference-list.component';
 
-describe('QueryCategoryComponent', () => {
-  let component: QueryCategoryComponent;
-  let fixture: ComponentFixture<QueryCategoryComponent>;
+describe('PreferenceListComponent', () => {
+  let component: PreferenceListComponent;
+  let fixture: ComponentFixture<PreferenceListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QueryCategoryComponent ]
+      declarations: [ PreferenceListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QueryCategoryComponent);
+    fixture = TestBed.createComponent(PreferenceListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueryOverallComponent } from './query-overall.component';
+import { PreferenceDetailComponent } from './preference-detail.component';
 
-describe('QueryOverallComponent', () => {
-  let component: QueryOverallComponent;
-  let fixture: ComponentFixture<QueryOverallComponent>;
+describe('PreferenceDetailComponent', () => {
+  let component: PreferenceDetailComponent;
+  let fixture: ComponentFixture<PreferenceDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QueryOverallComponent ]
+      declarations: [ PreferenceDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QueryOverallComponent);
+    fixture = TestBed.createComponent(PreferenceDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

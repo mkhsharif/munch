@@ -2,13 +2,13 @@
   <form>
     <h2>Munch Setup</h2>
     <fieldset>
-    <ul>
-      <li *ngFor="let category of categories.keys()" (click)="onSelect(category)">
-        <span class="link-button">{{category}}</span>
-      </li>
-    </ul>
-    <h2>Munch Buddies</h2>
-    <h3>Bring A Friend to Munch</h3>
+      <ul>
+        <li *ngFor="let category of categories.values()" (click)="onSelect(category)">
+          <span class="link-button">{{category.name}}</span>
+        </li>
+      </ul>
+      <h2>Munch Buddies</h2>
+      <h3>Bring A Friend to Munch</h3>
       <label>
         <input class="buddy-search-box" type="text"
                value="Search for Munch Buddies">

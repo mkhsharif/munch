@@ -5,7 +5,6 @@ export const GENDER: string[] = [
 ];
 
 export const DIET: string[] = [
-  'Any',
   'Halal',
   'Vegetarian',
   'Vegan',
@@ -32,8 +31,10 @@ export const INTERESTS: string[] = [
   'Smash Bros'
 ];
 
-export class PreferenceCategory {
+export class Preference {
   _id?: string;
   name: string;
-  choices: string[];
+  options: string[];
+  choices: Set<string> = new Set();
+  multi: boolean;
 }
