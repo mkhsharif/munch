@@ -31,3 +31,9 @@ export const INTERESTS: string[] = [
   'Anime',
   'Smash Bros'
 ];
+
+export class PreferenceCategory {
+  _id?: string;
+  name: string;
+  choices: string[];
+}

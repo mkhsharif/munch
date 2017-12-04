@@ -8,7 +8,6 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserListComponent } from './users/user-list/user-list.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { QueryComponent } from './queries/queries.component';
 import { QueryCategoryComponent } from './queries/query-category/query-category.component';
 import { QueryOverallComponent } from './queries/query-overall/query-overall.component';
 
@@ -20,7 +19,6 @@ import { QueryOverallComponent } from './queries/query-overall/query-overall.com
     UserListComponent,
     RegisterComponent,
     LoginComponent,
-    QueryComponent,
     QueryCategoryComponent,
     QueryOverallComponent
   ],
