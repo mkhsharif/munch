@@ -23,6 +23,11 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -75,17 +80,30 @@ button {
   margin-bottom: 10px;
 }
 
-.back-button {
+.small-back-button {
   background: #FF4500;
   border-radius: 50px;
   color: white;
   display: block;
   height: 61.7px;
-  margin-left: 190px;
+  margin-left: 40%;
   padding-top: 17px;
   text-align: center;
   text-decoration: none;
   width: 61.7px;
+}
+
+.link-button {
+  background: #FF4500;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  height: 61.7px;
+  margin-bottom: 10px;
+  padding: 19px 39px 18px 39px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
 }
 
 fieldset {
@@ -173,6 +191,33 @@ label.light {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.button-container {
+  height: 61.7px;
+  margin-left: 5%;
+}
+
+.inline-link-button {
+  background: #FF4500;
+  border-radius: 5px;
+  color: white;
+  display: inline;
+  margin-right: 10px;
+  padding: 19px 35px;
+  text-align: center;
+  text-decoration: none;
+  width: 50%;
+}
+
+.person-icon {
+  background-image: url("person-icon.jpg");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  display: inline-block;
+  height: 50px;
+  margin-bottom:30px;
+  width:50px;
 }
 
 @media screen and (min-width: 480px) {
