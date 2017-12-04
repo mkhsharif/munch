@@ -75,6 +75,19 @@ button {
   margin-bottom: 10px;
 }
 
+.back-button {
+  background: #FF4500;
+  border-radius: 50px;
+  color: white;
+  display: block;
+  height: 61.7px;
+  margin-left: 190px;
+  padding-top: 17px;
+  text-align: center;
+  text-decoration: none;
+  width: 61.7px;
+}
+
 fieldset {
   margin-bottom: 30px;
   border: none;
@@ -109,7 +122,6 @@ label.light {
   border-radius: 100%;
 }
 
-/* Customize the label (the container) */
 .checkbox-container {
   display: block;
   position: relative;
@@ -123,13 +135,11 @@ label.light {
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
 .checkbox-container input {
   position: absolute;
   opacity: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 0;
@@ -139,24 +149,20 @@ label.light {
   background-color: #e8eeef;
 }
 
-/* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
   background-color: #FF4500;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .checkbox-container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .checkbox-container .checkmark:after {
   left: 9px;
   top: 5px;
