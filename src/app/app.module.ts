@@ -8,6 +8,9 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserListComponent } from './users/user-list/user-list.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { QueryComponent } from './queries/queries.component';
+import { QueryCategoryComponent } from './queries/query-category/query-category.component';
+import { QueryOverallComponent } from './queries/query-overall/query-overall.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { LoginComponent } from './login/login.component';
     UserDetailsComponent,
     UserListComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    QueryComponent,
+    QueryCategoryComponent,
+    QueryOverallComponent
   ],
   imports: [
     BrowserModule,
