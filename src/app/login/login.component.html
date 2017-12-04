@@ -1,41 +1,9 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-
-  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-</head>
-<body>
-
-<form action="index.html" method="post">
-
-  <h1>Munch</h1>
-  <center><h2>Login</h2></center>
-
-  <div ng-app="myApp" ng-controller="formCtrl">
-    <form novalidate>
-      Email:<br>
-      <input type="text" ng-model="user.email"><br>
-      Password:<br>
-      <input type="text" ng-model="user.password">
-      <br><br>
-      <button ng-click="submit()">Submit</button>
-    </form>
-  </div>
-</form>
-</body>
-<script>
-  var app = angular.module('myApp', []);
-  app.controller('formCtrl', function($scope) {
-    $scope.master = {email: "", password: ""};
-    $scope.submit = function() {
-      //send munch-query to user service
-
-    };
-
-  });
-</script>
-</html>
+  <form>
+    <h2>Login</h2>
+    Email:<br>
+    <input type="text" ng-model="user.email"><br>
+    Password:<br>
+    <input type="text" ng-model="user.password">
+    <br><br>
+    <button ng-click="submit()">Submit</button>
+  </form>

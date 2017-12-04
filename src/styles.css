@@ -39,18 +39,16 @@ input[type="time"],
 input[type="url"],
 textarea,
 select {
-  background: rgba(255,255,255,0.1);
   border: none;
   font-size: 16px;
   height: auto;
-  margin: 0;
   outline: 0;
   padding: 15px;
   width: 100%;
-  background-color: #e8eeef;
+  background: #e8eeef;
   color: #8a97a0;
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-  margin-bottom: 30px;
+  margin: 0 0 30px;
 }
 
 input[type="radio"],
@@ -74,7 +72,6 @@ button {
   border-radius: 5px;
   width: 100%;
   border: 1px solid #FF4500;
-  border-width: 1px 1px 3px;
   box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
   margin-bottom: 10px;
 }
@@ -84,12 +81,12 @@ button {
   border-radius: 50px;
   color: white;
   display: block;
-  height: 61.7px;
+  height: 62px;
   margin-left: 40%;
   padding-top: 17px;
   text-align: center;
   text-decoration: none;
-  width: 61.7px;
+  width: 62px;
 }
 
 .link-button {
@@ -97,7 +94,7 @@ button {
   border-radius: 5px;
   color: white;
   display: block;
-  height: 61.7px;
+  height: 62px;
   margin-bottom: 10px;
   padding: 19px 39px 18px 39px;
   text-align: center;
@@ -203,7 +200,7 @@ ul {
   transform: rotate(45deg);
 }
 .button-container {
-  height: 61.7px;
+  height: 62px;
   margin-left: 5%;
 }
 
@@ -220,9 +217,8 @@ ul {
 }
 
 .person-icon {
-  background-image: url("person-icon.jpg");
   background-size: 50px;
-  background-repeat: no-repeat;
+  background: url("img/person-icon.jpg") no-repeat;
   border-radius: 25px;
   display: inline-block;
   height: 50px;
