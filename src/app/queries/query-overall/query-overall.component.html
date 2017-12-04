@@ -1,6 +1,30 @@
-<h2>Munch Setup</h2>
-<ul>
-  <li *ngFor="let category of categories.keys()">
-    <span class="badge">{{category}}</span>
-  </li>
-</ul>
+<div>
+  <form>
+    <h2>Munch Setup</h2>
+    <fieldset>
+    <ul>
+      <li *ngFor="let category of categories.keys()" (click)="onSelect(category)">
+        <span class="link-button">{{category}}</span>
+      </li>
+    </ul>
+    <h2>Munch Buddies</h2>
+    <h3>Bring A Friend to Munch</h3>
+      <label>
+        <input class="buddy-search-box" type="text"
+               value="Search for Munch Buddies">
+      </label>
+      <h3>Favourite and Recent Friends</h3>
+      <div>
+        <div class="person-icon"></div>
+        <div class="person-icon"></div>
+        <div class="person-icon"></div>
+        <div class="person-icon"></div>
+      </div>
+      <div class="button-container">
+        <a class="inline-link-button" href="login.html">Home</a>
+        <a class="inline-link-button">Start</a>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
