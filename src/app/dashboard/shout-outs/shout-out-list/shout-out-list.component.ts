@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SHOUTOUTS} from './mock-shout-outs';
+import { ShoutOutService } from '../shout-out.service';
+import { ShoutOut } from '../shout-out';
 
 @Component({
   selector: 'app-shout-out-list',
@@ -7,10 +8,16 @@ import {SHOUTOUTS} from './mock-shout-outs';
   styleUrls: ['./shout-out-list.component.css']
 })
 export class ShoutOutListComponent implements OnInit {
-  shoutouts = SHOUTOUTS;
-  constructor() { }
+  shoutouts: ShoutOut[];
+  constructor(private shoutoutService: ShoutOutService) { }
 
   ngOnInit() {
+    this.getShoutOuts();
+  }
+
+  getShoutOuts(): void {
+    this.shoutoutService.getShoutOuts()
+      .subscribe(shoutouts => this.shoutouts = shoutouts);
   }
 
 }

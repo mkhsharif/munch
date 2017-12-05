@@ -1,3 +1,5 @@
-<p>
-  shout-out-detail works!
-</p>
+<div *ngIf="shoutout">
+  <h2>{{shoutout.user}}'s Shout Out</h2>
+  <div><h3>{{shoutout.message}}</h3></div>
+  <button (click)="goBack()">Go Back</button>
+</div>

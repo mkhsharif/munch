@@ -18,6 +18,7 @@ import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/sho
 import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import { MunchQueryComponent } from './munch-query/munch-query.component';
 import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
+import { ShoutOutService } from './dashboard/shout-outs/shout-out.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ShoutOutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

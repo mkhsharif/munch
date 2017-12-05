@@ -1,8 +1,6 @@
 <h2>Shout Outs</h2>
-<div style="background-color: lightblue;">
-  <ul>
-    <li *ngFor="let shoutout of shoutouts" style="list-style-type: none">
-      <span class="button-container">{{shoutout.user}}: </span>{{shoutout.message}}
-    </li>
-  </ul>
+<div style="background-color: lightblue;" class="button-container">
+  <a *ngFor="let shoutout of shoutouts" routerLink="/shoutouts/{{shoutout._id}}">
+    <button>{{shoutout.user}} says: {{shoutout.message}}</button>
+  </a>
 </div>
