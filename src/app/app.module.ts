@@ -13,10 +13,11 @@ import { PreferenceListComponent } from './munch-query/preferences/preference-li
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MunchLiveComponent } from './munch-session/munch-live/munch-live.component';
 import { MunchExitComponent } from './munch-session/munch-exit/munch-exit.component';
-import { ShoutOutsComponent } from './shout-outs/shout-outs.component';
-import { ShoutOutListComponent } from './shout-outs/shout-out-list/shout-out-list.component';
-import { ShoutOutDetailComponent } from './shout-outs/shout-out-detail/shout-out-detail.component';
+import { ShoutOutsComponent } from './dashboard/shout-outs/shout-outs.component';
+import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
+import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import { MunchQueryComponent } from './munch-query/munch-query.component';
+import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MunchQueryComponent } from './munch-query/munch-query.component';
     ShoutOutsComponent,
     ShoutOutListComponent,
     ShoutOutDetailComponent,
-    MunchQueryComponent
+    MunchQueryComponent,
+    ShoutOutCreateComponent
   ],
   imports: [
     BrowserModule,
