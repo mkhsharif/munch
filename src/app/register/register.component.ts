@@ -25,7 +25,7 @@ export class RegisterComponent {
   constructor(private userService: UserService) {}
 
   createUser(): void {
-    this.userService.createUser(this.user);
+    // this.userService.createUser(this.user);
     console.log(this.user.userName + ' created');
   }
 

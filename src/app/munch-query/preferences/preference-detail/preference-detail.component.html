@@ -4,7 +4,7 @@
     <fieldset>
     <div *ngFor="let choice of preference.options">
       <label class="checkbox-container">{{choice}}
-      <input name=choice type="checkbox" [(ngModel)]="choice.selected"/>
+      <input name=choice type="checkbox"/>
         <span class="checkmark"></span>
       </label>
     </div>
