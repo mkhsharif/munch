@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoutOut} from '../shout-out';
 
 @Component({
   selector: 'app-shout-out-create',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shout-out-create.component.css']
 })
 export class ShoutOutCreateComponent implements OnInit {
-
+  shoutout: ShoutOut = {
+    user: '',
+    message: '',
+    _id: '5'
+  };
   constructor() { }
 
   ngOnInit() {
   }
 
+  createShoutOut(): void {
+    alert(this.shoutout.user + ' created a shoutout');
+    console.log(this.shoutout.user + ' created a shoutout');
+}
 }
