@@ -2,11 +2,15 @@
   <form>
     <h2>Munch Setup</h2>
     <fieldset>
+      <h3>Preferences</h3>
       <ul>
-        <li *ngFor="let category of categories.values()" (click)="onSelect(category)">
+        <li *ngFor="let category of categories.values()"
+            [class.selected]="category === selectedPreference"
+            (click)="onSelect(category)">
           <span class="link-button">{{category.name}}</span>
         </li>
       </ul>
+      <app-preference-detail [preference]="selectedPreference"></app-preference-detail>
       <h2>Munch Buddies</h2>
       <h3>Bring A Friend to Munch</h3>
       <label>

@@ -16,7 +16,11 @@ export class PreferenceListComponent implements OnInit {
   ngOnInit() {
   }
   onSelect(preference: Preference): void {
-    this.selectedPreference = preference;
+    if (this.selectedPreference === preference) {
+      this.selectedPreference = null;
+    } else {
+      this.selectedPreference = preference;
+    }
   }
 
 }
