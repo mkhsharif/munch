@@ -1,13 +1,15 @@
+import {MunchSession} from '../munch-session/munch-session';
+
 export class User {
   _id?: string;
   userName: string;
   firstName: string;
   lastName: string;
-  pword: string;
+  password: string;
   email: string;
   phone: string;
   points: number;
-  friends: {};
-  shoutouts: {};
-  current_session: {};
+  friends: string[];
+  shoutouts: string[];
+  current_session?: MunchSession;
 }

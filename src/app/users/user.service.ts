@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from './user';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -23,11 +24,8 @@ export class UserService {
   }
 
   // post("/api/users")
-  createUser(newUser: User): Promise<void | User> {
-    return this.http.post<User>(this.usersUrl, newUser)
-      .toPromise()
-      .then(response => response as User)
-      .catch(UserService.handleError);
+  createUser(newUser: User): Observable<User> {
+    return this.http.post<User>(this.usersUrl, newUser);
   }
 
   // get("/api/users/:id")

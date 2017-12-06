@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {User} from '../users/user';
 import {UserService} from '../users/user.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,24 +9,27 @@ import {UserService} from '../users/user.service';
   styleUrls: ['./register.component.css'],
   providers: [UserService]
 })
+
 export class RegisterComponent {
   user: User = {
-    firstName: 'mock',
-    lastName: 'mockington',
-    userName: 'mock1',
-    email: 'mock@mock.com',
-    phone: '555-5555',
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    phone: '',
     points: 0,
-    pword: 'mock',
-    friends: {},
-    shoutouts: {},
-    current_session: {}
+    password: '',
+    friends: [],
+    shoutouts: []
   };
+  loading = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService) {}
 
-  createUser(): void {
-    // this.userService.createUser(this.user);
+  register(): void {
+    // this.userService.register(this.user);
     console.log(this.user.userName + ' created');
   }
 
