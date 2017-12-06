@@ -8,16 +8,15 @@ import {User} from '../user';
 })
 export class UserDetailsComponent implements OnInit {
   user: User = {
-    firstName: 'mock',
-    lastName: 'mockington',
-    userName: 'mock1',
-    email: 'mock@mock.com',
-    phone: '555-5555',
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    phone: '',
     points: 0,
-    pword: 'mock',
-    friends: {},
-    shoutouts: {},
-    current_session: {}
+    password: '',
+    friends: [],
+    shoutouts: [],
   };
 
   constructor() {

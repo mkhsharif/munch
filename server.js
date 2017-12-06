@@ -31,7 +31,7 @@ var myArgs = process.argv.slice(2);
 if (myArgs[0] === 'local') {
   mongoUri = 'mongodb://127.0.0.1:27017/munch';
   mongoPort = '8080';
-  prefix = ''
+  prefix = '/api'
 } else {
   mongoUri = process.env.MONGODB_URI;
   mongoPort = process.env.PORT;
