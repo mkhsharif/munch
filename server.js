@@ -4,6 +4,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
+var SHOUTOUTS_COLLECTION = "shoutouts";
 
 var app = express();
 app.use(bodyParser.json());
@@ -12,20 +13,29 @@ app.use(bodyParser.json());
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
 var mongoUri;
 var mongoPort;
+var prefix;
 // Connect to the database before starting the application server.
 var myArgs = process.argv.slice(2);
 
 if (myArgs[0] === 'local') {
   mongoUri = 'mongodb://127.0.0.1:27017/munch';
   mongoPort = '8080';
+  prefix = ''
 } else {
   mongoUri = process.env.MONGODB_URI;
   mongoPort = process.env.PORT;
+  prefix = '/api';
 }
 
 mongodb.MongoClient.connect(mongoUri, function (err, database) {
@@ -61,7 +71,7 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(distDir + 'index.html'));
 });
 
-app.get("/api/users", function(req, res) {
+app.get(prefix + "/users", function(req, res) {
   db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get users.");
@@ -71,7 +81,7 @@ app.get("/api/users", function(req, res) {
   });
 });
 
-app.post("/api/users", function(req, res) {
+app.post(prefix + "/users", function(req, res) {
   var newUser = req.body;
   newUser.createDate = new Date();
 
@@ -97,7 +107,7 @@ app.post("/api/users", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/api/users/:id", function(req, res) {
+app.get(prefix + "/users/:id", function(req, res) {
   db.collection(USERS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
@@ -108,7 +118,7 @@ app.get("/api/users/:id", function(req, res) {
   });
 });
 
-app.put("/api/users/:id", function(req, res) {
+app.put(prefix + "/users/:id", function(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
@@ -124,7 +134,7 @@ app.put("/api/users/:id", function(req, res) {
   });
 });
 
-app.delete("/api/users/:id", function(req, res) {
+app.delete(prefix + "/users/:id", function(req, res) {
   db.collection(USERS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)},
     function(err, result) {
       if (err) {
@@ -133,4 +143,25 @@ app.delete("/api/users/:id", function(req, res) {
         res.status(200).json(req.params.id);
       }
   });
+});
+
+app.get(prefix + "/shoutouts", function(req, res) {
+  db.collection(SHOUTOUTS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get users.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
+app.get(prefix + "/shoutouts/:id", function(req, res) {
+  db.collection(SHOUTOUTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get contact");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
 });
