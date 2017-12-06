@@ -15,9 +15,20 @@ app.use(express.static(distDir));
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
-
+var mongoUri;
+var mongoPort;
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+var myArgs = process.argv.slice(2);
+
+if (myArgs[0] === 'local') {
+  mongoUri = 'mongodb://127.0.0.1:27017/munch';
+  mongoPort = '8080';
+} else {
+  mongoUri = process.env.MONGODB_URI;
+  mongoPort = process.env.PORT;
+}
+
+mongodb.MongoClient.connect(mongoUri, function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);
@@ -28,7 +39,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   console.log("Database connection ready");
 
   // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
+  var server = app.listen(mongoPort || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
   });
