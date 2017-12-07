@@ -13,11 +13,11 @@ app.use(bodyParser.json());
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
@@ -84,14 +84,11 @@ app.get(prefix + "/users", function(req, res) {
 app.post(prefix + "/users", function(req, res) {
   var newUser = req.body;
   newUser.createDate = new Date();
-
-  if (!req.body.userName || req.body.firstName || req.body.lastName ||
-    !req.body.pword || !req.body.email || !req.body.phone) {
-    handleError(res, "Invalid user input", "Fill All Required Fields", 400);
-  }
-
+  // if (!req.body.userName || req.body.firstName || req.body.lastName ||
+  //   !req.body.password || !req.body.email || !req.body.phone) {
+  //   handleError(res, "Invalid user input", "Fill All Required Fields", 400);
+  // }
   // TODO: Check for uniqueness in credentials
-
   db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new contact.");

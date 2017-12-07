@@ -28,9 +28,16 @@ export class RegisterComponent {
     private router: Router,
     private userService: UserService) {}
 
-  register(): void {
-    // this.userService.register(this.user);
-    console.log(this.user.userName + ' created');
+  registerUser(): void {
+    this.userService.createUser(this.user)
+      .subscribe(data => {
+        this.router.navigate(['/dashboard']);
+        console.log(this.user.userName + ' created');
+      }, error => {
+        this.loading = false;
+        console.log('User not created!');
+        console.log(error);
+      });
   }
 
 }

@@ -15,9 +15,7 @@ export class ShoutOutService {
     console.error(errMsg); // log to console instead
   }
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getShoutOuts(): Observable<ShoutOut[]> {
     return this.http.get<ShoutOut[]>(this.shoutoutsUrl);
