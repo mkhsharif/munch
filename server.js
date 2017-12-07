@@ -13,29 +13,28 @@ app.use(bodyParser.json());
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
+app.get('/', home);
+app.get("api/users", getUsers);
+app.get("api/shoutouts", getShoutouts);
+app.get("api/users/:id", getUser);
+app.get("api/shoutouts/:id", getShoutout);
+app.put("api/users/:id", updateUser);
+app.post("api/users", createUser);
+app.delete("api/users/:id", deleteUser);
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
 var mongoUri;
 var mongoPort;
-var prefix;
 // Connect to the database before starting the application server.
 var myArgs = process.argv.slice(2);
 
 if (myArgs[0] === 'local') {
   mongoUri = 'mongodb://127.0.0.1:27017/munch';
   mongoPort = '8080';
-  prefix = '/api'
 } else {
   mongoUri = process.env.MONGODB_URI;
   mongoPort = process.env.PORT;
-  prefix = '/api';
 }
 
 mongodb.MongoClient.connect(mongoUri, function (err, database) {
@@ -55,7 +54,7 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
   });
 });
 
-// USER API ROUTES BELOW
+// API FUNCTIONS BELOW
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
@@ -63,48 +62,34 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-/*  "/api/users"
- *    GET: finds all users
- *    POST: creates a new user
- */
-app.get('/', function(req, res) {
-  res.sendFile(path.join(distDir + 'index.html'));
-});
+function home(req, res) {
+    res.sendFile(path.join(distDir + 'index.html'));
+}
 
-app.get(prefix + "/users", function(req, res) {
-  db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+function getUsers(req, res) {
+  db.collection(USERS_COLLECTION).find({}).toArray(function (err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get users.");
     } else {
       res.status(200).json(docs);
     }
   });
-});
+}
 
-app.post(prefix + "/users", function(req, res) {
+function createUser(req, res) {
   var newUser = req.body;
   newUser.createDate = new Date();
-  // if (!req.body.userName || req.body.firstName || req.body.lastName ||
-  //   !req.body.password || !req.body.email || !req.body.phone) {
-  //   handleError(res, "Invalid user input", "Fill All Required Fields", 400);
-  // }
   // TODO: Check for uniqueness in credentials
-  db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+  db.collection(USERS_COLLECTION).insertOne(newUser, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new contact.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
   });
-});
+}
 
-/*  "/api/users/:id"
- *    GET: find contact by id
- *    PUT: update contact by id
- *    DELETE: deletes contact by id
- */
-
-app.get(prefix + "/users/:id", function(req, res) {
+function getUser(req, res) {
   db.collection(USERS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
@@ -113,9 +98,9 @@ app.get(prefix + "/users/:id", function(req, res) {
         res.status(200).json(doc);
       }
   });
-});
+}
 
-app.put(prefix + "/users/:id", function(req, res) {
+function updateUser(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
@@ -129,9 +114,9 @@ app.put(prefix + "/users/:id", function(req, res) {
         res.status(200).json(updateDoc);
       }
   });
-});
+}
 
-app.delete(prefix + "/users/:id", function(req, res) {
+function deleteUser(req, res) {
   db.collection(USERS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)},
     function(err, result) {
       if (err) {
@@ -140,9 +125,9 @@ app.delete(prefix + "/users/:id", function(req, res) {
         res.status(200).json(req.params.id);
       }
   });
-});
+}
 
-app.get(prefix + "/shoutouts", function(req, res) {
+function getShoutouts(req, res) {
   db.collection(SHOUTOUTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get users.");
@@ -150,9 +135,9 @@ app.get(prefix + "/shoutouts", function(req, res) {
       res.status(200).json(docs);
     }
   });
-});
+}
 
-app.get(prefix + "/shoutouts/:id", function(req, res) {
+function getShoutout(req, res) {
   db.collection(SHOUTOUTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
@@ -161,4 +146,4 @@ app.get(prefix + "/shoutouts/:id", function(req, res) {
         res.status(200).json(doc);
       }
     });
-});
+}
