@@ -8,20 +8,23 @@ var SHOUTOUTS_COLLECTION = "shoutouts";
 
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 app.get('/', home);
-app.get("api/users", getUsers);
-app.get("api/shoutouts", getShoutouts);
-app.get("api/users/:id", getUser);
-app.get("api/shoutouts/:id", getShoutout);
-app.put("api/users/:id", updateUser);
-app.post("api/users", createUser);
-app.post("api/users/auth", authenticate);
-app.delete("api/users/:id", deleteUser);
+app.get("/api/users", getUsers);
+app.get("/api/shoutouts", getShoutouts);
+app.get("/api/users/:id", getUser);
+app.get("/api/shoutouts/:id", getShoutout);
+app.put("/api/users/:id", updateUser);
+app.post("/api/users", createUser);
+app.post("/api/users/auth", authenticate);
+app.delete("/api/users/:id", deleteUser);
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
@@ -68,8 +71,8 @@ function home(req, res) {
 }
 
 function authenticate(req, res) {
-  let username = req.body.username;
-  let password = req.body.password;
+  let username = req.body.userName;
+  let password = req.body.password.toString();
   db.collection(USERS_COLLECTION).findOne({userName: username},
     function (err, user) {
       if (err) {
@@ -77,7 +80,7 @@ function authenticate(req, res) {
       } else if (user.password === password) {
         res.send(user);
       } else {
-        handleError(res, "Username or Password incorrect.",  err.message, 400);
+        handleError(res, "Username or Password incorrect.");
       }
     });
 }
