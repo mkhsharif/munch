@@ -20,6 +20,7 @@ app.get("api/users/:id", getUser);
 app.get("api/shoutouts/:id", getShoutout);
 app.put("api/users/:id", updateUser);
 app.post("api/users", createUser);
+app.post("api/users/auth", authenticate);
 app.delete("api/users/:id", deleteUser);
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
@@ -66,6 +67,20 @@ function home(req, res) {
     res.sendFile(path.join(distDir + 'index.html'));
 }
 
+function authenticate(req, res) {
+  let username = req.body.username;
+  let password = req.body.password;
+  db.collection(USERS_COLLECTION).findOne({userName: username},
+    function (err, user) {
+      if (err) {
+        handleError(res, "Failed to Auth",  err.message, 500);
+      } else if (user.password === password) {
+        res.send(user);
+      } else {
+        handleError(res, "Username or Password incorrect.",  err.message, 400);
+      }
+    });
+}
 function getUsers(req, res) {
   db.collection(USERS_COLLECTION).find({}).toArray(function (err, docs) {
     if (err) {
