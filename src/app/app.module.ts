@@ -21,6 +21,7 @@ import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create
 import { ShoutOutService } from './dashboard/shout-outs/shout-out.service';
 import {AuthenticationService} from './authentication.service';
 import {UserService} from './users/user.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {UserService} from './users/user.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot(),
   ],
   providers: [ShoutOutService, AuthenticationService, UserService],
   bootstrap: [AppComponent]
