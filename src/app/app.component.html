@@ -1,9 +1,5 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/munch-setup">Munch!</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-  <a routerLink="create-shoutout">Shout Out!</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <h3>{{title}}</h3>
+  <app-navigation-bar></app-navigation-bar>
+  <router-outlet></router-outlet>
+</div>

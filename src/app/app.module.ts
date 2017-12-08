@@ -22,6 +22,7 @@ import { ShoutOutService } from './dashboard/shout-outs/shout-out.service';
 import {AuthenticationService} from './authentication.service';
 import {UserService} from './users/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ShoutOutListComponent,
     ShoutOutDetailComponent,
     MunchQueryComponent,
-    ShoutOutCreateComponent
+    ShoutOutCreateComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
