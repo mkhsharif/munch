@@ -1,4 +1,3 @@
-<h3>Shout Outs</h3>
 <div style="background-color: lightblue;" class="button-container">
   <a *ngFor="let shoutout of shoutouts" routerLink="/shoutouts/{{shoutout._id}}">
     <button>{{shoutout.user}} says: {{shoutout.message}}</button>
