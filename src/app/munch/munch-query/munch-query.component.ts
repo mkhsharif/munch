@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from './query';
-import {User} from '../users/user';
 import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENCE} from './preferences/preference-list';
+import {User} from '../../user/user';
 
 @Component({
   selector: 'app-munch-query',

@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {PreferenceListComponent} from './munch-query/preferences/preference-list/preference-list.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {MunchLiveComponent} from './munch-session/munch-live/munch-live.component';
-import {MunchExitComponent} from './munch-session/munch-exit/munch-exit.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
+import {MunchLiveComponent} from './munch/munch-session/munch-live/munch-live.component';
+import {MunchExitComponent} from './munch/munch-session/munch-exit/munch-exit.component';
+import {LoginComponent} from './user/login/login.component';
+import {RegisterComponent} from './user/register/register.component';
 import {ShoutOutDetailComponent} from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
-import {MunchQueryComponent} from './munch-query/munch-query.component';
+import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch-setup', component: MunchQueryComponent },

@@ -1,5 +1,5 @@
-import {User} from '../users/user';
 import {Preference} from './preferences/preference';
+import {User} from '../../user/user';
 
 export class Query {
   _id?: string;
