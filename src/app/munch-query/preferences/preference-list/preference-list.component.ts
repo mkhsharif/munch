@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Preference} from '../preference';
-import {CATEGORIES} from '../preference-list';
+import {Query} from '../../query';
 
 @Component({
   selector: 'app-preference-list',
@@ -8,9 +8,19 @@ import {CATEGORIES} from '../preference-list';
   styleUrls: ['./preference-list.component.css']
 })
 export class PreferenceListComponent implements OnInit {
-
+  @Input() query: Query;
   selectedPreference: Preference;
-  categories = CATEGORIES;
+
+  toggleChoice(preference: Preference, option: string): void {
+    if (this.query) {
+      if (preference.choices.has(option)) {
+        preference.choices.delete(option);
+      } else {
+        preference.choices.add(option);
+      }
+    }
+  }
+
   constructor() { }
 
   ngOnInit() {
@@ -22,5 +32,7 @@ export class PreferenceListComponent implements OnInit {
       this.selectedPreference = preference;
     }
   }
+
+
 
 }

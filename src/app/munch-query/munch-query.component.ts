@@ -24,4 +24,5 @@ export class MunchQueryComponent implements OnInit {
   ngOnInit() {
   }
 
+  submitQuery () {}
 }

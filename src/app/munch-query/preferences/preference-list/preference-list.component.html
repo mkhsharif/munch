@@ -1,34 +1,113 @@
-<div>
-  <form>
-    <h2>Munch Setup</h2>
+<!--suppress XmlDuplicatedId -->
+<div *ngIf="query">
+  <form #f="ngForm" name="form" novalidate
+        (ngSubmit)="f.form.valid && submitQuery()">
     <fieldset>
-      <h3>Preferences</h3>
-      <ul>
-        <li *ngFor="let category of categories.values()"
-            [class.selected]="category === selectedPreference"
-            (click)="onSelect(category)">
-          <span class="link-button">{{category.name}}</span>
-        </li>
-      </ul>
-      <app-preference-detail [preference]="selectedPreference"></app-preference-detail>
-      <h2>Munch Buddies</h2>
-      <h3>Bring A Friend to Munch</h3>
-      <label>
-        <input class="buddy-search-box" type="text"
-               value="Search for Munch Buddies">
-      </label>
-      <h3>Favourite and Recent Friends</h3>
-      <div>
-        <div class="person-icon"></div>
-        <div class="person-icon"></div>
-        <div class="person-icon"></div>
-        <div class="person-icon"></div>
+      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
+              data-toggle="collapse" data-target="#location" aria-pressed="false">
+        Location
+      </button>
+      <br/>
+      <div id="location" class="collapse">
+        <div *ngFor="let option of query.locationPreference.options" class="form-check">
+            <label class="form-check-label" for={{option}}>
+            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
+                   [checked]="query.locationPreference.choices.has(option)"
+                   (click)="toggleChoice(query.locationPreference, option)">
+              {{option}}
+            </label>
+        </div>
       </div>
-      <div class="button-container">
-        <a routerLink="/dashboard"><button>Back</button></a>
-        <a routerLink="/munch-session-live"><button>Start</button></a>
+    </fieldset>
+
+    <fieldset>
+      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
+              data-toggle="collapse" data-target="#gender" aria-pressed="false">
+        Gender
+      </button>
+      <br/>
+      <div id="gender" class="collapse">
+        <div *ngFor="let option of query.genderPreference.options" class="form-check">
+          <label class="form-check-label" for={{option}}>
+            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
+                   [checked]="query.genderPreference.choices.has(option)"
+                   (click)="toggleChoice(query.genderPreference, option)">
+            {{option}}
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
+              data-toggle="collapse" data-target="#diet" aria-pressed="false">
+        Diet
+      </button>
+      <br/>
+      <div id="diet" class="collapse">
+        <div *ngFor="let option of query.dietPreference.options" class="form-check">
+          <label class="form-check-label" for={{option}}>
+            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
+                   [checked]="query.dietPreference.choices.has(option)"
+                   (click)="toggleChoice(query.dietPreference, option)">
+            {{option}}
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
+              data-toggle="collapse" data-target="#interests" aria-pressed="false">
+        Interests
+      </button>
+      <br/>
+      <div id="interests" class="collapse">
+        <div *ngFor="let option of query.interestsPreference.options" class="form-check">
+          <label class="form-check-label" for={{option}}>
+            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
+                   [checked]="query.interestsPreference.choices.has(option)"
+                   (click)="toggleChoice(query.interestsPreference, option)">
+            {{option}}
+          </label>
+        </div>
       </div>
     </fieldset>
   </form>
 </div>
+
+
+<!--<div>-->
+  <!--<form>-->
+    <!--<h2>Munch Setup</h2>-->
+    <!--<fieldset>-->
+      <!--<h3>Preferences</h3>-->
+      <!--<ul>-->
+        <!--<li *ngFor="let category of categories.values()"-->
+            <!--[class.selected]="category === selectedPreference"-->
+            <!--(click)="onSelect(category)">-->
+          <!--<span class="link-button">{{category.name}}</span>-->
+        <!--</li>-->
+      <!--</ul>-->
+      <!--<app-preference-detail [preference]="selectedPreference"></app-preference-detail>-->
+      <!--<h2>Munch Buddies</h2>-->
+      <!--<h3>Bring A Friend to Munch</h3>-->
+      <!--<label>-->
+        <!--<input class="buddy-search-box" type="text"-->
+               <!--value="Search for Munch Buddies">-->
+      <!--</label>-->
+      <!--<h3>Favourite and Recent Friends</h3>-->
+      <!--<div>-->
+        <!--<div class="person-icon"></div>-->
+        <!--<div class="person-icon"></div>-->
+        <!--<div class="person-icon"></div>-->
+        <!--<div class="person-icon"></div>-->
+      <!--</div>-->
+      <!--<div class="button-container">-->
+        <!--<a routerLink="/dashboard"><button>Back</button></a>-->
+        <!--<a routerLink="/munch-session-live"><button>Start</button></a>-->
+      <!--</div>-->
+    <!--</fieldset>-->
+  <!--</form>-->
+<!--</div>-->
 

@@ -9,9 +9,10 @@ import {RegisterComponent} from './register/register.component';
 import {ShoutOutDetailComponent} from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
+import {MunchQueryComponent} from './munch-query/munch-query.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
-  { path: 'munch-setup', component: PreferenceListComponent },
+  { path: 'munch-setup', component: MunchQueryComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'munch-session-live', component: MunchLiveComponent },
