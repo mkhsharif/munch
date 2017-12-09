@@ -1,17 +1,17 @@
-export const GENDER: string[] = [
+export const GENDERLIST: string[] = [
   'Any',
   'Male',
   'Female'
 ];
 
-export const DIET: string[] = [
+export const DIETLIST: string[] = [
   'Halal',
   'Vegetarian',
   'Vegan',
   'Pescatarian'
 ];
 
-export const LOCATION: string[] = [
+export const LOCATIONLIST: string[] = [
   'Annex',
   'Punchout',
   'Starbucks',
@@ -19,7 +19,7 @@ export const LOCATION: string[] = [
   'Sankofa'
 ];
 
-export const INTERESTS: string[] = [
+export const INTERESTSLIST: string[] = [
   'Gaming',
   'Football',
   'Kanye West',

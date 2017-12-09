@@ -1,8 +1,29 @@
-import {DIET, GENDER, INTERESTS, LOCATION, Preference} from './preference';
+import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './preference';
 
-export const CATEGORIES: Map<string, Preference> = new Map()
-  .set('Gender', {name: 'Gender', options: GENDER, multi: false})
-  .set('Diet', {name: 'Diet', options: DIET, multi: true})
-  .set('Location', {name: 'Location', options: LOCATION, multi: true})
-  .set('Interests', {name: 'Interests', options: INTERESTS, multi: true});
+export const DIETPREFERENCE: Preference = {
+  name: 'Gender',
+  options: GENDERLIST,
+  choices: new Set<string>(),
+  multi: false
+};
 
+export const GENDERPREFERENCE: Preference = {
+  name: 'Diet',
+  options: DIETLIST,
+  choices: new Set<string>(),
+  multi: true
+};
+
+export const LOCATIONPREFERENCE: Preference = {
+  name: 'Location',
+  options: LOCATIONLIST,
+  choices: new Set<string>(),
+  multi: true
+};
+
+export const INTERESTSPREFERENCE: Preference = {
+  name: 'Interests',
+  options: INTERESTSLIST,
+  choices: new Set<string>(),
+  multi: true,
+};
