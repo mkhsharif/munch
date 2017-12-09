@@ -23,6 +23,7 @@ import {AuthenticationService} from './authentication.service';
 import {UserService} from './users/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { QueryFriendsComponent } from './munch-query/query-friends/query-friends.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     ShoutOutDetailComponent,
     MunchQueryComponent,
     ShoutOutCreateComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    QueryFriendsComponent
   ],
   imports: [
     BrowserModule,
