@@ -32,6 +32,7 @@ import { RewardListComponent } from './rewards/reward-list/reward-list.component
 import { UserSessionsListComponent } from './user/user-sessions-list/user-sessions-list.component';
 import { UserFriendsListComponent } from './user/user-friends-list/user-friends-list.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
+import {AuthGuard} from './user/auth.guard';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,14 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
     AppRoutingModule,
     NgbModule.forRoot(),
   ],
-  providers: [ShoutOutService, AuthenticationService, UserService],
-  bootstrap: [AppComponent]
+  providers: [
+    ShoutOutService,
+    AuthenticationService,
+    UserService,
+    AuthGuard
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

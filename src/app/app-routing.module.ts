@@ -10,19 +10,20 @@ import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
+import {AuthGuard} from './user/auth.guard';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
-  { path: 'munch-setup', component: MunchQueryComponent },
+  { path: 'munch-setup', component: MunchQueryComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'munch-session-live', component: MunchLiveComponent },
-  { path: 'munch-session-exit', component: MunchExitComponent },
+  { path: 'munch-session-live', component: MunchLiveComponent, canActivate: [AuthGuard] },
+  { path: 'munch-session-exit', component: MunchExitComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
   { path: 'shoutouts/:id', component: ShoutOutDetailComponent},
   { path: 'shoutouts', component: ShoutOutListComponent},
-  { path: 'create-shoutout', component: ShoutOutCreateComponent},
-  { path: 'settings', component: UserSettingsComponent}
+  { path: 'create-shoutout', component: ShoutOutCreateComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: UserSettingsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
