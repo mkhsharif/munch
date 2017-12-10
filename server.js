@@ -77,10 +77,10 @@ function authenticate(req, res) {
     function (err, user) {
       if (err) {
         handleError(res, "Failed to Auth",  err.message, 500);
+      } else if (!user) {
+        handleError(res, "Username or Password incorrect.");
       } else if (user.password === password) {
         res.send(user);
-      } else {
-        handleError(res, "Username or Password incorrect.");
       }
     });
 }

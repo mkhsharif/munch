@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse} from '@angular/common/http';
-import {User} from './user/user';
+import {User} from './user';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -26,5 +26,16 @@ export class AuthenticationService {
       }
       return response;
     });
+  }
+
+  get loggedIn(): boolean {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  get userName(): string {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      return currentUser.userName;
+    }
   }
 }

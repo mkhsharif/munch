@@ -19,7 +19,7 @@ import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail
 import { MunchQueryComponent } from './munch/munch-query/munch-query.component';
 import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 import { ShoutOutService } from './dashboard/shout-outs/shout-out.service';
-import {AuthenticationService} from './authentication.service';
+import {AuthenticationService} from './user/authentication.service';
 import {UserService} from './user/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';

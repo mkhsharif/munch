@@ -1,13 +1,16 @@
-<nav class="navbar navbar-toggleable-md">
+<nav class="navbar" style="padding: 2px">
   <ul class="nav nav-pills nav-fill w-100 align-items-start">
     <li class="nav-item">
-      <a class="nav-link active" routerLink="/dashboard" data-toggle="tab">Dashboard</a>
+      <a class="nav-link" routerLink="/dashboard">Dashboard</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/munch-setup" data-toggle="tab">Munch!</a>
+      <a class="nav-link" routerLink="/munch-setup">Munch!</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/create-shoutout" data-toggle="tab">Settings</a>
+    <li *ngIf="loggedIn" class="nav-item">
+      <a class="nav-link" routerLink="/settings">{{userName}}</a>
+    </li>
+    <li *ngIf="!loggedIn" class="nav-item">
+      <a class="nav-link" routerLink="/login">Login</a>
     </li>
   </ul>
 </nav>

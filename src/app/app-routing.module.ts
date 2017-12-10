@@ -9,6 +9,7 @@ import {ShoutOutDetailComponent} from './dashboard/shout-outs/shout-out-detail/s
 import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
+import {UserSettingsComponent} from './user/user-settings/user-settings.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch-setup', component: MunchQueryComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'shoutouts/:id', component: ShoutOutDetailComponent},
   { path: 'shoutouts', component: ShoutOutListComponent},
-  { path: 'create-shoutout', component: ShoutOutCreateComponent}
+  { path: 'create-shoutout', component: ShoutOutCreateComponent},
+  { path: 'settings', component: UserSettingsComponent}
 ];
 
 @NgModule({
