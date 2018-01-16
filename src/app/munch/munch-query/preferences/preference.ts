@@ -35,6 +35,6 @@ export class Preference {
   _id?: string;
   name: string;
   options: string[];
-  choices: Set<string> = new Set();
+  choices: string[];
   multi: boolean;
 }

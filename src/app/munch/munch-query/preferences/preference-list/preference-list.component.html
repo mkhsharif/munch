@@ -12,7 +12,7 @@
         <div *ngFor="let option of query.locationPreference.options" class="form-check">
             <label class="form-check-label" for={{option}}>
             <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.locationPreference.choices.has(option)"
+                   [checked]="query.locationPreference.choices.includes(option)"
                    (click)="toggleChoice(query.locationPreference, option)">
               {{option}}
             </label>
@@ -30,7 +30,7 @@
         <div *ngFor="let option of query.genderPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
             <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.genderPreference.choices.has(option)"
+                   [checked]="query.genderPreference.choices.includes(option)"
                    (click)="toggleChoice(query.genderPreference, option)">
             {{option}}
           </label>
@@ -48,7 +48,7 @@
         <div *ngFor="let option of query.dietPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
             <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.dietPreference.choices.has(option)"
+                   [checked]="query.dietPreference.choices.includes(option)"
                    (click)="toggleChoice(query.dietPreference, option)">
             {{option}}
           </label>
@@ -66,7 +66,7 @@
         <div *ngFor="let option of query.interestsPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
             <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.interestsPreference.choices.has(option)"
+                   [checked]="query.interestsPreference.choices.includes(option)"
                    (click)="toggleChoice(query.interestsPreference, option)">
             {{option}}
           </label>
@@ -75,9 +75,3 @@
     </fieldset>
   </form>
 </div>
-
-
-    <!--</fieldset>-->
-  <!--</form>-->
-<!--</div>-->
-

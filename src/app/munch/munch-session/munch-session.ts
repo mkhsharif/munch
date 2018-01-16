@@ -1,3 +1,4 @@
+
 export class MunchSession {
   location: string;
   live: boolean;

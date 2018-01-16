@@ -5,6 +5,7 @@ var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
 var SHOUTOUTS_COLLECTION = "shoutouts";
+var QUERIES_COLLECTION = "queries";
 
 var app = express();
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.get("/api/shoutouts/:id", getShoutout);
 app.put("/api/users/:id", updateUser);
 app.post("/api/users", createUser);
 app.post("/api/users/auth", authenticate);
+app.post("/api/queries", createQuery);
 app.delete("/api/users/:id", deleteUser);
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
@@ -164,4 +166,17 @@ function getShoutout(req, res) {
         res.status(200).json(doc);
       }
     });
+}
+
+function createQuery(req, res) {
+  var newQuery = req.body;
+  newQuery.createDate = new Date();
+  // TODO: Check for uniqueness in credentials
+  db.collection(QUERIES_COLLECTION).insertOne(newQuery, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new query.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
 }

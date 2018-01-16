@@ -3,27 +3,27 @@ import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './p
 export const DIETPREFERENCE: Preference = {
   name: 'Gender',
   options: GENDERLIST,
-  choices: new Set<string>(),
+  choices: [],
   multi: false
 };
 
 export const GENDERPREFERENCE: Preference = {
   name: 'Diet',
   options: DIETLIST,
-  choices: new Set<string>(),
+  choices: [],
   multi: true
 };
 
 export const LOCATIONPREFERENCE: Preference = {
   name: 'Location',
   options: LOCATIONLIST,
-  choices: new Set<string>(),
+  choices: [],
   multi: true
 };
 
 export const INTERESTSPREFERENCE: Preference = {
   name: 'Interests',
   options: INTERESTSLIST,
-  choices: new Set<string>(),
+  choices: [],
   multi: true,
 };
