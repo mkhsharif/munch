@@ -1,12 +1,8 @@
-<h3>Bring A Friend to Munch</h3>
-<label>
-  <input class="buddy-search-box" type="text"
-  value="Search for Munch Buddies">
-</label>
-<h3>Favourite and Recent Friends</h3>
-<div>
-  <div class="person-icon"></div>
-  <div class="person-icon"></div>
-  <div class="person-icon"></div>
-  <div class="person-icon"></div>
+<h5>Bring A Friend to Munch</h5>
+<div class="form-group">
+  <label>Friend Search
+    <input type="text" id="inputName" [(ngModel)]="inputName"
+           value="Search for Munch Buddies"/>
+    <input type="button" (click)="FilterFriends()" value="Apply"/>
+  </label>
 </div>

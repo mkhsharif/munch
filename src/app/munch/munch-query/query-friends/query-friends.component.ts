@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../../user/user';
 
 @Component({
   selector: 'app-query-friends',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryFriendsComponent implements OnInit {
 
+  filteredFriends: User[];
+  inputName = '';
   constructor() { }
 
   ngOnInit() {
   }
 
+  filterFriends() {
+    this.filteredFriends = [];
+    if (this.inputName !== '') {
+      this.inputName = '';
+    }
+  }
 }
