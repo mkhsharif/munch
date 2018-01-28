@@ -9,30 +9,12 @@ export class AuthenticationService {
   private authUrl = '/api/users/auth';
   constructor(private http: HttpClient) { }
 
-  static logout() {
+  logout() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-      console.log('Logging out ' + AuthenticationService.userName);
+      console.log('Logging out ' + currentUser.userName);
     }
     localStorage.removeItem('currentUser');
-  }
-
-  static get loggedIn(): boolean {
-    return JSON.parse(localStorage.getItem('currentUser'));
-  }
-
-  static get userName(): string {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      return NavigationBarComponent.userName;
-    }
-  }
-
-  static get user(): User {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      return currentUser;
-    }
   }
 
   login(username: string, password: string) {

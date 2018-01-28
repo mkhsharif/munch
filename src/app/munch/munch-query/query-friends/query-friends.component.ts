@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../user/user';
-import {AuthenticationService} from '../../../user/authentication.service';
 import {UserService} from '../../../user/user.service';
 
 @Component({
@@ -13,11 +12,13 @@ export class QueryFriendsComponent implements OnInit {
   filteredFriends: User[];
   allFriends: User[];
   inputName = '';
+  user: User;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.allFriends = this.getAllFriends();
     this.filteredFriends = this.allFriends.slice();
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   filterFriends() {
@@ -37,7 +38,7 @@ export class QueryFriendsComponent implements OnInit {
 
   getAllFriends(): User[] {
     const friends: User[] = [];
-    for (const friendId of AuthenticationService.user.friends) {
+    for (const friendId of this.user.friends) {
       this.userService.getUser(friendId)
         .subscribe(friend => friends.push(friend));
     }
