@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../user/authentication.service';
+import {User} from '../user/user';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -13,11 +14,11 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  static get loggedIn(): boolean {
-    return AuthenticationService.loggedIn;
+  get loggedIn(): boolean {
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  static get userName(): string {
-    return AuthenticationService.userName;
+  get userName(): string {
+    return JSON.parse(localStorage.getItem('currentUser')).userName;
   }
 }
