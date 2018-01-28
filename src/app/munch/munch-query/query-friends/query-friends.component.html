@@ -7,10 +7,8 @@
   </label>
 </div>
 <div id="friends" *ngIf="filteredFriends">
-  <div *ngFor="let friend of filteredFriends" class="col-12 btn-group-lg">
-    <label>
+  <div class="col-12 rounded btn-group-sm" *ngFor="let friend of filteredFriends">
       <input type="button" class="btn btn-secondary btn-block"
              value="{{friend.userName}}">
-    </label>
   </div>
 </div>
