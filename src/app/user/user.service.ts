@@ -16,11 +16,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // get("/api/users")
-  getUsers(): Promise<void | User[]> {
-    return this.http.get<User[]>(this.usersUrl)
-      .toPromise()
-      .then(response => response as User[])
-      .catch(UserService.handleError);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   // post("/api/users")

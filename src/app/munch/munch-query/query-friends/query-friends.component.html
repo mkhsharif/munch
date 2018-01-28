@@ -1,8 +1,16 @@
 <h5>Bring A Friend to Munch</h5>
 <div class="form-group">
-  <label>Friend Search
+  <label>
     <input type="text" id="inputName" [(ngModel)]="inputName"
            value="Search for Munch Buddies"/>
     <input type="button" (click)="filterFriends()" value="Search"/>
   </label>
+</div>
+<div id="friends" *ngIf="filteredFriends">
+  <div *ngFor="let friend of filteredFriends" class="col-12 btn-group-lg">
+    <label>
+      <input type="button" class="btn btn-secondary btn-block"
+             value="{{friend.userName}}">
+    </label>
+  </div>
 </div>

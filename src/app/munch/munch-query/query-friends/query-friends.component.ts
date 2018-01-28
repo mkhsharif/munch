@@ -17,8 +17,7 @@ export class QueryFriendsComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.allFriends = this.getAllFriends();
-    this.filteredFriends = this.allFriends.slice();
+    this.getAllFriends();
   }
 
   filterFriends() {
@@ -33,15 +32,25 @@ export class QueryFriendsComponent implements OnInit {
     } else {
       this.filteredFriends = this.allFriends.slice();
     }
+    this.filteredFriends = this.filteredFriends.slice(0, 3);
     console.log(this.filteredFriends);
   }
 
-  getAllFriends(): User[] {
-    const friends: User[] = [];
-    for (const friendId of this.user.friends) {
-      this.userService.getUser(friendId)
-        .subscribe(friend => friends.push(friend));
-    }
-    return friends;
+  clearfilterFriends() {
+    this.filteredFriends = [];
+  }
+
+  getAllFriends(): void {
+    // for (const friendId of this.user.friends) {
+    //   this.userService.getUser(friendId)
+    //     .subscribe(friend => friends.push(friend));
+    // }
+    // this.userService.getUsers()
+    //   .subscribe(users => console.log(users));
+    this.userService.getUsers()
+      .subscribe(users => {
+        console.log(users);
+        this.allFriends = users;
+      });
   }
 }
