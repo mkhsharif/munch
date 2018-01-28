@@ -16,9 +16,9 @@ export class QueryFriendsComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.allFriends = this.getAllFriends();
     this.filteredFriends = this.allFriends.slice();
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   filterFriends() {
