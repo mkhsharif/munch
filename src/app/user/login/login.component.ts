@@ -18,17 +18,18 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    AuthenticationService.logout();
+    this.authenticationService.logout();
     this.returnUrl = '/dashboard';
   }
 
   login(): void {
     this.loading = true;
     console.log('Attempting Login');
-    this.authenticationService.login(AuthenticationService.userName, this.user.password)
+    this.authenticationService.login(this.user.userName, this.user.password)
       .subscribe(
         data => {
           console.log('Logging in');
+          console.log(data);
           this.router.navigate(['/dashboard']);
         },
         error => {

@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="userName">Username</label>
         <input type="text" class="form-control" id="userName" name="userName"
-               required [(ngModel)]="AuthenticationService.userName" #userName="ngModel">
+               required [(ngModel)]="user.userName" #userName="ngModel">
       </div>
       <div *ngIf="f.submitted && !userName.valid" class="description">Required</div>
 
