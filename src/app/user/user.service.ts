@@ -29,11 +29,8 @@ export class UserService {
   }
 
   // get("/api/users/:id")
-  getUser(): Promise<void | User> {
-    return this.http.get<User>(this.usersUrl)
-      .toPromise()
-      .then(response => response as User)
-      .catch(UserService.handleError);
+  getUser(getUserId: String): Observable<User> {
+    return this.http.get<User>(this.usersUrl  + '/' + getUserId);
   }
 
   // delete("/api/users/:id")

@@ -8,16 +8,16 @@ import {AuthenticationService} from '../user/authentication.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  get loggedIn(): boolean {
-    return this.authService.loggedIn;
+  static get loggedIn(): boolean {
+    return AuthenticationService.loggedIn;
   }
 
-  get userName(): string {
-    return this.authService.userName;
+  static get userName(): string {
+    return AuthenticationService.userName;
   }
 }

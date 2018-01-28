@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.loading = true;
     console.log('Attempting Login');
-    this.authenticationService.login(this.user.userName, this.user.password)
+    this.authenticationService.login(AuthenticationService.userName, this.user.password)
       .subscribe(
         data => {
           console.log('Logging in');
