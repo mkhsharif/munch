@@ -11,12 +11,11 @@ import {User} from '../../user/user';
 export class MunchQueryComponent implements OnInit {
   query: Query = {
     user: '',
-    friendsMap: new Map<string, User>(),
     status: '',
-    locationPreference: LOCATIONPREFERENCE,
-    dietPreference: DIETPREFERENCE,
-    genderPreference: GENDERPREFERENCE,
-    interestsPreference: INTERESTSPREFERENCE
+    locationPreference: '',
+    dietPreference: '',
+    genderPreference: '',
+    interestsPreference: ''
 };
 
   constructor() { }
