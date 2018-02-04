@@ -8,14 +8,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Set Up Local MongoDB Database
 
-Install MongoDB on your OS
+Install and Set Up MongoDB on your OS
+
+Windows: 
+- https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
 
 Create a new database named 'munch' on port 27017 (default)
+
+- First collection name: users
 
 ### Start the database instance.
 
 Windows: 
-- C:\Program Files\MongoDB\Server\3.6\bin\mongod
+- C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe
 
 ### Run the Node Server
 
