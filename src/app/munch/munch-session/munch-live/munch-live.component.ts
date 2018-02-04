@@ -8,10 +8,8 @@ import {MunchSession} from '../munch-session';
 })
 export class MunchLiveComponent implements OnInit {
   session: MunchSession = {
-    location: 'Annex',
     live: true,
-    status: 'Sitting Down',
-    message: 'I\'m Wearing a Black Hoodie!'
+    users: []
   };
   constructor() { }
 
