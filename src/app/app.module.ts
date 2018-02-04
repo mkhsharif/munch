@@ -35,6 +35,8 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
 import {AuthGuard} from './user/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
+import {QueryServiceService} from './munch/munch-query/query-service.service';
+import {SessionService} from './munch/munch-session/session.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-s
     ShoutOutService,
     AuthenticationService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    QueryServiceService,
+    SessionService
   ],
   bootstrap: [
     AppComponent
