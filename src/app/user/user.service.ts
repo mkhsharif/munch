@@ -9,6 +9,7 @@ import 'rxjs/add/observable/of';
 export class UserService {
   private usersUrl = '/api/users';
   private mock1: User = {
+    _id: 'mockUser1',
     userName: 'a',
     firstName: 'a',
     lastName: 'a',
@@ -20,6 +21,7 @@ export class UserService {
     shoutouts: []
 };
   private mock2: User = {
+    _id: 'mockUser2',
     userName: 'b',
     firstName: 'b',
     lastName: 'b',
