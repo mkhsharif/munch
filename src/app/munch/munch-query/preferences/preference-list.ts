@@ -1,15 +1,15 @@
 import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './preference';
 
 export const DIETPREFERENCE: Preference = {
-  name: 'Gender',
-  options: GENDERLIST,
+  name: 'Diet',
+  options: DIETLIST,
   choices: [],
   multi: false
 };
 
 export const GENDERPREFERENCE: Preference = {
-  name: 'Diet',
-  options: DIETLIST,
+  name: 'Gender',
+  options: GENDERLIST,
   choices: [],
   multi: true
 };
