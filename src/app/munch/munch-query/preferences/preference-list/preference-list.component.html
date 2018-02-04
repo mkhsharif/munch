@@ -7,7 +7,7 @@
               data-toggle="collapse" data-target="#location" aria-pressed="false">
         Location
       </button>
-      <br/>
+
       <div id="location" class="collapse">
         <div *ngFor="let option of query.locationPreference.options" class="form-check">
             <label class="form-check-label" for={{option}}>
@@ -25,7 +25,7 @@
               data-toggle="collapse" data-target="#gender" aria-pressed="false">
         Gender
       </button>
-      <br/>
+
       <div id="gender" class="collapse">
         <div *ngFor="let option of query.genderPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
@@ -43,7 +43,7 @@
               data-toggle="collapse" data-target="#diet" aria-pressed="false">
         Diet
       </button>
-      <br/>
+
       <div id="diet" class="collapse">
         <div *ngFor="let option of query.dietPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
@@ -61,7 +61,7 @@
               data-toggle="collapse" data-target="#interests" aria-pressed="false">
         Interests
       </button>
-      <br/>
+
       <div id="interests" class="collapse">
         <div *ngFor="let option of query.interestsPreference.options" class="form-check">
           <label class="form-check-label" for={{option}}>
