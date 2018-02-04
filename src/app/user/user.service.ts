@@ -8,6 +8,7 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class UserService {
   private usersUrl = '/api/users';
+
   private mock1: User = {
     _id: 'mockUser1',
     userName: 'a',
@@ -20,6 +21,7 @@ export class UserService {
     friends: [],
     shoutouts: []
 };
+
   private mock2: User = {
     _id: 'mockUser2',
     userName: 'b',
@@ -32,6 +34,7 @@ export class UserService {
     friends: [],
     shoutouts: [],
   };
+
   private static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
