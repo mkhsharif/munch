@@ -26,7 +26,7 @@ export class MunchSearchComponent implements OnInit {
   ngOnInit() {
   }
   quickSearch() {
-    const firstQuery = this.queryService.getQueries()[0];
+    const firstQuery = this.queryService.getMockQueries()[0];
     let score = 0;
     if (firstQuery.locationPreference === this.input.locationPreference) {
       score = score + 1;
