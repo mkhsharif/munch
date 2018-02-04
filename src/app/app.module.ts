@@ -33,6 +33,8 @@ import { UserSessionsListComponent } from './user/user-sessions-list/user-sessio
 import { UserFriendsListComponent } from './user/user-friends-list/user-friends-list.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 import {AuthGuard} from './user/auth.guard';
+import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
+import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {AuthGuard} from './user/auth.guard';
     RewardListComponent,
     UserSessionsListComponent,
     UserFriendsListComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MunchSessionComponent,
+    MunchSearchComponent
   ],
   imports: [
     BrowserModule,
