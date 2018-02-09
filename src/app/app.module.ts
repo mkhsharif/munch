@@ -8,7 +8,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PreferenceDetailComponent } from './munch/munch-query/preferences/preference-detail/preference-detail.component';
+import { PreferenceDetailComponent } from './munch/munch-query/preferences/preference-list/preference-detail/preference-detail.component';
 import { PreferenceListComponent } from './munch/munch-query/preferences/preference-list/preference-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MunchLiveComponent } from './munch/munch-session/munch-live/munch-live.component';

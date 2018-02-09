@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from './query';
-import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENCE} from './preferences/preference-list';
-import {User} from '../../user/user';
 
 @Component({
   selector: 'app-munch-query',
@@ -23,5 +21,12 @@ export class MunchQueryComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleQueryUpdated(query: Query) {
+    this.query.locationPreference = query.locationPreference;
+    this.query.dietPreference = query.dietPreference;
+    this.query.genderPreference = query.genderPreference;
+    this.query.interestsPreference = query.interestsPreference;
+    console.log(query);
+  }
   submitQuery () {}
 }

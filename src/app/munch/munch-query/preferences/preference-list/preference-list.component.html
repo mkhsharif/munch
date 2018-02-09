@@ -1,77 +1,19 @@
-<!--suppress XmlDuplicatedId -->
-<div *ngIf="query">
-  <form #f="ngForm" name="form" novalidate
-        (ngSubmit)="f.form.valid && submitQuery()">
-    <fieldset>
-      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
-              data-toggle="collapse" data-target="#location" aria-pressed="false">
-        Location
-      </button>
-      <br/>
-      <div id="location" class="collapse">
-        <div *ngFor="let option of query.locationPreference.options" class="form-check">
-            <label class="form-check-label" for={{option}}>
-            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.locationPreference.choices.includes(option)"
-                   (click)="toggleChoice(query.locationPreference, option)">
-              {{option}}
-            </label>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
-              data-toggle="collapse" data-target="#gender" aria-pressed="false">
-        Gender
-      </button>
-      <br/>
-      <div id="gender" class="collapse">
-        <div *ngFor="let option of query.genderPreference.options" class="form-check">
-          <label class="form-check-label" for={{option}}>
-            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.genderPreference.choices.includes(option)"
-                   (click)="toggleChoice(query.genderPreference, option)">
-            {{option}}
-          </label>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
-              data-toggle="collapse" data-target="#diet" aria-pressed="false">
-        Diet
-      </button>
-      <br/>
-      <div id="diet" class="collapse">
-        <div *ngFor="let option of query.dietPreference.options" class="form-check">
-          <label class="form-check-label" for={{option}}>
-            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.dietPreference.choices.includes(option)"
-                   (click)="toggleChoice(query.dietPreference, option)">
-            {{option}}
-          </label>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <button type="button" class="btn btn-primary btn-block dropdown-toggle"
-              data-toggle="collapse" data-target="#interests" aria-pressed="false">
-        Interests
-      </button>
-      <br/>
-      <div id="interests" class="collapse">
-        <div *ngFor="let option of query.interestsPreference.options" class="form-check">
-          <label class="form-check-label" for={{option}}>
-            <input type="radio" class="form-check-input" id={{option}} required name="{{option}}"
-                   [checked]="query.interestsPreference.choices.includes(option)"
-                   (click)="toggleChoice(query.interestsPreference, option)">
-            {{option}}
-          </label>
-        </div>
-      </div>
-    </fieldset>
-  </form>
+<div class="card">
+  <h3 class="card-title text-center">Preferences</h3>
+  <app-preference-detail
+    [preference]="locationPreference"
+    (optionUpdated)="handleOptionUpdated($event, locationPreference)">
+  </app-preference-detail>
+  <app-preference-detail
+    [preference]="genderPreference"
+    (optionUpdated)="handleOptionUpdated($event, genderPreference)">
+  </app-preference-detail>
+  <app-preference-detail
+    [preference]="dietPreference"
+    (optionUpdated)="handleOptionUpdated($event, dietPreference)">
+  </app-preference-detail>
+  <app-preference-detail
+    [preference]="interestsPreference"
+    (optionUpdated)="handleOptionUpdated($event, interestsPreference)">
+  </app-preference-detail>
 </div>

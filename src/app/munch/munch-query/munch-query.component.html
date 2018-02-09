@@ -1,5 +1,8 @@
-<h5>Munch Setup</h5>
-<app-preference-list [(query)]="query"></app-preference-list>
+<h3>Munch Setup</h3>
+<app-preference-list
+  [query]="query"
+  (queryChange)="handleQueryUpdated($event)">
+</app-preference-list>
 <div class="btn-group d-flex" role="group">
   <a routerLink="/dashboard" class="btn btn-primary w-100" role="button">Back</a>
   <a routerLink="/munch-session-live" class="btn btn-primary w-100" role="button">Start</a>

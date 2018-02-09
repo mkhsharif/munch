@@ -35,6 +35,4 @@ export class Preference {
   _id?: string;
   name: string;
   options: string[];
-  choices: string[];
-  multi: boolean;
 }

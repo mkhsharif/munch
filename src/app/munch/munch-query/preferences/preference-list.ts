@@ -2,28 +2,20 @@ import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './p
 
 export const DIETPREFERENCE: Preference = {
   name: 'Gender',
-  options: GENDERLIST,
-  choices: [],
-  multi: false
+  options: GENDERLIST
 };
 
 export const GENDERPREFERENCE: Preference = {
   name: 'Diet',
-  options: DIETLIST,
-  choices: [],
-  multi: true
+  options: DIETLIST
 };
 
 export const LOCATIONPREFERENCE: Preference = {
   name: 'Location',
-  options: LOCATIONLIST,
-  choices: [],
-  multi: true
+  options: LOCATIONLIST
 };
 
 export const INTERESTSPREFERENCE: Preference = {
   name: 'Interests',
-  options: INTERESTSLIST,
-  choices: [],
-  multi: true,
+  options: INTERESTSLIST
 };
