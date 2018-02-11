@@ -18,9 +18,9 @@ import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/sho
 import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import { MunchQueryComponent } from './munch/munch-query/munch-query.component';
 import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
-import { ShoutOutService } from './services/shout-out.service';
-import {AuthenticationService} from './services/authentication.service';
-import {UserService} from './services/user.service';
+import { ShoutOutService } from './_services/shout-out.service';
+import {AuthenticationService} from './_services/authentication.service';
+import {UserService} from './_services/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { QueryFriendsComponent } from './munch/munch-query/query-friends/query-friends.component';
@@ -32,11 +32,11 @@ import { RewardListComponent } from './rewards/reward-list/reward-list.component
 import { UserSessionsListComponent } from './user/user-sessions-list/user-sessions-list.component';
 import { UserFriendsListComponent } from './user/user-friends-list/user-friends-list.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
-import {AuthGuard} from './guards/auth.guard';
+import {AuthGuard} from './_guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
-import {QueryServiceService} from './services/query-service.service';
-import {SessionService} from './services/session.service';
+import {QueryServiceService} from './_services/query-service.service';
+import {SessionService} from './_services/session.service';
 
 @NgModule({
   declarations: [

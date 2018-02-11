@@ -1,4 +1,4 @@
-import {ShoutOut} from '../../../models/shout-out';
+import {ShoutOut} from '../../../_models/shout-out';
 
 export const SHOUTOUTS: ShoutOut[] = [
   { user: 'mock', message: 'Hello World', _id: '1' },

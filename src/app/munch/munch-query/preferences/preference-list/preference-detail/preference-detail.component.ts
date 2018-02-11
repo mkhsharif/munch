@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Preference} from '../../../../../models/preference';
+import { Preference} from '../../../../../_models/preference';
 
 @Component({
   selector: 'app-preference-detail',

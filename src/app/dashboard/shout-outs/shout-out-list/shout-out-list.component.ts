@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoutOutService } from '../../../services/shout-out.service';
-import { ShoutOut } from '../../../models/shout-out';
+import { ShoutOutService } from '../../../_services/shout-out.service';
+import { ShoutOut } from '../../../_models/shout-out';
 
 @Component({
   selector: 'app-shout-out-list',

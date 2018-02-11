@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Query} from '../../../models/query';
-import {QueryServiceService} from '../../../services/query-service.service';
+import {Query} from '../../../_models/query';
+import {QueryServiceService} from '../../../_services/query-service.service';
 
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { User } from '../_models/user';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
