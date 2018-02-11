@@ -2,7 +2,7 @@
 export class Query {
   _id?: string;
   user: string;
-  status: string;
+  searching: boolean;
   locationPreference: string;
   dietPreference: string;
   interestsPreference: string;

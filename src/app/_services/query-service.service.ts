@@ -6,13 +6,13 @@ import {HttpClient} from '@angular/common/http';
 
 
 @Injectable()
-export class QueryServiceService {
+export class QueryService {
   private queryUrl = '/api/queries';
 
   private mockQuery1: Query = {
     _id: 'mockQuery1',
     user: 'mockUser1',
-    status: '',
+    searching: false,
     locationPreference: 'Annex',
     dietPreference: 'Vegan',
     genderPreference: 'Female',
@@ -22,14 +22,14 @@ export class QueryServiceService {
   private mockQuery2: Query = {
     _id: 'mockQuery2',
     user: 'mockUser2',
-    status: '',
+    searching: false,
     locationPreference: 'Punchout',
     dietPreference: 'Any',
     genderPreference: 'Any',
     interestsPreference: 'Anime'
   };
 
-  private static handleError (error: any) {
+  static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead

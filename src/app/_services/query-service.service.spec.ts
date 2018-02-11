@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { QueryServiceService } from './query-service.service';
+import { QueryService } from './query-service.service';
 
-describe('QueryServiceService', () => {
+describe('QueryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [QueryServiceService]
+      providers: [QueryService]
     });
   });
 
-  it('should be created', inject([QueryServiceService], (service: QueryServiceService) => {
+  it('should be created', inject([QueryService], (service: QueryService) => {
     expect(service).toBeTruthy();
   }));
 });

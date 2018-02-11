@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from '../../../_models/query';
-import {QueryServiceService} from '../../../_services/query-service.service';
+import {QueryService} from '../../../_services/query-service.service';
 
 
 
@@ -22,7 +22,7 @@ export class MunchSearchComponent implements OnInit {
   };
 
   constructor(
-    private queryService: QueryServiceService) { }
+    private queryService: QueryService) { }
   ngOnInit() {
   }
   quickSearch() {

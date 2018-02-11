@@ -44,6 +44,9 @@ export class UserService {
   // noinspection JSDeprecatedSymbols
   constructor(private http: HttpClient) { }
 
+  getCurrentUser(): User {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
   // get("/api/users")
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);

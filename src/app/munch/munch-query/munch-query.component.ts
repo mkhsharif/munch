@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from '../../_models/query';
+import {UserService} from '../../_services/user.service';
+import {QueryService} from '../../_services/query-service.service';
 
 @Component({
   selector: 'app-munch-query',
@@ -9,24 +11,41 @@ import {Query} from '../../_models/query';
 export class MunchQueryComponent implements OnInit {
   query: Query = {
     user: '',
-    status: '',
+    searching: false,
     locationPreference: '',
     dietPreference: '',
     genderPreference: '',
     interestsPreference: ''
 };
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private queryService: QueryService) { }
 
   ngOnInit() {
   }
 
-  handleQueryUpdated(query: Query) {
+  handleQueryUpdated(query: Query): void {
     this.query.locationPreference = query.locationPreference;
     this.query.dietPreference = query.dietPreference;
     this.query.genderPreference = query.genderPreference;
     this.query.interestsPreference = query.interestsPreference;
     console.log(query);
   }
-  submitQuery () {}
+
+  submitQuery(): void {
+    const currentUser = this.userService.getCurrentUser();
+    if (currentUser) {
+      this.query.user = currentUser._id;
+     this.queryService.createQuery(this.query)
+        .subscribe(
+          data => {
+            this.query._id = data._id;
+            console.log(this.query);
+        }, error => {
+           QueryService.handleError(error);
+        }
+      );
+    }
+  }
 }
