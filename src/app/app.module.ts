@@ -37,6 +37,7 @@ import { MunchSessionComponent } from './munch/munch-session/munch-session.compo
 import { MunchSearchComponent } from './munch/munch-search/munch-search.component';
 import {QueryService} from './_services/query.service';
 import {SessionService} from './_services/munch-session.service';
+import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {SessionService} from './_services/munch-session.service';
     UserFriendsListComponent,
     UserSettingsComponent,
     MunchSessionComponent,
-    MunchSearchComponent
+    MunchSearchComponent,
+    MunchLoadingComponent
   ],
   imports: [
     BrowserModule,
