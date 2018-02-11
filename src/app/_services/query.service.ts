@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';
 
-
 @Injectable()
 export class QueryService {
   private queryUrl = '/api/queries';
@@ -43,5 +42,20 @@ export class QueryService {
 
   getMockQueries(): Observable<Query[]> {
     return Observable.of([this.mockQuery1, this.mockQuery2]);
+  }
+
+  getQueries(): Observable<Query[]> {
+    return this.http.get<Query[]>(this.queryUrl);
+  }
+
+  getQuery(queryId: string): Observable<Query> {
+    if (queryId === this.mockQuery1._id) {
+      return Observable.of(this.mockQuery1);
+    }
+
+    if (queryId === this.mockQuery2._id) {
+      return Observable.of(this.mockQuery2);
+    }
+    return this.http.get<Query>(this.queryUrl  + '/' + queryId);
   }
 }

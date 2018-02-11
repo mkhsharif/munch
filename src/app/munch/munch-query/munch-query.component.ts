@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from '../../_models/query';
 import {UserService} from '../../_services/user.service';
-import {QueryService} from '../../_services/query-service.service';
+import {QueryService} from '../../_services/query.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-munch-query',
@@ -20,7 +21,8 @@ export class MunchQueryComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private queryService: QueryService) { }
+    private queryService: QueryService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -42,6 +44,7 @@ export class MunchQueryComponent implements OnInit {
           data => {
             this.query._id = data._id;
             console.log(this.query);
+            this.router.navigate(['/munch/search/' + data._id]);
         }, error => {
            QueryService.handleError(error);
         }

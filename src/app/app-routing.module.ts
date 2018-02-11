@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'shoutouts', component: ShoutOutListComponent},
   { path: 'create-shoutout', component: ShoutOutCreateComponent, canActivate: [] },
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
-  { path: 'quick-search', component: MunchSearchComponent, canActivate: []}
+  { path: 'quick-search', component: MunchSearchComponent, canActivate: []},
+  { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: []}
 ];
 
 @NgModule({

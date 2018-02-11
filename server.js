@@ -22,6 +22,8 @@ app.get("/api/users", getUsers);
 app.get("/api/shoutouts", getShoutouts);
 app.get("/api/users/:id", getUser);
 app.get("/api/shoutouts/:id", getShoutout);
+app.get("/api/queries", getQueries);
+app.get("/api/queries/:id", getQuery);
 app.put("/api/users/:id", updateUser);
 app.post("/api/users", createUser);
 app.post("/api/users/auth", authenticate);
@@ -177,6 +179,27 @@ function createQuery(req, res) {
       handleError(res, err.message, "Failed to create new query.");
     } else {
       res.status(201).json(doc.ops[0]);
+    }
+  });
+}
+
+function getQuery(req, res) {
+  db.collection(QUERIES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get query");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+}
+
+function getQueries(req, res) {
+  db.collection(QUERIES_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get queries.");
+    } else {
+      res.status(200).json(docs);
     }
   });
 }
