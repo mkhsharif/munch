@@ -36,7 +36,7 @@ import {AuthGuard} from './_guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
 import {QueryService} from './_services/query.service';
-import {SessionService} from './_services/session.service';
+import {SessionService} from './_services/munch-session.service';
 
 @NgModule({
   declarations: [

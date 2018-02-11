@@ -26,5 +26,10 @@ export class SessionService {
     if (getSessionId === this.mockMunchSession._id) {
       return Observable.of(this.mockMunchSession);
     }
+    return this.http.get<MunchSession>(this.sessionUrl + '/' + getSessionId);
+  }
+
+  createSession(munchSession: MunchSession): Observable<MunchSession> {
+    return this.http.post<MunchSession>(this.sessionUrl, munchSession);
   }
 }
