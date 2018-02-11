@@ -32,7 +32,7 @@ import { RewardListComponent } from './rewards/reward-list/reward-list.component
 import { UserSessionsListComponent } from './user/user-sessions-list/user-sessions-list.component';
 import { UserFriendsListComponent } from './user/user-friends-list/user-friends-list.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
-import {AuthGuard} from './user/auth.guard';
+import {AuthGuard} from './guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
 import {QueryServiceService} from './services/query-service.service';
