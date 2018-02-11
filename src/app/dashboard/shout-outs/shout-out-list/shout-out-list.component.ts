@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoutOutService } from '../shout-out.service';
+import { ShoutOutService } from '../../../services/shout-out.service';
 import { ShoutOut } from '../shout-out';
 
 @Component({

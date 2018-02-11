@@ -10,7 +10,6 @@ import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import {AuthGuard} from './user/auth.guard';
 import {MunchSearchComponent} from './munch/munch-session/munch-search/munch-search.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [

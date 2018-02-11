@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Query} from '../../munch-query/query';
-import {QueryServiceService} from '../../munch-query/query-service.service';
+import {QueryServiceService} from '../../../services/query-service.service';
 
 
 

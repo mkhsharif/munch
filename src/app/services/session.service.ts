@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MunchSession} from './munch-session';
+import {MunchSession} from '../munch/munch-session/munch-session';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';

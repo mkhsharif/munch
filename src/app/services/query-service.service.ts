@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Query } from './query';
+import { Query } from '../munch/munch-query/query';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';

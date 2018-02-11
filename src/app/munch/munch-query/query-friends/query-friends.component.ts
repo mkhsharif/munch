@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../user/user';
-import {UserService} from '../../../user/user.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-query-friends',

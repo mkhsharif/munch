@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse} from '@angular/common/http';
-import {User} from './user';
+import {User} from '../user/user';
 import 'rxjs/add/operator/map';
 import {NavigationBarComponent} from '../navigation-bar/navigation-bar.component';
 

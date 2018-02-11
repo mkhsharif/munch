@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ShoutOut} from './shout-out';
-import {SHOUTOUTS} from './shout-out-list/mock-shout-outs';
+import {ShoutOut} from '../dashboard/shout-outs/shout-out';
+import {SHOUTOUTS} from '../dashboard/shout-outs/shout-out-list/mock-shout-outs';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
