@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {MunchLiveComponent} from './munch/munch-session/munch-live/munch-live.component';
-import {MunchExitComponent} from './munch/munch-session/munch-exit/munch-exit.component';
+import {MunchLiveComponent} from './munch/munch-live/munch-live.component';
+import {MunchExitComponent} from './munch/munch-exit/munch-exit.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {ShoutOutDetailComponent} from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
@@ -10,7 +10,7 @@ import {ShoutOutListComponent} from './dashboard/shout-outs/shout-out-list/shout
 import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
 import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import {MunchSearchComponent} from './munch/munch-session/munch-search/munch-search.component';
+import {MunchSearchComponent} from './munch/munch-search/munch-search.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch-setup', component: MunchQueryComponent, canActivate: [] },

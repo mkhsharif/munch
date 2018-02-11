@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Query} from '../../../_models/query';
-import {QueryService} from '../../../_services/query.service';
+import {Query} from '../../_models/query';
+import {QueryService} from '../../_services/query.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

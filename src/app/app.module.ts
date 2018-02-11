@@ -11,8 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PreferenceDetailComponent } from './munch/munch-query/preferences/preference-list/preference-detail/preference-detail.component';
 import { PreferenceListComponent } from './munch/munch-query/preferences/preference-list/preference-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MunchLiveComponent } from './munch/munch-session/munch-live/munch-live.component';
-import { MunchExitComponent } from './munch/munch-session/munch-exit/munch-exit.component';
+import { MunchLiveComponent } from './munch/munch-live/munch-live.component';
+import { MunchExitComponent } from './munch/munch-exit/munch-exit.component';
 import { ShoutOutsComponent } from './dashboard/shout-outs/shout-outs.component';
 import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
 import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
@@ -34,7 +34,7 @@ import { UserFriendsListComponent } from './user/user-friends-list/user-friends-
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 import {AuthGuard} from './_guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
-import { MunchSearchComponent } from './munch/munch-session/munch-search/munch-search.component';
+import { MunchSearchComponent } from './munch/munch-search/munch-search.component';
 import {QueryService} from './_services/query.service';
 import {SessionService} from './_services/munch-session.service';
 
