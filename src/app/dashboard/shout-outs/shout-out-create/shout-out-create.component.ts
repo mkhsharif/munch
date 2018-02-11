@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoutOut} from '../shout-out';
+import { ShoutOut} from '../../../models/shout-out';
 
 @Component({
   selector: 'app-shout-out-create',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ShoutOut} from '../dashboard/shout-outs/shout-out';
+import {ShoutOut} from '../models/shout-out';
 import {SHOUTOUTS} from '../dashboard/shout-outs/shout-out-list/mock-shout-outs';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';

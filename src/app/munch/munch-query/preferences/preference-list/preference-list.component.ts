@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Preference} from '../preference';
-import {Query} from '../../query';
-import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENCE} from '../preference-list';
+import {Preference} from '../../../../models/preference';
+import {Query} from '../../../../models/query';
+import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENCE} from '../../../../models/preference-list';
 
 @Component({
   selector: 'app-preference-list',

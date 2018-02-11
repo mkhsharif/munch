@@ -1,4 +1,4 @@
-import {MunchSession} from '../munch/munch-session/munch-session';
+import {MunchSession} from './munch-session';
 
 export class User {
   _id?: string;

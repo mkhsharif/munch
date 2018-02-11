@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Query} from './query';
+import {Query} from '../../models/query';
 
 @Component({
   selector: 'app-munch-query',
