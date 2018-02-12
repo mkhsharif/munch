@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Query} from '../../_models/query';
 import {QueryService} from '../../_services/query.service';
 import {ActivatedRoute} from '@angular/router';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-munch-search',
@@ -11,18 +12,23 @@ import {ActivatedRoute} from '@angular/router';
 
 export class MunchSearchComponent implements OnInit {
   query: Query;
+  private socket: SocketIOClient.Socket;
 
   constructor(
     private queryService: QueryService,
     private route: ActivatedRoute
-  ) { }
+  ) { this.socket = io(); }
 
   ngOnInit() {
     this.getQuery();
+    this.socket.on('new-message', function (data) {
+      console.log(data);
+    });
   }
 
   getQuery(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.socket.emit('save-message', {message: 'test'});
     this.queryService.getQuery(id)
       .subscribe(
         query => {

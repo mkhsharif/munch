@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MunchSession} from '../../../_models/munch-session';
+import {MunchSession} from '../../_models/munch-session';
 
 @Component({
   selector: 'app-munch-live',

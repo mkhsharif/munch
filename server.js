@@ -34,6 +34,8 @@ app.delete("/api/users/:id", deleteUser);
 var db;
 var mongoUri;
 var mongoPort;
+var appServer;
+var io;
 // Connect to the database before starting the application server.
 var myArgs = process.argv.slice(2);
 
@@ -56,12 +58,31 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
   console.log("Database connection ready");
 
   // Initialize the app.
-  var server = app.listen(mongoPort || 8080, function () {
-    var port = server.address().port;
+  appServer = app.listen(mongoPort || 8080, function () {
+    var port = appServer.address().port;
+    appServer.listen(process.env.PORT);
     console.log("App now running on port", port);
   });
+  // Socket.io functions
+  io = require('socket.io').listen(appServer);
+  io.on('connection', function (socket) {
+    console.log('Client connected');
+    socket.on('disconnect', disconnect);
+    socket.on('save-message', saveMessage)
+  });
+
 });
 
+// SOCKET.IO FUNCTIONS BELOW
+
+function disconnect() {
+  console.log('Client disconnected');
+}
+
+function saveMessage (data) {
+  console.log(data);
+  io.emit('new-message', { message: data });
+}
 // API FUNCTIONS BELOW
 
 // Generic error handler used by all endpoints.
