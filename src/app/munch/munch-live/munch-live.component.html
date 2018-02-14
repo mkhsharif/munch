@@ -1,17 +1,18 @@
-<h2>Munch Match</h2>
-<div class="container" style="background-color: gray;">
-  <div class="jasmine-description">
-    <div class="person-icon-c"></div>
-    <h3>User2</h3>
-    <p class="jasmine-description" style="text-align: center; width: 100%;">{{session.message}}</p>
+<div *ngIf="session">
+  <h2>Munch Match</h2>
+  <div class="container" style="background-color: gray;">
+    <div class="jasmine-description">
+      <div class="person-icon-c"></div>
+      <h3>User: {{currentUser.userName}}</h3>
+      <p class="jasmine-description" style="text-align: center; width: 100%;">{{session.users}}</p>
+    </div>
+    <div class="symbol-summary">
+      <p class="jasmine-description" style="text-align: center; width: 100%;">{{session._id}}</p>
+    </div>
+    <div class="jasmine-description">
+      <label for="Status">Status </label>
+      <input id="Status" type="text" name="status" [(ngModel)]="session.live">
+    </div>
+    <button (click)="exitSession()" class="link-button">Exit</button>
   </div>
-  <div class="symbol-summary">
-    <p class="jasmine-description" style="text-align: center; width: 100%;">{{session.location}}</p>
-  </div>
-  <div class="jasmine-description">
-    <label for="Status">Status </label>
-    <input id="Status" type="text" name="status" [(ngModel)]="session.status">
-  </div>
-  <a routerLink="/munch-session-exit"><button class="link-button">Exit</button></a>
 </div>
-

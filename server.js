@@ -39,6 +39,7 @@ app.post("/api/queries", createQuery);
 app.post("/api/users/auth", authenticate);
 
 // SESSION API FUNCTIONS
+app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 
 // Create a database variable outside of the database connection callback to
@@ -263,4 +264,15 @@ function createSession(req, res) {
       res.status(201).json(doc.ops[0]);
     }
   });
+}
+
+function getSession(req, res) {
+  db.collection(SESSIONS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get session");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
 }

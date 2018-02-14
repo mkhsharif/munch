@@ -14,7 +14,7 @@ export class SessionService {
     users: ['mockUser1', 'mockUser2'],
   };
 
-  private static handleError (error: any) {
+  static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
