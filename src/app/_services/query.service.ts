@@ -58,4 +58,8 @@ export class QueryService {
     }
     return this.http.get<Query>(this.queryUrl  + '/' + queryId);
   }
+
+  updateQuery(query: Query): Observable<Query> {
+    return this.http.put<Query>(this.queryUrl + '/' + query._id, query);
+  }
 }

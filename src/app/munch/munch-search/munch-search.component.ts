@@ -49,6 +49,15 @@ export class MunchSearchComponent implements OnInit {
       .subscribe(
         query => {
           this.query = query;
+          this.query.searching = true;
+          this.queryService.updateQuery(this.query).subscribe(
+            updatedQuery => {
+              if (updatedQuery.searching) {
+                console.log(query);
+                console.log('Query now searching');
+              }
+            }
+          );
         }, error => {
           QueryService.handleError(error);
         });
@@ -63,7 +72,7 @@ export class MunchSearchComponent implements OnInit {
 
   quickSearch() {
     for (const query of this.allQueries) {
-      if (query.user !== this.currentUser._id) {
+      if (query.user !== this.currentUser._id && query.searching === true) {
         let score = 0;
         if (query.locationPreference === this.query.locationPreference) {
           score = score + 1;

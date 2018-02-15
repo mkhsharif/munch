@@ -16,6 +16,7 @@ export class PreferenceListComponent implements OnInit {
   dietPreference = DIETPREFERENCE;
   interestsPreference = INTERESTSPREFERENCE;
 
+  // TODO: fix bug where only one option is selected a time in entire page
   handleOptionUpdated(option: string, preference: Preference) {
     console.log(option);
     if (preference.name === this.locationPreference.name) {

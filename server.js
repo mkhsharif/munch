@@ -34,6 +34,7 @@ app.get("/api/shoutouts/:id", getShoutout);
 app.get("/api/queries", getQueries);
 app.get("/api/queries/:id", getQuery);
 app.post("/api/queries", createQuery);
+app.put("/api/queries/:id", updateQuery);
 
 // AUTH API FUNCTIONS
 app.post("/api/users/auth", authenticate);
@@ -250,6 +251,22 @@ function getQueries(req, res) {
       res.status(200).json(docs);
     }
   });
+}
+
+function updateQuery(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(QUERIES_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+    updateDoc,
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update contact");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
+      }
+    });
 }
 
 // SESSION API FUNCTION DEFINITIONS
