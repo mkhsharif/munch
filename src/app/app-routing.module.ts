@@ -11,6 +11,7 @@ import {ShoutOutCreateComponent} from './dashboard/shout-outs/shout-out-create/s
 import {MunchQueryComponent} from './munch/munch-query/munch-query.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
 import {MunchSearchComponent} from './munch/munch-search/munch-search.component';
+import {EndQueryGuard} from './_guards/end-query.guard';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
@@ -22,9 +23,9 @@ const routes: Routes = [
   { path: 'shoutouts', component: ShoutOutListComponent},
   { path: 'shoutouts/create', component: ShoutOutCreateComponent, canActivate: []},
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
-  { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: []},
+  { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: [], canDeactivate: [EndQueryGuard]},
   { path: 'munch/session/:id', component: MunchLiveComponent, canActivate: []},
-  { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: []}
+  { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: [], }
 ];
 
 @NgModule({

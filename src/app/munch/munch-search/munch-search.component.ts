@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Query} from '../../_models/query';
 import {QueryService} from '../../_services/query.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,6 +7,8 @@ import {SessionService} from '../../_services/munch-session.service';
 import {MunchSession} from '../../_models/munch-session';
 import {User} from '../../_models/user';
 import {UserService} from '../../_services/user.service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-munch-search',
@@ -14,7 +16,7 @@ import {UserService} from '../../_services/user.service';
   styleUrls: ['./munch-search.component.css']
 })
 
-export class MunchSearchComponent implements OnInit {
+export class MunchSearchComponent implements OnInit, OnDestroy {
   query: Query;
   currentUser: User;
   allQueries: Query[];
@@ -31,7 +33,6 @@ export class MunchSearchComponent implements OnInit {
   ngOnInit() {
     this.getQuery();
     this.currentUser = this.userService.getCurrentUser();
-    console.log(this.currentUser);
     this.getAllQueries();
     // TODO: Make this its own function and check that the user is in the data
     const user = this.currentUser;
@@ -43,6 +44,22 @@ export class MunchSearchComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() { }
+
+  deactivateQuery(): void {
+    this.query.searching = false;
+      this.queryService.updateQuery(this.query).subscribe(
+      query => {
+        if (query.searching === false) {
+          console.log('query set to not searching');
+        }
+      }, error => {
+          console.log(error);
+        }
+    );
+  }
+
+  // TODO: Look into pre loading with a guard
   private getQuery(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.queryService.getQuery(id)
@@ -53,7 +70,6 @@ export class MunchSearchComponent implements OnInit {
           this.queryService.updateQuery(this.query).subscribe(
             updatedQuery => {
               if (updatedQuery.searching) {
-                console.log(query);
                 console.log('Query now searching');
               }
             }

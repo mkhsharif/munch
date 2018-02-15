@@ -38,6 +38,7 @@ import { MunchSearchComponent } from './munch/munch-search/munch-search.componen
 import {QueryService} from './_services/query.service';
 import {SessionService} from './_services/munch-session.service';
 import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
+import {EndQueryGuard} from './_guards/end-query.guard';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.compo
     UserService,
     AuthGuard,
     QueryService,
-    SessionService
+    SessionService,
+    EndQueryGuard
   ],
   bootstrap: [
     AppComponent
