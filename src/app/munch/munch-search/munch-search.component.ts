@@ -47,16 +47,18 @@ export class MunchSearchComponent implements OnInit, OnDestroy {
   ngOnDestroy() { }
 
   deactivateQuery(): void {
-    this.query.searching = false;
-      this.queryService.updateQuery(this.query).subscribe(
-      query => {
-        if (query.searching === false) {
-          console.log('query set to not searching');
-        }
-      }, error => {
-          console.log(error);
-        }
-    );
+    if (this.query.searching === true) {
+      this.query.searching = false;
+        this.queryService.updateQuery(this.query).subscribe(
+        query => {
+          if (query.searching === false) {
+            console.log('query set to not searching');
+          }
+        }, error => {
+            console.log(error);
+          }
+        );
+      }
   }
 
   // TODO: Look into pre loading with a guard
