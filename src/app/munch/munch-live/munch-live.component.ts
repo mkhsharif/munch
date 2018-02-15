@@ -14,6 +14,7 @@ import * as io from 'socket.io-client';
 export class MunchLiveComponent implements OnInit {
   session: MunchSession;
   currentUser: User;
+  otherUser: User;
   private socket: SocketIOClient.Socket;
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class MunchLiveComponent implements OnInit {
     this.getSession();
   }
 
+  // TODO: Clean this up
   private getSession(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.sessionService.getSession(id)
@@ -34,6 +36,16 @@ export class MunchLiveComponent implements OnInit {
           this.session = session;
           console.log(this.session);
           this.load();
+          for (const userId of this.session.users) {
+            if (userId !== this.currentUser._id) {
+              this.userService.getUser(userId).subscribe(
+                user => {
+                  this.otherUser = user;
+                  console.log('Matched ' + this.otherUser._id);
+                }
+              );
+            }
+          }
         }, error => {
           SessionService.handleError(error);
         }
