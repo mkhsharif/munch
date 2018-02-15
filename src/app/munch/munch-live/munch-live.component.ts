@@ -5,6 +5,7 @@ import {SessionService} from '../../_services/munch-session.service';
 import {UserService} from '../../_services/user.service';
 import {User} from '../../_models/user';
 import * as io from 'socket.io-client';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-munch-live',
@@ -68,6 +69,6 @@ export class MunchLiveComponent implements OnInit {
 
   exitSession() {
     console.log(this.currentUser._id + ' leaving');
-    this.router.navigate(['/munch-setup/']);
+    this.router.navigate(['/munch/exit/' + this.session._id]);
   }
 }

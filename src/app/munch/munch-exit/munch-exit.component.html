@@ -1,3 +1,8 @@
-<h2>Munch Complete!</h2>
-<h3>+9000 Points!</h3>
-<a routerLink="/dashboard"><button>Return to Dashboard</button></a>
+<div *ngIf="session">
+  <h2>Munch Complete!</h2>
+  <div *ngIf="otherUser">
+    <p>{{currentUser.userName}}, thanks for munching with {{otherUser.userName}}</p>
+  </div>
+  <p>{{session._id}}</p>
+  <a routerLink="/dashboard"><button>Return to Dashboard</button></a>
+</div>
