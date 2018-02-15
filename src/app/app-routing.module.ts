@@ -13,20 +13,18 @@ import {UserSettingsComponent} from './user/user-settings/user-settings.componen
 import {MunchSearchComponent} from './munch/munch-search/munch-search.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
-  { path: 'munch-setup', component: MunchQueryComponent, canActivate: [] },
+  { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'munch-session-live', component: MunchLiveComponent, canActivate: [] },
-  { path: 'munch-session-exit', component: MunchExitComponent, canActivate: []},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'shoutouts/:id', component: ShoutOutDetailComponent},
   { path: 'shoutouts', component: ShoutOutListComponent},
-  { path: 'create-shoutout', component: ShoutOutCreateComponent, canActivate: [] },
+  { path: 'shoutouts/create', component: ShoutOutCreateComponent, canActivate: []},
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
-  { path: 'quick-search', component: MunchSearchComponent, canActivate: []},
   { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: []},
-  { path: 'munch/session/:id', component: MunchLiveComponent, canActivate: []}
+  { path: 'munch/session/:id', component: MunchLiveComponent, canActivate: []},
+  { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: []}
 ];
 
 @NgModule({
