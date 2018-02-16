@@ -89,7 +89,7 @@ export class MunchSearchComponent implements OnInit {
   }
 
   quickSearch() {
-    // TODO: load all queries here
+    this.getAllQueries();
     for (const query of this.allQueries) {
       if (query.user !== this.currentUser._id && query.searching === true) {
         let score = 0;
