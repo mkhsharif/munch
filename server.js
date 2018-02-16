@@ -19,7 +19,6 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // USER API FUNCTIONS
-app.get('/', home);
 app.get("/api/users", getUsers);
 app.get("/api/users/:id", getUser);
 app.put("/api/users/:id", updateUser);
@@ -42,6 +41,9 @@ app.post("/api/users/auth", authenticate);
 // SESSION API FUNCTIONS
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
+
+app.get('/', home);
+app.use(home);
 
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
