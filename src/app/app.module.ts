@@ -39,6 +39,7 @@ import {QueryService} from './_services/query.service';
 import {SessionService} from './_services/munch-session.service';
 import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
 import {EndQueryGuard} from './_guards/end-query.guard';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {EndQueryGuard} from './_guards/end-query.guard';
     AuthGuard,
     QueryService,
     SessionService,
-    EndQueryGuard
+    EndQueryGuard,
+    {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
     AppComponent

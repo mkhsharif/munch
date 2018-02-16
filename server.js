@@ -19,8 +19,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-app.get('/', home);
-
 // USER API FUNCTIONS
 app.get("/api/users", getUsers);
 app.get("/api/users/:id", getUser);
