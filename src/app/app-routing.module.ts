@@ -16,7 +16,6 @@ import {EndQueryGuard} from './_guards/end-query.guard';
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
   { path: 'dashboard', component: DashboardComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'shoutouts/:id', component: ShoutOutDetailComponent},
@@ -25,7 +24,8 @@ const routes: Routes = [
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
   { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: [], canDeactivate: [EndQueryGuard]},
   { path: 'munch/session/:id', component: MunchLiveComponent, canActivate: []},
-  { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: [], }
+  { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: [], },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

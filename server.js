@@ -9,6 +9,7 @@ var QUERIES_COLLECTION = "queries";
 var SESSIONS_COLLECTION = "sessions";
 
 var app = express();
+var path = require('path');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -17,6 +18,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
+
+app.get('/', home);
 
 // USER API FUNCTIONS
 app.get("/api/users", getUsers);
@@ -42,7 +45,7 @@ app.post("/api/users/auth", authenticate);
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 
-app.get('*', home);
+
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
