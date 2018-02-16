@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Query} from '../../_models/query';
 import {QueryService} from '../../_services/query.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,7 +16,7 @@ import 'rxjs/add/observable/of';
   styleUrls: ['./munch-search.component.css']
 })
 
-export class MunchSearchComponent implements OnInit, OnDestroy {
+export class MunchSearchComponent implements OnInit {
   query: Query;
   currentUser: User;
   allQueries: Query[];
@@ -44,20 +44,20 @@ export class MunchSearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() { }
-
-  deactivateQuery(): void {
+  // TODO: Handle behavior on refresh
+  deactivateQuery(): Observable<boolean> {
     if (this.query.searching === true) {
       this.query.searching = false;
-        this.queryService.updateQuery(this.query).subscribe(
-        query => {
-          if (query.searching === false) {
-            console.log('query set to not searching');
+      return this.queryService.updateQuery(this.query).map(
+        (res: Query) => {
+          if (res.searching === false) {
+            console.log('Query set to false');
+            return true;
+          } else {
+            console.log('Query NOT set to false');
+            return false;
           }
-        }, error => {
-            console.log(error);
-          }
-        );
+        });
       }
   }
 
@@ -89,6 +89,7 @@ export class MunchSearchComponent implements OnInit, OnDestroy {
   }
 
   quickSearch() {
+    // TODO: load all queries here
     for (const query of this.allQueries) {
       if (query.user !== this.currentUser._id && query.searching === true) {
         let score = 0;
