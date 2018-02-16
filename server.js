@@ -42,9 +42,7 @@ app.post("/api/users/auth", authenticate);
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 
-app.get('/', home);
-app.use(home);
-
+app.get('*', home);
 // Create a database variable outside of the database connection callback to
 // reuse the connection pool in your app.
 var db;
