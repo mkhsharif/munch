@@ -1,11 +1,11 @@
 import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './preference';
 
-export const DIETPREFERENCE: Preference = {
+export const GENDERPREFERENCE: Preference = {
   name: 'Gender',
   options: GENDERLIST
 };
 
-export const GENDERPREFERENCE: Preference = {
+export const DIETPREFERENCE: Preference = {
   name: 'Diet',
   options: DIETLIST
 };
