@@ -91,6 +91,7 @@ function onConnect(socket) {
   socket.on('disconnect', disconnect);
   socket.on('save-message', saveMessage);
   socket.on('create-match', createMatch);
+  socket.on('end-session', endSession)
 }
 
 // SOCKET.IO FUNCTION DEFINITIONS BELOW
@@ -108,6 +109,10 @@ function createMatch (data) {
   globalSocket.broadcast.emit('new-match', data);
 }
 
+function endSession (data) {
+  console.log(data);
+  globalSocket.broadcast.emit('user-exit', data);
+}
 // API FUNCTIONS BELOW
 
 // Generic error handler used by all endpoints.
@@ -121,8 +126,8 @@ function home(req, res) {
 }
 
 function authenticate(req, res) {
-  let username = req.body.userName;
-  let password = req.body.password.toString();
+  const username = req.body.userName;
+  const password = req.body.password.toString();
   db.collection(USERS_COLLECTION).findOne({userName: username},
     function (err, user) {
       if (err) {

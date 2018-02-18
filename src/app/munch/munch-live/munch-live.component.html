@@ -1,16 +1,16 @@
 <div *ngIf="session">
   <h2>Munch Match</h2>
   <div class="container" style="background-color: gray;">
-    <div class="jasmine-description">
+    <div *ngIf="otherUser"  class="jasmine-description">
       <div class="person-icon-c"></div>
-      <h3>User: {{currentUser.userName}}</h3>
+      <h3>Match: {{otherUser.userName}}</h3>
       <p class="jasmine-description" style="text-align: center; width: 100%;">{{session.users}}</p>
     </div>
     <div class="symbol-summary">
-      <p class="jasmine-description" style="text-align: center; width: 100%;">{{otherUser.userName}}</p>
+      <p class="jasmine-description" style="text-align: center; width: 100%;">Location</p>
     </div>
     <div class="jasmine-description">
-      <label for="Status">Status </label>
+      <label for="Status">Connected: </label>
       <input id="Status" type="text" name="status" [(ngModel)]="session.live">
     </div>
     <button (click)="exitSession()" class="link-button">Exit</button>

@@ -24,7 +24,9 @@ export class MunchLiveComponent implements OnInit {
   ) { this.socket = io(); }
 
   ngOnInit() {
+    this.currentUser = this.userService.getCurrentUser();
     this.getSession();
+    this.setupSocket();
   }
 
   // TODO: Clean this up
@@ -35,7 +37,6 @@ export class MunchLiveComponent implements OnInit {
         session => {
           this.session = session;
           console.log(this.session);
-          this.load();
           for (const userId of this.session.users) {
             if (userId !== this.currentUser._id) {
               this.userService.getUser(userId).subscribe(
@@ -52,22 +53,31 @@ export class MunchLiveComponent implements OnInit {
       );
   }
 
-  private load() {
-    this.currentUser = this.userService.getCurrentUser();
-    this.socket.on('connect', this.onConnect);
+  private setupSocket() {
+    this.socket.on('connect', () => {
+      console.log('socket: ' + this.socket.id);
+      }
+    );
+
+    this.socket.on('disconnect', () => {
+      console.log('disconnect');
+    });
+
+    this.socket.on('user-exit', (userId) => {
+      if (userId === this.otherUser._id) {
+        this.router.navigate(['/munch/exit/' + this.session._id])
+          .then( () => {
+            console.log('leaving session');
+          }
+        );
+      }
+    });
   }
 
-  private onConnect(socket) {
-    console.log('Connected ' + this.currentUser._id + ' to session ' + this.session._id);
-    socket.on('disconnect', this.onDisconnect());
-  }
-
-  private onDisconnect() {
-    console.log('Disconnected ' + this.currentUser._id + ' from session ' + this.session._id);
-  }
 
   exitSession() {
     console.log(this.currentUser._id + ' leaving');
+    this.socket.emit('end-session', this.currentUser._id);
     this.router.navigate(['/munch/exit/' + this.session._id]);
   }
 }
