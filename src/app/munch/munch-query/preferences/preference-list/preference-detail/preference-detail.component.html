@@ -2,8 +2,8 @@
   <h5 class="card-header">{{preference.name}}</h5>
   <div class="list-group list-group-flush" *ngFor="let option of preference.options">
     <label>{{option}}
-    <input name="radio" type="radio" [value]="option"
-           (change)="onSelectOption(option)">
+      <input name="radio" type="radio" [value]="option"
+             (change)="onSelectOption(option)">
     </label>
   </div>
 </div>
