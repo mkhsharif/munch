@@ -11,6 +11,6 @@ export class EndQueryGuard implements CanDeactivate<MunchSearchComponent> {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
     ): Promise<boolean> | Observable<boolean> | boolean {
-    return component.deactivateQuery();
+    return component.canDeactivate();
   } // TODO: put in user obj if they have query, if so, deactivate there too
 }

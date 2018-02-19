@@ -42,6 +42,7 @@ app.post("/api/users/auth", authenticate);
 // SESSION API FUNCTIONS
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
+app.put("/api/sessions/:id", updateSession);
 
 
 // Create a database variable outside of the database connection callback to
@@ -296,6 +297,22 @@ function getSession(req, res) {
         handleError(res, err.message, "Failed to get session");
       } else {
         res.status(200).json(doc);
+      }
+    });
+}
+
+function updateSession(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(SESSIONS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+    updateDoc,
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update contact");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
       }
     });
 }

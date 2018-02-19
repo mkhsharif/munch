@@ -32,4 +32,9 @@ export class SessionService {
   createSession(munchSession: MunchSession): Observable<MunchSession> {
     return this.http.post<MunchSession>(this.sessionUrl, munchSession);
   }
+
+  updateSession(munchSession: MunchSession): Observable<MunchSession> {
+    console.log('update');
+    return this.http.put<MunchSession>(this.sessionUrl + '/' + munchSession._id, munchSession);
+  }
 }

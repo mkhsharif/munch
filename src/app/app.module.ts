@@ -40,6 +40,7 @@ import {SessionService} from './_services/munch-session.service';
 import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
 import {EndQueryGuard} from './_guards/end-query.guard';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     QueryService,
     SessionService,
     EndQueryGuard,
+    CanDeactivateGuard,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [

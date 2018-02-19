@@ -45,7 +45,7 @@ export class MunchSearchComponent implements OnInit {
   }
 
   // TODO: Handle behavior on refresh
-  deactivateQuery(): Observable<boolean> {
+  canDeactivate(): Observable<boolean> {
     if (this.query.searching === true) {
       this.query.searching = false;
       return this.queryService.updateQuery(this.query).map(
