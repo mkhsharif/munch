@@ -114,14 +114,16 @@ export class MunchSearchComponent implements OnInit {
 
   private createSession(matchedUserId: string) {
     const newSession: MunchSession = {
-      live: false,
+      live: true,
       users: [matchedUserId, this.currentUser._id]
     };
     this.sessionService.createSession(newSession)
       .subscribe(
         session => {
-          this.socket.emit('create-match', session);
-          this.router.navigate(['/munch/session/' + session._id]);
+          this.router.navigate(['/munch/session/' + session._id])
+            .then(() => {
+              this.socket.emit('create-match', session);
+            });
         }
       );
   }
