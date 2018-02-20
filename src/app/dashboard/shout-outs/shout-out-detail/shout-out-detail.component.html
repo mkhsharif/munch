@@ -1,5 +1,7 @@
-<div *ngIf="shoutout">
-  <h2>{{shoutout.user}}'s Shout Out</h2>
-  <div><h3>{{shoutout.message}}</h3></div>
+<div *ngIf="user">
+  <h3>{{user.userName}}'s Shout Out</h3>
+  <div>
+    <h5>{{shoutout.message}}</h5>
+  </div>
   <button (click)="goBack()">Go Back</button>
 </div>
