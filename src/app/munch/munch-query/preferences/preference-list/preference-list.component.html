@@ -1,6 +1,6 @@
 <!--suppress XmlDuplicatedId -->
 <div *ngIf="query">
-  <form #f="ngForm" name="form" novalidate
+  <form class="refine-search-button-container" #f="ngForm" name="form" novalidate
         (ngSubmit)="f.form.valid && submitQuery()">
     <fieldset>
       <button type="button" class="btn btn-primary btn-block dropdown-toggle"

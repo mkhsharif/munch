@@ -1,0 +1,14 @@
+.header-container {
+  background-color: none;
+}
+
+.logo {
+  background-color: darkorange;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0px;
+  font-size: 50px;
+  height: 75px;
+  text-align: center;
+  color: white;
+  line-height: 75px;
+}

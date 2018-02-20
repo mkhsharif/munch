@@ -1,0 +1,27 @@
+.munch-setup {
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.w-100 {
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  height: 50px;
+  line-height: 30px;
+}
+
+.search-field {
+  border: none;
+}
+
+.friend-button {
+    background: whitesmoke;
+    border: none;
+    color: black;
+}
+
+.start-back{
+  margin-top: 20px;
+}

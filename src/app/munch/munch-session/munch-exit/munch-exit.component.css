@@ -1,0 +1,14 @@
+.big {
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  color: white;
+  height: 50px;
+  width: 100%;
+}
+
+.munch-complete-container {
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
