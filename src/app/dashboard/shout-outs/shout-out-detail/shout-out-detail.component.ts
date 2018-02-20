@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
-import { ShoutOutService} from '../shout-out.service';
-import {ShoutOut} from '../shout-out';
+import { ShoutOutService} from '../../../_services/shout-out.service';
+import {ShoutOut} from '../../../_models/shout-out';
 
 @Component({
   selector: 'app-shout-out-detail',

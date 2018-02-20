@@ -27,5 +27,5 @@ Windows:
 - node server.js local
 
 ### Run the angular app
-- ng serve --proxy-config src/proxy-conf.json 
+- ng serve --aot --proxy-config src/proxy-conf.json 
 

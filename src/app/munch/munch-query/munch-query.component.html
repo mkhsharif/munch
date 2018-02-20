@@ -1,10 +1,11 @@
 <div class="munch-setup">
   <h5 class="black-text">Munch Setup</h5>
-  <app-preference-list [(query)]="query"></app-preference-list>
-  <app-query-friends></app-query-friends>
-  {{query.locationPreference.choices}}
+  <app-preference-list
+    [query]="query"
+    (queryChange)="handleQueryUpdated($event)">
+  </app-preference-list>
   <div class="btn-group d-flex start-back" role="group">
     <a routerLink="/dashboard" class="btn btn-primary w-100" role="button">Back</a>
-    <a routerLink="/munch-session-live" class="btn btn-primary w-100" role="button">Start</a>
+    <a (click)="submitQuery()" class="btn btn-primary w-100" role="button">Start</a>
   </div>
 </div>

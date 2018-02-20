@@ -8,19 +8,19 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PreferenceDetailComponent } from './munch/munch-query/preferences/preference-detail/preference-detail.component';
+import { PreferenceDetailComponent } from './munch/munch-query/preferences/preference-list/preference-detail/preference-detail.component';
 import { PreferenceListComponent } from './munch/munch-query/preferences/preference-list/preference-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MunchLiveComponent } from './munch/munch-session/munch-live/munch-live.component';
-import { MunchExitComponent } from './munch/munch-session/munch-exit/munch-exit.component';
+import { MunchLiveComponent } from './munch/munch-live/munch-live.component';
+import { MunchExitComponent } from './munch/munch-exit/munch-exit.component';
 import { ShoutOutsComponent } from './dashboard/shout-outs/shout-outs.component';
 import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
 import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
 import { MunchQueryComponent } from './munch/munch-query/munch-query.component';
 import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
-import { ShoutOutService } from './dashboard/shout-outs/shout-out.service';
-import {AuthenticationService} from './user/authentication.service';
-import {UserService} from './user/user.service';
+import { ShoutOutService } from './_services/shout-out.service';
+import {AuthenticationService} from './_services/authentication.service';
+import {UserService} from './_services/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { QueryFriendsComponent } from './munch/munch-query/query-friends/query-friends.component';
@@ -32,7 +32,15 @@ import { RewardListComponent } from './rewards/reward-list/reward-list.component
 import { UserSessionsListComponent } from './user/user-sessions-list/user-sessions-list.component';
 import { UserFriendsListComponent } from './user/user-friends-list/user-friends-list.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
-import {AuthGuard} from './user/auth.guard';
+import {AuthGuard} from './_guards/auth.guard';
+import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
+import { MunchSearchComponent } from './munch/munch-search/munch-search.component';
+import {QueryService} from './_services/query.service';
+import {SessionService} from './_services/munch-session.service';
+import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
+import {EndQueryGuard} from './_guards/end-query.guard';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +68,10 @@ import {AuthGuard} from './user/auth.guard';
     RewardListComponent,
     UserSessionsListComponent,
     UserFriendsListComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MunchSessionComponent,
+    MunchSearchComponent,
+    MunchLoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +84,12 @@ import {AuthGuard} from './user/auth.guard';
     ShoutOutService,
     AuthenticationService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    QueryService,
+    SessionService,
+    EndQueryGuard,
+    CanDeactivateGuard,
+    {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
     AppComponent
