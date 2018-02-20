@@ -29,6 +29,7 @@ app.delete("/api/users/:id", deleteUser);
 // SHOUTOUT API FUNCTIONS
 app.get("/api/shoutouts", getShoutouts);
 app.get("/api/shoutouts/:id", getShoutout);
+app.post("/api/shoutouts", createShoutout);
 
 // QUERY API FUNCTIONS
 app.get("/api/queries", getQueries);
@@ -223,6 +224,19 @@ function getShoutout(req, res) {
         res.status(200).json(doc);
       }
     });
+}
+
+function createShoutout(req, res) {
+  var newQuery = req.body;
+  newQuery.createDate = new Date();
+  // TODO: Check for uniqueness in credentials
+  db.collection(SHOUTOUTS_COLLECTION).insertOne(newQuery, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new shoutout.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
 }
 
 // QUERY API FUNCTION DEFINITIONS
