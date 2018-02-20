@@ -1,0 +1,13 @@
+.preference-button {
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  height: 50px;
+  color: white;
+  font-size: 15px;
+  line-height: 35px;
+}
+
+.card-header {
+  background-color: lightgray;
+}

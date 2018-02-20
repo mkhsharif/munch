@@ -4,7 +4,7 @@
   <div class="list-group list-group-flush btn-group"
        *ngFor="let option of preference.options"
        id="div-{{preference.name}}">
-    <label class="btn btn-primary" (click)="onSelectOption(option)">{{option}}
+    <label class="btn preference-button" (click)="onSelectOption(option)">{{option}}
       <input name="{{preference.name}}" type="radio" [value]="option"
               autocomplete="off" aria-pressed="false">
     </label>

@@ -1,0 +1,18 @@
+.big-button {
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  height: 50px;
+  color: white;
+  width: 100%;
+}
+
+.content-container {
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.search-button {
+  margin-top: 20px;
+}
