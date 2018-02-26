@@ -14,7 +14,6 @@ import {MunchSearchComponent} from './munch/munch-search/munch-search.component'
 import {EndQueryGuard} from './_guards/end-query.guard';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import {UserComponent} from './user/user.component';
-// TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
   { path: 'dashboard', component: DashboardComponent },
