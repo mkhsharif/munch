@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'munch/session/:id', component: MunchLiveComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: [], },
   { path: 'user', component: UserComponent },
+  { path: 'user/settings', component: UserSettingsComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
