@@ -74,20 +74,8 @@ export class UserService {
     return Observable.of([this.mock1, this.mock2]);
   }
 
-  // delete("/api/users/:id")
-  deleteUser(delUserId: String): Promise<void | String> {
-    return this.http.delete(this.usersUrl + '/' + delUserId)
-      .toPromise()
-      .then(response => response as String)
-      .catch(UserService.handleError);
-  }
-
   // put("/api/users/:id")
-  updateUser(putUser: User): Promise<void | User> {
-    const putUrl = this.usersUrl + '/' + putUser._id;
-    return this.http.put<User>(putUrl, putUser)
-      .toPromise()
-      .then(response => response as User)
-      .catch(UserService.handleError);
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(this.usersUrl + '/' + user._id, user);
   }
 }

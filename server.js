@@ -29,6 +29,7 @@ app.delete("/api/users/:id", deleteUser);
 // SHOUTOUT API FUNCTIONS
 app.get("/api/shoutouts", getShoutouts);
 app.get("/api/shoutouts/:id", getShoutout);
+app.put("/api/shoutouts/:id", updateShoutout);
 app.post("/api/shoutouts", createShoutout);
 
 // QUERY API FUNCTIONS
@@ -41,6 +42,7 @@ app.put("/api/queries/:id", updateQuery);
 app.post("/api/users/auth", authenticate);
 
 // SESSION API FUNCTIONS
+app.get("/api/sessions", getSessions);
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 app.put("/api/sessions/:id", updateSession);
@@ -239,6 +241,22 @@ function createShoutout(req, res) {
   });
 }
 
+function updateShoutout(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(SHOUTOUTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+    updateDoc,
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update shoutout");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
+      }
+    });
+}
+
 // QUERY API FUNCTION DEFINITIONS
 function createQuery(req, res) {
   var newQuery = req.body;
@@ -313,6 +331,16 @@ function getSession(req, res) {
         res.status(200).json(doc);
       }
     });
+}
+
+function getSessions(req, res) {
+  db.collection(SESSIONS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get sessions.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
 }
 
 function updateSession(req, res) {

@@ -29,4 +29,8 @@ export class ShoutOutService {
   createShoutOut(shoutout: ShoutOut): Observable<ShoutOut> {
     return this.http.post<ShoutOut>(this.shoutoutsUrl, shoutout);
   }
+
+  updateShoutOut(shoutout: ShoutOut): Observable<ShoutOut> {
+    return this.http.put<ShoutOut>(this.shoutoutsUrl + '/' + shoutout._id, shoutout);
+  }
 }
