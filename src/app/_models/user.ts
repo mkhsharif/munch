@@ -1,6 +1,3 @@
-import {MunchSession} from './munch-session';
-import {Query} from './query';
-
 export class User {
   _id?: string;
   userName: string;
@@ -12,6 +9,7 @@ export class User {
   points: number;
   friends: string[];
   shoutouts: string[];
-  munchSession?: MunchSession;
-  query?: Query;
+  avatarUrl: string;
+  interests: string[];
+  diet: string;
 }

@@ -20,7 +20,10 @@ export class RegisterComponent {
     points: 0,
     password: '',
     friends: [],
-    shoutouts: []
+    shoutouts: [],
+    avatarUrl: '',
+    interests: [],
+    diet: ''
   };
   loading = false;
 
