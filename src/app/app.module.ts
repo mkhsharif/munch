@@ -41,6 +41,7 @@ import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.compo
 import {EndQueryGuard} from './_guards/end-query.guard';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
     UserSettingsComponent,
     MunchSessionComponent,
     MunchSearchComponent,
-    MunchLoadingComponent
+    MunchLoadingComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
