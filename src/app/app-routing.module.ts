@@ -16,6 +16,7 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import {UserComponent} from './user/user.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProfileComponent} from './profile/profile.component';
+import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'musicaf', component: MusicAffinityComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

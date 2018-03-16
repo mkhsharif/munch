@@ -43,6 +43,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ProfileComponent } from './profile/profile.component';
     MunchSearchComponent,
     MunchLoadingComponent,
     HomepageComponent,
-    ProfileComponent
+    ProfileComponent,
+    MusicAffinityComponent
   ],
   imports: [
     BrowserModule,
