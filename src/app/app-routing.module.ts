@@ -17,6 +17,7 @@ import {UserComponent} from './user/user.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProfileComponent} from './profile/profile.component';
 import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
+import {FoodafComponent} from './foodaf/foodaf.component';
 // TODO: add ID to munch session URLs
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'musicaf', component: MusicAffinityComponent},
+  { path: 'foodaf', component: FoodafComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

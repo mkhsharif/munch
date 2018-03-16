@@ -44,6 +44,7 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
+import { FoodafComponent } from './foodaf/foodaf.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MusicAffinityComponent } from './music-affinity/music-affinity.componen
     MunchLoadingComponent,
     HomepageComponent,
     ProfileComponent,
-    MusicAffinityComponent
+    MusicAffinityComponent,
+    FoodafComponent
   ],
   imports: [
     BrowserModule,
