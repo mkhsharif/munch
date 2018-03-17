@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Query} from '../../_models/query';
+import {MunchRequest} from '../../_models/munch-request';
 import {QueryService} from '../../_services/query.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as io from 'socket.io-client';
@@ -17,9 +17,9 @@ import 'rxjs/add/observable/of';
 })
 
 export class MunchSearchComponent implements OnInit {
-  query: Query;
+  query: MunchRequest;
   currentUser: User;
-  allQueries: Query[];
+  allQueries: MunchRequest[];
   private socket: SocketIOClient.Socket;
 
   constructor(
@@ -34,7 +34,7 @@ export class MunchSearchComponent implements OnInit {
     this.getQuery();
     this.currentUser = this.userService.getCurrentUser();
     this.getAllQueries();
-    // TODO: Make this its own function and check that the user is in the data
+    // TODO: Make this its own function and check that the user_id is in the data
     const user = this.currentUser;
     const router = this.router;
     this.socket.on('new-match', function(session) {
@@ -49,12 +49,12 @@ export class MunchSearchComponent implements OnInit {
     if (this.query.searching === true) {
       this.query.searching = false;
       return this.queryService.updateQuery(this.query).map(
-        (res: Query) => {
+        (res: MunchRequest) => {
           if (res.searching === false) {
-            console.log('Query set to false');
+            console.log('MunchRequest set to false');
             return true;
           } else {
-            console.log('Query NOT set to false');
+            console.log('MunchRequest NOT set to false');
             return false;
           }
         });
@@ -72,7 +72,7 @@ export class MunchSearchComponent implements OnInit {
           this.queryService.updateQuery(this.query).subscribe(
             updatedQuery => {
               if (updatedQuery.searching) {
-                console.log('Query now searching');
+                console.log('MunchRequest now searching');
               }
             }
           );
@@ -91,7 +91,7 @@ export class MunchSearchComponent implements OnInit {
   quickSearch() {
     this.getAllQueries();
     for (const query of this.allQueries) {
-      if (query.user !== this.currentUser._id && query.searching === true) {
+      if (query.user_id !== this.currentUser._id && query.searching === true) {
         let score = 0;
         if (query.locationPreference === this.query.locationPreference) {
           score = score + 1;
@@ -102,10 +102,10 @@ export class MunchSearchComponent implements OnInit {
         if (query.interestsPreference === this.query.interestsPreference) {
           score = score + 1;
         }
-        // TODO: make a user setting for gender.
+        // TODO: make a user_id setting for gender.
         if (score >= 2) {
           console.log('match!');
-          this.createSession(query.user);
+          this.createSession(query.user_id);
           break;
         }
       }

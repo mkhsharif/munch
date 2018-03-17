@@ -115,7 +115,7 @@ function createMatch (data) {
 
 function endSession (data) {
   console.log(data);
-  globalSocket.broadcast.emit('user-exit', data);
+  globalSocket.broadcast.emit('user_id-exit', data);
 }
 // API FUNCTIONS BELOW
 

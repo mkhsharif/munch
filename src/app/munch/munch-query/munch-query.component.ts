@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Query} from '../../_models/query';
+import {MunchRequest} from '../../_models/munch-request';
 import {UserService} from '../../_services/user.service';
 import {QueryService} from '../../_services/query.service';
 import {Router} from '@angular/router';
@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./munch-query.component.css']
 })
 export class MunchQueryComponent implements OnInit {
-  query: Query = {
-    user: '',
+  query: MunchRequest = {
+    user_id: '',
     searching: false,
     locationPreference: '',
     dietPreference: '',
@@ -27,7 +27,7 @@ export class MunchQueryComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleQueryUpdated(query: Query): void {
+  handleQueryUpdated(query: MunchRequest): void {
     this.query.locationPreference = query.locationPreference;
     this.query.dietPreference = query.dietPreference;
     this.query.genderPreference = query.genderPreference;
@@ -38,7 +38,7 @@ export class MunchQueryComponent implements OnInit {
   submitQuery(): void {
     const currentUser = this.userService.getCurrentUser();
     if (currentUser) {
-      this.query.user = currentUser._id;
+      this.query.user_id = currentUser._id;
       this.queryService.createQuery(this.query)
         .subscribe(
           data => {

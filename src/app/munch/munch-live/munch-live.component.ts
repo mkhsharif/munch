@@ -64,7 +64,7 @@ export class MunchLiveComponent implements OnInit {
       console.log('disconnect');
     });
 
-    this.socket.on('user-exit', (userId) => {
+    this.socket.on('user_id-exit', (userId) => {
       if (userId === this.otherUser._id) {
         this.router.navigate(['/munch/exit/' + this.session._id])
           .then( () => {

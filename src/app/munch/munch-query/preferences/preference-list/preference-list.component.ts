@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Preference} from '../../../../_models/preference';
-import {Query} from '../../../../_models/query';
+import {MunchRequest} from '../../../../_models/munch-request';
 import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENCE} from '../../../../_models/preference-list';
 
 @Component({
@@ -9,8 +9,8 @@ import {DIETPREFERENCE, GENDERPREFERENCE, INTERESTSPREFERENCE, LOCATIONPREFERENC
   styleUrls: ['./preference-list.component.css']
 })
 export class PreferenceListComponent implements OnInit {
-  @Input() query: Query;
-  @Output() queryChange: EventEmitter<Query> = new EventEmitter<Query>();
+  @Input() query: MunchRequest;
+  @Output() queryChange: EventEmitter<MunchRequest> = new EventEmitter<MunchRequest>();
   locationPreference = LOCATIONPREFERENCE;
   genderPreference = GENDERPREFERENCE;
   dietPreference = DIETPREFERENCE;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Query } from '../_models/query';
+import { MunchRequest } from '../_models/munch-request';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';
@@ -8,9 +8,9 @@ import {HttpClient} from '@angular/common/http';
 export class QueryService {
   private queryUrl = '/api/queries';
 
-  private mockQuery1: Query = {
+  private mockQuery1: MunchRequest = {
     _id: 'mockQuery1',
-    user: 'mockUser1',
+    user_id: 'mockUser1',
     searching: false,
     locationPreference: 'Annex',
     dietPreference: 'Vegan',
@@ -18,9 +18,9 @@ export class QueryService {
     interestsPreference: 'Music'
   };
 
-  private mockQuery2: Query = {
+  private mockQuery2: MunchRequest = {
     _id: 'mockQuery2',
-    user: 'mockUser2',
+    user_id: 'mockUser2',
     searching: false,
     locationPreference: 'Punchout',
     dietPreference: 'Any',
@@ -36,19 +36,19 @@ export class QueryService {
 
   constructor(private http: HttpClient) { }
 
-  createQuery(query: Query): Observable<Query> {
-    return this.http.post<Query>(this.queryUrl, query);
+  createQuery(query: MunchRequest): Observable<MunchRequest> {
+    return this.http.post<MunchRequest>(this.queryUrl, query);
   }
 
-  getMockQueries(): Observable<Query[]> {
+  getMockQueries(): Observable<MunchRequest[]> {
     return Observable.of([this.mockQuery1, this.mockQuery2]);
   }
 
-  getQueries(): Observable<Query[]> {
-    return this.http.get<Query[]>(this.queryUrl);
+  getQueries(): Observable<MunchRequest[]> {
+    return this.http.get<MunchRequest[]>(this.queryUrl);
   }
 
-  getQuery(queryId: string): Observable<Query> {
+  getQuery(queryId: string): Observable<MunchRequest> {
     if (queryId === this.mockQuery1._id) {
       return Observable.of(this.mockQuery1);
     }
@@ -56,10 +56,10 @@ export class QueryService {
     if (queryId === this.mockQuery2._id) {
       return Observable.of(this.mockQuery2);
     }
-    return this.http.get<Query>(this.queryUrl  + '/' + queryId);
+    return this.http.get<MunchRequest>(this.queryUrl  + '/' + queryId);
   }
 
-  updateQuery(query: Query): Observable<Query> {
-    return this.http.put<Query>(this.queryUrl + '/' + query._id, query);
+  updateQuery(query: MunchRequest): Observable<MunchRequest> {
+    return this.http.put<MunchRequest>(this.queryUrl + '/' + query._id, query);
   }
 }
