@@ -14,6 +14,12 @@ import {MunchSearchComponent} from './munch/munch-search/munch-search.component'
 import {EndQueryGuard} from './_guards/end-query.guard';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import {UserComponent} from './user/user.component';
+import {HomepageComponent} from './homepage/homepage.component';
+import {ProfileComponent} from './profile/profile.component';
+import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
+import {FoodafComponent} from './foodaf/foodaf.component';
+// TODO: add ID to munch session URLs
+
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
   { path: 'dashboard', component: DashboardComponent },
@@ -27,6 +33,10 @@ const routes: Routes = [
   { path: 'munch/session/:id', component: MunchLiveComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'munch/exit/:id', component: MunchExitComponent, canActivate: [], },
   { path: 'user', component: UserComponent },
+  { path: 'homepage', component: HomepageComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'musicaf', component: MusicAffinityComponent},
+  { path: 'foodaf', component: FoodafComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

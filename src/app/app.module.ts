@@ -41,6 +41,10 @@ import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.compo
 import {EndQueryGuard} from './_guards/end-query.guard';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
+import { HomepageComponent } from './homepage/homepage.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
+import { FoodafComponent } from './foodaf/foodaf.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,11 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
     UserSettingsComponent,
     MunchSessionComponent,
     MunchSearchComponent,
-    MunchLoadingComponent
+    MunchLoadingComponent,
+    HomepageComponent,
+    ProfileComponent,
+    MusicAffinityComponent,
+    FoodafComponent
   ],
   imports: [
     BrowserModule,
