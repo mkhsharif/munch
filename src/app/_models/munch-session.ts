@@ -1,8 +1,6 @@
 export class MunchSession {
   _id?: string;
-  live: boolean;
-  users: string[];
+  host_id: string;
+  user_ids: string[];
+  location_id: string;
 }
-
-// connect two people with same key
-// have a host who connects first
