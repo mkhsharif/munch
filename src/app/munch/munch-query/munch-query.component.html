@@ -1,9 +1,11 @@
-<h3>Munch Setup</h3>
-<app-preference-list
-  [query]="query"
-  (queryChange)="handleQueryUpdated($event)">
-</app-preference-list>
-<div class="btn-group d-flex" role="group">
-  <a routerLink="/dashboard" class="btn btn-primary w-100" role="button">Back</a>
-  <a (click)="submitQuery()" class="btn btn-primary w-100" role="button">Start</a>
+<div class="munch-setup">
+  <h5 class="black-text">Munch Setup</h5>
+  <app-preference-list
+    [query]="query"
+    (queryChange)="handleQueryUpdated($event)">
+  </app-preference-list>
+  <div class="btn-group d-flex start-back" role="group">
+    <a routerLink="/dashboard" class="btn w-100" role="button">Back</a>
+    <a (click)="submitQuery()" class="btn w-100" role="button" style="color:white">Start</a>
+  </div>
 </div>

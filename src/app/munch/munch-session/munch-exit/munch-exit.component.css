@@ -1,11 +1,14 @@
-.big-button {
+.big {
   margin-bottom: 10px;
   background-color: lightseagreen;
   border-color: lightseagreen;
-  height: 50px;
   color: white;
+  height: 50px;
   width: 100%;
-  margin-left: 95px;
-  margin-top: 100px;
-  width: 200px;
+}
+
+.munch-complete-container {
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
 }

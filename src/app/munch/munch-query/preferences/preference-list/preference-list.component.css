@@ -1,0 +1,18 @@
+.preference-button {
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  height: 50px;
+}
+ .form-check {
+   margin-bottom: 10px;
+ }
+
+.form-check-label {
+  margin-left: 10px;
+}
+
+.card {
+  background-color: #ebebeb;
+  border-color: #ebebeb;
+}

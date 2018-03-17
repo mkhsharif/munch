@@ -5,3 +5,12 @@ h1 {
 body{
   background-color: #302e8b;
 }
+
+.all {
+  background-color: whitesmoke;
+}
+
+.b {
+  background-color: whitesmoke;
+  color: black;
+}

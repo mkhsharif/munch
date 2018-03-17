@@ -12,7 +12,7 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" class="form-control" id="password" required name="password"
+        <input type="password" class="form-control" id="password" required name="password"
                [(ngModel)]="user.password" #password="ngModel">
       </div>
       <div *ngIf="f.submitted && !password.valid" class="description">Required</div>

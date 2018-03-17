@@ -19,14 +19,15 @@ import {ProfileComponent} from './profile/profile.component';
 import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
 import {FoodafComponent} from './foodaf/foodaf.component';
 // TODO: add ID to munch session URLs
+
 const routes: Routes = [
   { path: 'munch/setup', component: MunchQueryComponent, canActivate: [] },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'shoutouts/create', component: ShoutOutCreateComponent, canActivate: []},
   { path: 'shoutouts/:id', component: ShoutOutDetailComponent},
   { path: 'shoutouts', component: ShoutOutListComponent},
-  { path: 'shoutouts/create', component: ShoutOutCreateComponent, canActivate: []},
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
   { path: 'munch/search/:id', component: MunchSearchComponent, canActivate: [], canDeactivate: [CanDeactivateGuard]},
   { path: 'munch/session/:id', component: MunchLiveComponent, canDeactivate: [CanDeactivateGuard]},
@@ -54,5 +55,3 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule {}
-
-
