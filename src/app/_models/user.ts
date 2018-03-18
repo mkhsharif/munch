@@ -1,3 +1,5 @@
+import {UserInterest} from './user-interest';
+
 export class User {
   _id?: string;
   userName: string;
@@ -10,6 +12,6 @@ export class User {
   friends: string[];
   shoutouts: string[];
   avatarUrl: string;
-  interests: string[];
+  interests: UserInterest[];
   diet: string;
 }
