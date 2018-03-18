@@ -5,7 +5,7 @@ var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
 var SHOUTOUTS_COLLECTION = "shoutout_ids";
-var QUERIES_COLLECTION = "requests";
+var REQUESTS_COLLECTION = "requests";
 var SESSIONS_COLLECTION = "sessions";
 
 var app = express();
@@ -262,7 +262,7 @@ function createRequest(req, res) {
   var newRequest = req.body;
   newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(QUERIES_COLLECTION).insertOne(newRequest, function (err, doc) {
+  db.collection(REQUESTS_COLLECTION).insertOne(newRequest, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new request.");
     } else {
@@ -272,7 +272,7 @@ function createRequest(req, res) {
 }
 
 function getRequest(req, res) {
-  db.collection(QUERIES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to get request");
@@ -283,7 +283,7 @@ function getRequest(req, res) {
 }
 
 function getRequests(req, res) {
-  db.collection(QUERIES_COLLECTION).find({}).toArray(function(err, docs) {
+  db.collection(REQUESTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get requests.");
     } else {
@@ -296,7 +296,7 @@ function updateRequest(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(QUERIES_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+  db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
     updateDoc,
     function(err, doc) {
       if (err) {
