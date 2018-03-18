@@ -5,7 +5,7 @@ var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
 var SHOUTOUTS_COLLECTION = "shoutout_ids";
-var QUERIES_COLLECTION = "queries";
+var QUERIES_COLLECTION = "requests";
 var SESSIONS_COLLECTION = "sessions";
 
 var app = express();
@@ -33,10 +33,10 @@ app.put("/api/shoutout_ids/:id", updateShoutout);
 app.post("/api/shoutout_ids", createShoutout);
 
 // QUERY API FUNCTIONS
-app.get("/api/queries", getQueries);
-app.get("/api/queries/:id", getQuery);
-app.post("/api/queries", createQuery);
-app.put("/api/queries/:id", updateQuery);
+app.get("/api/requests", getRequests);
+app.get("/api/requests/:id", getRequest);
+app.post("/api/requests", createRequest);
+app.put("/api/requests/:id", updateRequest);
 
 // AUTH API FUNCTIONS
 app.post("/api/users/auth", authenticate);
@@ -229,10 +229,10 @@ function getShoutout(req, res) {
 }
 
 function createShoutout(req, res) {
-  var newQuery = req.body;
-  newQuery.createDate = new Date();
+  var newRequest = req.body;
+  newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(SHOUTOUTS_COLLECTION).insertOne(newQuery, function (err, doc) {
+  db.collection(SHOUTOUTS_COLLECTION).insertOne(newRequest, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new shoutout.");
     } else {
@@ -258,41 +258,41 @@ function updateShoutout(req, res) {
 }
 
 // QUERY API FUNCTION DEFINITIONS
-function createQuery(req, res) {
-  var newQuery = req.body;
-  newQuery.createDate = new Date();
+function createRequest(req, res) {
+  var newRequest = req.body;
+  newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(QUERIES_COLLECTION).insertOne(newQuery, function (err, doc) {
+  db.collection(QUERIES_COLLECTION).insertOne(newRequest, function (err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new query.");
+      handleError(res, err.message, "Failed to create new request.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
   });
 }
 
-function getQuery(req, res) {
+function getRequest(req, res) {
   db.collection(QUERIES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
-        handleError(res, err.message, "Failed to get query");
+        handleError(res, err.message, "Failed to get request");
       } else {
         res.status(200).json(doc);
       }
     });
 }
 
-function getQueries(req, res) {
+function getRequests(req, res) {
   db.collection(QUERIES_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get queries.");
+      handleError(res, err.message, "Failed to get requests.");
     } else {
       res.status(200).json(docs);
     }
   });
 }
 
-function updateQuery(req, res) {
+function updateRequest(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
