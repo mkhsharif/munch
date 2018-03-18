@@ -7,6 +7,7 @@ var USERS_COLLECTION = "users";
 var SHOUTOUTS_COLLECTION = "shoutout_ids";
 var REQUESTS_COLLECTION = "requests";
 var SESSIONS_COLLECTION = "sessions";
+var INTERESTS_COLLECTION = "interests";
 
 var app = express();
 var path = require('path');
@@ -46,6 +47,12 @@ app.get("/api/sessions", getSessions);
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 app.put("/api/sessions/:id", updateSession);
+
+// INTEREST API FUNCTIONS
+app.get("/api/interests", getInterests);
+app.get("/api/interests/:id", getInterest);
+app.post("/api/interests", createInterest);
+app.put("/api/interests/:id", updateInterest);
 
 
 // Create a database variable outside of the database connection callback to
@@ -358,3 +365,55 @@ function updateSession(req, res) {
       }
     });
 }
+
+// INTEREST API FUNCTION DEFINITIONS
+function createInterest(req, res) {
+  var newInterest = req.body;
+  newInterest.createDate = new Date();
+  // TODO: Check for uniqueness in credentials
+  db.collection(INTERESTS_COLLECTION).insertOne(newSession, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new interest.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+}
+
+function getInterest(req, res) {
+  db.collection(INTERESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get interest");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+}
+
+function getInterests(req, res) {
+  db.collection(INTERESTS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get interests.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+}
+
+function updateInterest(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(INTERESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+    updateDoc,
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update interest");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
+      }
+    });
+}
+
