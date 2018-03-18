@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MunchRequest} from '../../_models/munch-request';
-import {QueryService} from '../../_services/query.service';
+import {MunchRequestService} from '../../_services/munch-request.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as io from 'socket.io-client';
 import {SessionService} from '../../_services/munch-session.service';
@@ -23,7 +23,7 @@ export class MunchSearchComponent implements OnInit {
   private socket: SocketIOClient.Socket;
 
   constructor(
-    private queryService: QueryService,
+    private queryService: MunchRequestService,
     private route: ActivatedRoute,
     private sessionService: SessionService,
     private userService: UserService,
@@ -48,7 +48,7 @@ export class MunchSearchComponent implements OnInit {
   canDeactivate(): Observable<boolean> {
     if (this.query.searching === true) {
       this.query.searching = false;
-      return this.queryService.updateQuery(this.query).map(
+      return this.queryService.updateRequest(this.query).map(
         (res: MunchRequest) => {
           if (res.searching === false) {
             console.log('MunchRequest set to false');
@@ -64,12 +64,12 @@ export class MunchSearchComponent implements OnInit {
   // TODO: Look into pre loading with a guard
   private getQuery(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.queryService.getQuery(id)
+    this.queryService.getRequest(id)
       .subscribe(
         query => {
           this.query = query;
           this.query.searching = true;
-          this.queryService.updateQuery(this.query).subscribe(
+          this.queryService.updateRequest(this.query).subscribe(
             updatedQuery => {
               if (updatedQuery.searching) {
                 console.log('MunchRequest now searching');
@@ -77,12 +77,12 @@ export class MunchSearchComponent implements OnInit {
             }
           );
         }, error => {
-          QueryService.handleError(error);
+          MunchRequestService.handleError(error);
         });
   }
 
   private getAllQueries(): void {
-    this.queryService.getQueries()
+    this.queryService.getRequests()
       .subscribe(data => {
         this.allQueries = data;
       });

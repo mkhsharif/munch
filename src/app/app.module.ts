@@ -35,7 +35,7 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
 import {AuthGuard} from './_guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-search/munch-search.component';
-import {QueryService} from './_services/query.service';
+import {MunchRequestService} from './_services/munch-request.service';
 import {SessionService} from './_services/munch-session.service';
 import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
 import {EndQueryGuard} from './_guards/end-query.guard';
@@ -85,7 +85,7 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
     AuthenticationService,
     UserService,
     AuthGuard,
-    QueryService,
+    MunchRequestService,
     SessionService,
     EndQueryGuard,
     CanDeactivateGuard,
