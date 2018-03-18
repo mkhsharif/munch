@@ -3,4 +3,6 @@ export class MunchSession {
   host_id: string;
   user_ids: string[];
   location_id: string;
+  pending: boolean;
+  active: boolean;
 }
