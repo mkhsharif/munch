@@ -19,11 +19,11 @@ export class RegisterComponent {
     phone: '',
     points: 0,
     password: '',
-    friends: [],
-    shoutouts: [],
+    friend_ids: [],
+    shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
-    diet: ''
+    interest_ids: [],
+    diet_id: ''
   };
   loading = false;
 

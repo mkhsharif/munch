@@ -41,9 +41,9 @@ export class QueryFriendsComponent implements OnInit {
   }
 
   getAllFriends(): void {
-    // for (const friendId of this.user_id.friends) {
+    // for (const friendId of this.user_id.friend_ids) {
     //   this.userService.getUser(friendId)
-    //     .subscribe(friend => friends.push(friend));
+    //     .subscribe(friend => friend_ids.push(friend));
     // }
     // this.userService.getUsers()
     //   .subscribe(users => console.log(users));

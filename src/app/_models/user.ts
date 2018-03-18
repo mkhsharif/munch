@@ -9,9 +9,9 @@ export class User {
   email: string;
   phone: string;
   points: number;
-  friends: string[];
-  shoutouts: string[];
+  friend_ids: string[];
+  shoutout_ids: string[];
   avatarUrl: string;
-  interests: UserInterest[];
-  diet: string;
+  interest_ids: UserInterest[];
+  diet_id: string;
 }

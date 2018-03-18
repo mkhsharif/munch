@@ -15,8 +15,8 @@ export class UserDetailsComponent implements OnInit {
     phone: '',
     points: 0,
     password: '',
-    friends: [],
-    shoutouts: [],
+    friend_ids: [],
+    shoutout_ids: [],
   };
 
   constructor() {

@@ -4,7 +4,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
-var SHOUTOUTS_COLLECTION = "shoutouts";
+var SHOUTOUTS_COLLECTION = "shoutout_ids";
 var QUERIES_COLLECTION = "queries";
 var SESSIONS_COLLECTION = "sessions";
 
@@ -27,10 +27,10 @@ app.post("/api/users", createUser);
 app.delete("/api/users/:id", deleteUser);
 
 // SHOUTOUT API FUNCTIONS
-app.get("/api/shoutouts", getShoutouts);
-app.get("/api/shoutouts/:id", getShoutout);
-app.put("/api/shoutouts/:id", updateShoutout);
-app.post("/api/shoutouts", createShoutout);
+app.get("/api/shoutout_ids", getShoutouts);
+app.get("/api/shoutout_ids/:id", getShoutout);
+app.put("/api/shoutout_ids/:id", updateShoutout);
+app.post("/api/shoutout_ids", createShoutout);
 
 // QUERY API FUNCTIONS
 app.get("/api/queries", getQueries);

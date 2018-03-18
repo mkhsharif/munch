@@ -18,8 +18,8 @@ export class UserService {
     email: 'a',
     phone: 'a',
     points: 0,
-    friends: [],
-    shoutouts: []
+    friend_ids: [],
+    shoutout_ids: []
 };
 
   private mock2: User = {
@@ -31,8 +31,8 @@ export class UserService {
     email: 'b',
     phone: 'b',
     points: 0,
-    friends: [],
-    shoutouts: [],
+    friend_ids: [],
+    shoutout_ids: [],
   };
 
   private static handleError (error: any) {

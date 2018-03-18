@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ShoutOutService {
-  private shoutoutsUrl = '/api/shoutouts';
+  private shoutoutsUrl = '/api/shoutout_ids';
   private static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
