@@ -12,6 +12,6 @@ export class User {
   friend_ids: string[];
   shoutout_ids: string[];
   avatarUrl: string;
-  interest_ids: UserInterest[];
+  interests: UserInterest[];
   diet_id: string;
 }

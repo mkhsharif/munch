@@ -22,7 +22,7 @@ export class RegisterComponent {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interest_ids: [],
+    interests: [],
     diet_id: ''
   };
   loading = false;
