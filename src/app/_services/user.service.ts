@@ -9,32 +9,6 @@ import 'rxjs/add/observable/of';
 export class UserService {
   private usersUrl = '/api/users';
 
-  private mock1: User = {
-    _id: 'mockUser1',
-    userName: 'a',
-    firstName: 'a',
-    lastName: 'a',
-    password: 'a',
-    email: 'a',
-    phone: 'a',
-    points: 0,
-    friend_ids: [],
-    shoutout_ids: []
-};
-
-  private mock2: User = {
-    _id: 'mockUser2',
-    userName: 'b',
-    firstName: 'b',
-    lastName: 'b',
-    password: 'b',
-    email: 'b',
-    phone: 'b',
-    points: 0,
-    friend_ids: [],
-    shoutout_ids: [],
-  };
-
   private static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -59,19 +33,7 @@ export class UserService {
 
   // get("/api/users/:id")
   getUser(getUserId: string): Observable<User> {
-    if (getUserId === this.mock1._id) {
-      return Observable.of(this.mock1);
-    }
-
-    if (getUserId === this.mock2._id) {
-      return Observable.of(this.mock2);
-    }
-
     return this.http.get<User>(this.usersUrl  + '/' + getUserId);
-  }
-
-  getMockUsers(): Observable<User[]> {
-    return Observable.of([this.mock1, this.mock2]);
   }
 
   // put("/api/users/:id")

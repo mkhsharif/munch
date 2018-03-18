@@ -1,7 +1,6 @@
 export class ShoutOut {
   _id?: string;
-  user: string; // TODO: Make this a User Object
+  user: string;
   message: string;
   link?: string;
-  // TODO: Pictures
 }
