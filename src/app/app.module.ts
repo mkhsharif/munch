@@ -35,7 +35,7 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
 import {AuthGuard} from './_guards/auth.guard';
 import { MunchSessionComponent } from './munch/munch-session/munch-session.component';
 import { MunchSearchComponent } from './munch/munch-search/munch-search.component';
-import {QueryService} from './_services/query.service';
+import {MunchRequestService} from './_services/munch-request.service';
 import {SessionService} from './_services/munch-session.service';
 import { MunchLoadingComponent } from './munch/munch-loading/munch-loading.component';
 import {EndQueryGuard} from './_guards/end-query.guard';
@@ -46,6 +46,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import { FoodafComponent } from './foodaf/foodaf.component';
 import { InterestsComponent } from './interests/interests.component';
+import {InterestService} from './_services/interest.service';
 
 @NgModule({
   declarations: [
@@ -95,8 +96,9 @@ import { InterestsComponent } from './interests/interests.component';
     AuthenticationService,
     UserService,
     AuthGuard,
-    QueryService,
+    MunchRequestService,
     SessionService,
+    InterestService,
     EndQueryGuard,
     CanDeactivateGuard,
     {provide: LocationStrategy, useClass: HashLocationStrategy }

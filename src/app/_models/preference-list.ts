@@ -1,3 +1,4 @@
+// TODO: Remove this class
 import {DIETLIST, GENDERLIST, INTERESTSLIST, LOCATIONLIST, Preference} from './preference';
 
 export const GENDERPREFERENCE: Preference = {

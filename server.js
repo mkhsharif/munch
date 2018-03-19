@@ -4,9 +4,10 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var USERS_COLLECTION = "users";
-var SHOUTOUTS_COLLECTION = "shoutouts";
-var QUERIES_COLLECTION = "queries";
+var SHOUTOUTS_COLLECTION = "shoutout_ids";
+var REQUESTS_COLLECTION = "requests";
 var SESSIONS_COLLECTION = "sessions";
+var INTERESTS_COLLECTION = "interests";
 
 var app = express();
 var path = require('path');
@@ -27,16 +28,16 @@ app.post("/api/users", createUser);
 app.delete("/api/users/:id", deleteUser);
 
 // SHOUTOUT API FUNCTIONS
-app.get("/api/shoutouts", getShoutouts);
-app.get("/api/shoutouts/:id", getShoutout);
-app.put("/api/shoutouts/:id", updateShoutout);
-app.post("/api/shoutouts", createShoutout);
+app.get("/api/shoutout_ids", getShoutouts);
+app.get("/api/shoutout_ids/:id", getShoutout);
+app.put("/api/shoutout_ids/:id", updateShoutout);
+app.post("/api/shoutout_ids", createShoutout);
 
 // QUERY API FUNCTIONS
-app.get("/api/queries", getQueries);
-app.get("/api/queries/:id", getQuery);
-app.post("/api/queries", createQuery);
-app.put("/api/queries/:id", updateQuery);
+app.get("/api/requests", getRequests);
+app.get("/api/requests/:id", getRequest);
+app.post("/api/requests", createRequest);
+app.put("/api/requests/:id", updateRequest);
 
 // AUTH API FUNCTIONS
 app.post("/api/users/auth", authenticate);
@@ -46,6 +47,12 @@ app.get("/api/sessions", getSessions);
 app.get("/api/sessions/:id", getSession);
 app.post("/api/sessions", createSession);
 app.put("/api/sessions/:id", updateSession);
+
+// INTEREST API FUNCTIONS
+app.get("/api/interests", getInterests);
+app.get("/api/interests/:id", getInterest);
+app.post("/api/interests", createInterest);
+app.put("/api/interests/:id", updateInterest);
 
 
 // Create a database variable outside of the database connection callback to
@@ -115,7 +122,7 @@ function createMatch (data) {
 
 function endSession (data) {
   console.log(data);
-  globalSocket.broadcast.emit('user-exit', data);
+  globalSocket.broadcast.emit('user_id-exit', data);
 }
 // API FUNCTIONS BELOW
 
@@ -229,10 +236,10 @@ function getShoutout(req, res) {
 }
 
 function createShoutout(req, res) {
-  var newQuery = req.body;
-  newQuery.createDate = new Date();
+  var newRequest = req.body;
+  newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(SHOUTOUTS_COLLECTION).insertOne(newQuery, function (err, doc) {
+  db.collection(SHOUTOUTS_COLLECTION).insertOne(newRequest, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new shoutout.");
     } else {
@@ -258,45 +265,45 @@ function updateShoutout(req, res) {
 }
 
 // QUERY API FUNCTION DEFINITIONS
-function createQuery(req, res) {
-  var newQuery = req.body;
-  newQuery.createDate = new Date();
+function createRequest(req, res) {
+  var newRequest = req.body;
+  newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(QUERIES_COLLECTION).insertOne(newQuery, function (err, doc) {
+  db.collection(REQUESTS_COLLECTION).insertOne(newRequest, function (err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new query.");
+      handleError(res, err.message, "Failed to create new request.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
   });
 }
 
-function getQuery(req, res) {
-  db.collection(QUERIES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+function getRequest(req, res) {
+  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
     function(err, doc) {
       if (err) {
-        handleError(res, err.message, "Failed to get query");
+        handleError(res, err.message, "Failed to get request");
       } else {
         res.status(200).json(doc);
       }
     });
 }
 
-function getQueries(req, res) {
-  db.collection(QUERIES_COLLECTION).find({}).toArray(function(err, docs) {
+function getRequests(req, res) {
+  db.collection(REQUESTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get queries.");
+      handleError(res, err.message, "Failed to get requests.");
     } else {
       res.status(200).json(docs);
     }
   });
 }
 
-function updateQuery(req, res) {
+function updateRequest(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(QUERIES_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+  db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
     updateDoc,
     function(err, doc) {
       if (err) {
@@ -358,3 +365,55 @@ function updateSession(req, res) {
       }
     });
 }
+
+// INTEREST API FUNCTION DEFINITIONS
+function createInterest(req, res) {
+  var newInterest = req.body;
+  newInterest.createDate = new Date();
+  // TODO: Check for uniqueness in credentials
+  db.collection(INTERESTS_COLLECTION).insertOne(newSession, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new interest.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+}
+
+function getInterest(req, res) {
+  db.collection(INTERESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get interest");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+}
+
+function getInterests(req, res) {
+  db.collection(INTERESTS_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get interests.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+}
+
+function updateInterest(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(INTERESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)},
+    updateDoc,
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update interest");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
+      }
+    });
+}
+

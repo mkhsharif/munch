@@ -1,5 +1,4 @@
-import {MunchSession} from './munch-session';
-import {Query} from './query';
+import {UserInterest} from './user-interest';
 
 export class User {
   _id?: string;
@@ -10,8 +9,9 @@ export class User {
   email: string;
   phone: string;
   points: number;
-  friends: string[];
-  shoutouts: string[];
-  munchSession?: MunchSession;
-  query?: Query;
+  friend_ids: string[];
+  shoutout_ids: string[];
+  avatarUrl: string;
+  interests: UserInterest[];
+  diet_id: string;
 }

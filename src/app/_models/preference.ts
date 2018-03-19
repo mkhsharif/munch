@@ -1,3 +1,4 @@
+// TODO: Remove this class
 export const GENDERLIST: string[] = [
   'Any',
   'Male',

@@ -8,12 +8,6 @@ import {HttpClient} from '@angular/common/http';
 export class SessionService {
   private sessionUrl = '/api/sessions';
 
-  private mockMunchSession: MunchSession = {
-    _id: 'fakeSession1',
-    live: false,
-    users: ['mockUser1', 'mockUser2'],
-  };
-
   static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -23,9 +17,6 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   getSession(getSessionId: string): Observable<MunchSession> {
-    if (getSessionId === this.mockMunchSession._id) {
-      return Observable.of(this.mockMunchSession);
-    }
     return this.http.get<MunchSession>(this.sessionUrl + '/' + getSessionId);
   }
 
