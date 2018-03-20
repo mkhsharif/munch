@@ -40,6 +40,7 @@ import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
 
 
+import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { MunchSetupComponent } from './munch-setup/munch-setup.component';
     MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent
+    InterestsComponent,
+    MunchMatchedHostComponent
   ],
   imports: [
     BrowserModule,
