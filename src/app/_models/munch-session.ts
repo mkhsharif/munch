@@ -5,4 +5,5 @@ export class MunchSession {
   location_id: string;
   pending: boolean;
   active: boolean;
+  pin: string;
 }
