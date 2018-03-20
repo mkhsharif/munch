@@ -47,6 +47,7 @@ import { MusicAffinityComponent } from './music-affinity/music-affinity.componen
 import { FoodafComponent } from './foodaf/foodaf.component';
 import { InterestsComponent } from './interests/interests.component';
 import {InterestService} from './_services/interest.service';
+import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import {InterestService} from './_services/interest.service';
     ProfileComponent,
     MusicAffinityComponent,
     FoodafComponent,
-    InterestsComponent
+    InterestsComponent,
+    MunchMatchedHostComponent
   ],
   imports: [
     BrowserModule,
