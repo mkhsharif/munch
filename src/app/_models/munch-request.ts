@@ -7,4 +7,6 @@ export class MunchRequest {
   pending: boolean;
   cron: boolean;
   descriptionMessage: string;
+  interest_ids: string[];
+  diet_id: string;
 }
