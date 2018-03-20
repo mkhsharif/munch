@@ -45,6 +45,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import { FoodafComponent } from './foodaf/foodaf.component';
+import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { FoodafComponent } from './foodaf/foodaf.component';
     HomepageComponent,
     ProfileComponent,
     MusicAffinityComponent,
-    FoodafComponent
+    FoodafComponent,
+    WaitingPageComponent
   ],
   imports: [
     BrowserModule,
