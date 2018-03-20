@@ -1,4 +1,4 @@
-export class Location {
+export class MunchLocation {
   _id?: string;
   name: string;
   longitude: string;
