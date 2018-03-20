@@ -68,7 +68,7 @@ import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-ho
     UserSettingsComponent,
     MunchMatchedClientComponent,
     MunchActiveComponent,
-    MunchSetupComponent
+    MunchSetupComponent,
     InterestsComponent,
     MunchMatchedHostComponent
   ],
