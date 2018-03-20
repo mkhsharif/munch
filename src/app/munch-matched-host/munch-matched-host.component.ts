@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MunchSession} from '../_models/munch-session';
 import {User} from '../_models/user';
-import {Location} from '../_models/location';
+import {MunchLocation} from '../_models/munch-location';
 
 @Component({
   selector: 'app-munch-matched-host',
@@ -14,7 +14,7 @@ export class MunchMatchedHostComponent implements OnInit {
   munchSession: MunchSession;
   currentUser: User;
   matchedUser: User;
-  location: Location;
+  location: MunchLocation;
   constructor() { }
 
   ngOnInit() {
@@ -24,7 +24,8 @@ export class MunchMatchedHostComponent implements OnInit {
       user_ids: ['u1', 'u2'],
       location_id: 'l1',
       pending: true,
-      active: true
+      active: true,
+      pin: '1234'
     };
 
     this.currentUser = {
