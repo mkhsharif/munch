@@ -46,6 +46,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import { FoodafComponent } from './foodaf/foodaf.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -85,6 +88,7 @@ import { WaitingPageComponent } from './waiting-page/waiting-page.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
