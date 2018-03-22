@@ -11,6 +11,7 @@ var INTERESTS_COLLECTION = "interests";
 
 var app = express();
 var path = require('path');
+var schedule = require('node-schedule');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -267,6 +268,7 @@ function updateShoutout(req, res) {
 // QUERY API FUNCTION DEFINITIONS
 function createRequest(req, res) {
   var newRequest = req.body;
+
   newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
   db.collection(REQUESTS_COLLECTION).insertOne(newRequest, function (err, doc) {
@@ -275,6 +277,11 @@ function createRequest(req, res) {
     } else {
       res.status(201).json(doc.ops[0]);
     }
+  }).then(data => {
+    var j = schedule.scheduleJob('30 * * * * *', function (fireDate) {
+      console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
+      console.log(data._id)
+    });
   });
 }
 
