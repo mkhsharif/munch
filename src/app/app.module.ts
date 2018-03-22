@@ -47,6 +47,10 @@ import { MusicAffinityComponent } from './music-affinity/music-affinity.componen
 import { FoodafComponent } from './foodaf/foodaf.component';
 import { InterestsComponent } from './interests/interests.component';
 import {InterestService} from './_services/interest.service';
+import { WaitingPageComponent } from './waiting-page/waiting-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -83,9 +87,12 @@ import {InterestService} from './_services/interest.service';
     MusicAffinityComponent,
     FoodafComponent,
     InterestsComponent
+    FoodafComponent,
+    WaitingPageComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
