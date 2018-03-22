@@ -37,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
 import { SetupComponent } from './setup/setup.component';
 import { MunchMatchedClientComponent } from './munch-matched-client/munch-matched-client.component';
+import { MunchActiveComponent } from './munch-active/munch-active.component';
 
 
 
@@ -65,7 +66,8 @@ import { MunchMatchedClientComponent } from './munch-matched-client/munch-matche
     WaitingPageComponent,
     UserSettingsComponent,
     SetupComponent,
-    MunchMatchedClientComponent
+    MunchMatchedClientComponent,
+    MunchActiveComponent
   ],
   imports: [
     BrowserModule,
