@@ -10,14 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./munch-query.component.css']
 })
 export class MunchQueryComponent implements OnInit {
-  query: MunchRequest = {
-    user_id: '',
-    searching: false,
-    locationPreference: '',
-    dietPreference: '',
-    genderPreference: '',
-    interestsPreference: ''
-};
+  query: MunchRequest;
 
   constructor(
     private userService: UserService,
@@ -28,10 +21,6 @@ export class MunchQueryComponent implements OnInit {
   }
 
   handleQueryUpdated(query: MunchRequest): void {
-    this.query.locationPreference = query.locationPreference;
-    this.query.dietPreference = query.dietPreference;
-    this.query.genderPreference = query.genderPreference;
-    this.query.interestsPreference = query.interestsPreference;
     console.log(query);
   }
 
