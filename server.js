@@ -276,13 +276,12 @@ function createRequest(req, res) {
       handleError(res, err.message, "Failed to create new request.");
     } else {
       res.status(201).json(doc.ops[0]);
+      schedule.scheduleJob(Date.now() + 30000, function (fireDate) {
+        console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
+        console.log(doc.ops[0]);
+      });
     }
-  }).then(data => {
-    var j = schedule.scheduleJob('30 * * * * *', function (fireDate) {
-      console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
-      console.log(data._id)
-    });
-  });
+  })
 }
 
 function getRequest(req, res) {
