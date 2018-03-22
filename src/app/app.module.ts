@@ -35,6 +35,7 @@ import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
+import { SetupComponent } from './setup/setup.component';
 
 
 
@@ -61,7 +62,8 @@ import {UserSettingsComponent} from './user/user-settings/user-settings.componen
     InterestsComponent,
     FoodafComponent,
     WaitingPageComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
