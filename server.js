@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+var CRON_SECONDS = 30000;
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
@@ -268,20 +269,32 @@ function updateShoutout(req, res) {
 // QUERY API FUNCTION DEFINITIONS
 function createRequest(req, res) {
   var newRequest = req.body;
-
   newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(REQUESTS_COLLECTION).insertOne(newRequest, function (err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new request.");
-    } else {
+  return db.collection(REQUESTS_COLLECTION).insertOne(newRequest)
+    .then(function (doc) {
       res.status(201).json(doc.ops[0]);
-      schedule.scheduleJob(Date.now() + 30000, function (fireDate) {
-        console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
-        console.log(doc.ops[0]);
+      req.params.id = doc.ops[0]._id;
+      schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
+      console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
+      req.body.cron = false;
+      req.body.pending = false;
+      delete req.body._id;
+      delete req.body.createDate;
+      var updateDoc = req.body;
+      return db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) })
+        .then(function() {
+          console.log("Retrieved request");
+          return db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc);
+        }).then(function() {
+          console.log("Cron and Pending marked false");
+        }).catch(function (err) {
+          handleError(res, err.message, "Failed to create new request");
+        });
       });
-    }
-  })
+    }).catch(function (err) {
+      handleError(res, err.message, "Failed to create new request");
+    });
 }
 
 function getRequest(req, res) {
