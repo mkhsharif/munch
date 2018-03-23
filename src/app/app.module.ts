@@ -38,8 +38,6 @@ import {UserSettingsComponent} from './user/user-settings/user-settings.componen
 import { MunchMatchedClientComponent } from './munch-matched-client/munch-matched-client.component';
 import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
-
-
 import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 
 @NgModule({
@@ -69,6 +67,8 @@ import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-ho
     MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent,
+    InterestsComponent,
+    MunchMatchedHostComponent,
     InterestsComponent,
     MunchMatchedHostComponent
   ],
