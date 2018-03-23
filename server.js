@@ -266,7 +266,7 @@ function updateShoutout(req, res) {
     });
 }
 
-// QUERY API FUNCTION DEFINITIONS
+// REQUEST API FUNCTION DEFINITIONS
 function createRequest(req, res) {
   var newRequest = req.body;
   newRequest.createDate = new Date();
@@ -298,13 +298,12 @@ function createRequest(req, res) {
 }
 
 function getRequest(req, res) {
-  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
-    function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to get request");
-      } else {
-        res.status(200).json(doc);
-      }
+  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id)})
+    .then(function (doc) {
+      res.status(200).json(doc);
+    })
+    .catch(function (err) {
+      handleError(res, err.message, "Failed to get request");
     });
 }
 
