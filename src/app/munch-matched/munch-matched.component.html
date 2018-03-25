@@ -1,6 +1,12 @@
-<p>Matched user2</p>
-<p>Location: Blackburn</p>
-<p>Pin: 1234</p>
-<p>input pin:</p>
+<p *ngIf="isHost && clientUser">Matched {{clientUser.userName}}</p>
+<p *ngIf="!isHost && hostUser">Matched {{hostUser.userName}}</p>
+<p *ngIf="location">Location id: {{location}}</p>
+<p *ngIf="isHost">Pin: {{session.pin}}</p>
+<div *ngIf="!isHost">
+  <form>
+    <div *ngIf="!isHost" class="form group">
+    </div>
+  </form>
+</div>
 <button>Join</button>
 <button>Cancel</button>
