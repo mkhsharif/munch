@@ -66,6 +66,14 @@ export class UserService {
 
   // get("/api/users/:id")
   getUser(getUserId: string): Observable<User> {
+    if (getUserId === this.user1._id) {
+      return this.getMockUser1();
+    }
+
+    if (getUserId === this.user2._id) {
+      return this.getMockUser2();
+    }
+
     return this.http.get<User>(this.usersUrl  + '/' + getUserId);
   }
 
