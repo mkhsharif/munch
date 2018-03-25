@@ -25,7 +25,9 @@ export class MunchMatchedHostComponent implements OnInit {
       location_id: 'l1',
       pending: true,
       active: true,
-      pin: '1234'
+      pin: '1234',
+      common_interest_ids: [],
+      time_completed: null
     };
 
     this.currentUser = {
