@@ -40,6 +40,7 @@ import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
 import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
+import {LocationService} from './_services/location.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
     SessionService,
     InterestService,
     CanDeactivateGuard,
+    LocationService,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
