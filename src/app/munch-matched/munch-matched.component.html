@@ -5,8 +5,10 @@
 <div *ngIf="!isHost">
   <form>
     <div *ngIf="!isHost" class="form group">
+      <label for="pin">Host Pin Entry</label>
+      <input type="number" class="form-control" id="pin" required>
     </div>
+    <button type="submit" class="btn btn-success">Join</button>
   </form>
 </div>
-<button>Join</button>
 <button>Cancel</button>

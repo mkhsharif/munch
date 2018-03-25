@@ -29,7 +29,7 @@ export class MunchMatchedComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser(false)
-      .flatMap((user: User) => {
+      .flatMap((user: User) => { // TODO: optimize this
         return this.getSession();
       }).flatMap((session: MunchSession) => {
         let client_id = '';
