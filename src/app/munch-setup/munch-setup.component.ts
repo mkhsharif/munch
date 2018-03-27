@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {LocationService} from '../_services/location.service';
 import {MunchLocation} from '../_models/munch-location';
 import {Observable} from 'rxjs/Observable';
+import {Diet} from '../_models/diet';
+import 'rxjs/add/observable/of';
+import {DIETS} from '../_models/diet-list';
 
 @Component({
   selector: 'app-munch-setup',
@@ -11,6 +14,7 @@ import {Observable} from 'rxjs/Observable';
 export class MunchSetupComponent implements OnInit {
 
   locations: MunchLocation[];
+  diets: Diet[] = DIETS;
   constructor(
     private locationService: LocationService) { }
 
@@ -25,6 +29,7 @@ export class MunchSetupComponent implements OnInit {
         return this.locations;
       });
   }
+
 
   incrementState(): void {
     return;

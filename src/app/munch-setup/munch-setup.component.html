@@ -7,19 +7,11 @@
     </div>
   </div>
 
-  <div class="state-2">
-    I'm interested in (Choose one)...
-    <div class="image-button">Football</div>
-    <div class="image-button">Anime</div>
-    <div class="image-button">Yeezy</div>
-    <div class="image-button">Chilren's Card Games</div>
-    <div class="image-button">Chipotle</div>
-  </div>
-
   <div class="state-3">
     My diet is (Choose one)....
-    xyz
-
+    <div class="image-button" *ngFor="let diet of diets">
+      {{diet.name}}
+    </div>
   </div>
 
   <div class="state-4">
