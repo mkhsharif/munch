@@ -7,6 +7,30 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class MunchRequestService {
   private requestUrl = '/api/requests';
+  // TODO: Give interest ids
+  req1: MunchRequest = {
+    _id: 'r1',
+    user_id: 'u1',
+    time: null,
+    location_id: 'l1',
+    pending: false,
+    cron: false,
+    descriptionMessage: 'u1',
+    interest_ids: [],
+    diet_id: 'd1'
+  };
+
+  req2: MunchRequest = {
+    _id: 'r2',
+    user_id: 'u2',
+    time: null,
+    location_id: 'l1',
+    pending: false,
+    cron: false,
+    descriptionMessage: 'u2',
+    interest_ids: [],
+    diet_id: 'd1'
+  };
 
   static handleError (error: any) {
     const errMsg = (error.message) ? error.message :
