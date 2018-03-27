@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {UserInterest} from '../_models/user-interest';
-import {INTERESTSLIST, Preference} from '../_models/preference';
 import {User} from '../_models/user';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../_services/user.service';
 import {Interest} from '../_models/interest';
+import {INTERESTS} from '../_models/interest-list';
 
 @Component({
   selector: 'app-music-affinity',
@@ -13,13 +13,14 @@ import {Interest} from '../_models/interest';
 })
 export class MusicAffinityComponent implements OnInit {
   user: User;
+  interests: Interest[] = INTERESTS;
 
   constructor(private userService: UserService) {
 
   }
   ngOnInit() {
     this.getUser().subscribe();
-    console.log(INTERESTSLIST);
+    console.log(this.interests);
   }
 
   getUser(): Observable<User> {
