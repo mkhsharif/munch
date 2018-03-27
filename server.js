@@ -11,10 +11,12 @@ var INTERESTS_COLLECTION = "interests";
 
 var app = express();
 var path = require('path');
+var schedule = require('node-schedule');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+var CRON_SECONDS = 30000;
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
@@ -33,11 +35,12 @@ app.get("/api/shoutout_ids/:id", getShoutout);
 app.put("/api/shoutout_ids/:id", updateShoutout);
 app.post("/api/shoutout_ids", createShoutout);
 
-// QUERY API FUNCTIONS
+// REQUEST API FUNCTIONS
 app.get("/api/requests", getRequests);
 app.get("/api/requests/:id", getRequest);
 app.post("/api/requests", createRequest);
 app.put("/api/requests/:id", updateRequest);
+app.put("/api/requests/cron/:id", cronRequest);
 
 // AUTH API FUNCTIONS
 app.post("/api/users/auth", authenticate);
@@ -264,28 +267,45 @@ function updateShoutout(req, res) {
     });
 }
 
-// QUERY API FUNCTION DEFINITIONS
+// REQUEST API FUNCTION DEFINITIONS
 function createRequest(req, res) {
   var newRequest = req.body;
   newRequest.createDate = new Date();
   // TODO: Check for uniqueness in credentials
-  db.collection(REQUESTS_COLLECTION).insertOne(newRequest, function (err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new request.");
-    } else {
+  return db.collection(REQUESTS_COLLECTION).insertOne(newRequest)
+    .then(function (doc) {
       res.status(201).json(doc.ops[0]);
-    }
+    }).catch(function (err) {
+      handleError(res, err.message, "Failed to create new request");
+    });
+}
+
+function cronRequest(req, res) {
+  schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
+    console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
+    var updateDoc = req.body;
+    delete updateDoc._id;
+    updateDoc.cron = false;
+    updateDoc.pending = false;
+    return db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id)})
+      .then(function() {
+        console.log("Retrieved request " + req.params.id + "to remove");
+        return db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc);
+      }).then(function() {
+        console.log("Cron and Pending marked false for " + req.params.id );
+      }).catch(function (err) {
+        handleError(res, err.message, "Failed to create new request");
+      });
   });
 }
 
 function getRequest(req, res) {
-  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) },
-    function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to get request");
-      } else {
-        res.status(200).json(doc);
-      }
+  db.collection(REQUESTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id)})
+    .then(function (doc) {
+      res.status(200).json(doc);
+    })
+    .catch(function (err) {
+      handleError(res, err.message, "Failed to get request");
     });
 }
 

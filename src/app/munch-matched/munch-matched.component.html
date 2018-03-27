@@ -1,0 +1,14 @@
+<p *ngIf="isHost && clientUser">Matched {{clientUser.userName}}</p>
+<p *ngIf="!isHost && hostUser">Matched {{hostUser.userName}}</p>
+<p *ngIf="location">Location id: {{location}}</p>
+<p *ngIf="isHost">Pin: {{session.pin}}</p>
+<div *ngIf="!isHost">
+  <form>
+    <div *ngIf="!isHost" class="form group">
+      <label for="pin">Host Pin Entry</label>
+      <input type="number" class="form-control" id="pin" required>
+    </div>
+    <button type="submit" class="btn btn-success">Join</button>
+  </form>
+</div>
+<button>Cancel</button>

@@ -6,4 +6,6 @@ export class MunchSession {
   pending: boolean;
   active: boolean;
   pin: string;
+  common_interest_ids: string[];
+  time_completed: Date;
 }
