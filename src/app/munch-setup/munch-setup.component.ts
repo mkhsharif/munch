@@ -5,6 +5,10 @@ import {Observable} from 'rxjs/Observable';
 import {Diet} from '../_models/diet';
 import 'rxjs/add/observable/of';
 import {DIETS} from '../_models/diet-list';
+import {MunchRequest} from '../_models/munch-request';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
+import {MunchRequestService} from '../_services/munch-request.service';
 
 @Component({
   selector: 'app-munch-setup',
@@ -15,11 +19,16 @@ export class MunchSetupComponent implements OnInit {
 
   locations: MunchLocation[];
   diets: Diet[] = DIETS;
+  request: MunchRequest;
+  user: User;
   constructor(
-    private locationService: LocationService) { }
+    private locationService: LocationService,
+    private userService: UserService,
+    private requestService: MunchRequestService) { }
 
   ngOnInit() {
     this.getLocations().subscribe();
+    this.getUser().subscribe();
   }
 
   getLocations(): Observable<MunchLocation[]> {
@@ -30,6 +39,14 @@ export class MunchSetupComponent implements OnInit {
       });
   }
 
+  // TODO: Make this get the current user, not a mock
+  getUser(): Observable<User> {
+    return this.userService.getUser('u1')
+      .map((user: User) => {
+        this.user = user;
+        return this.user;
+      });
+  }
 
   incrementState(): void {
     return;
