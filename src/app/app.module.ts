@@ -41,6 +41,7 @@ import { MunchSetupComponent } from './munch-setup/munch-setup.component';
 import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
+import {LandingPageComponent} from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {LocationService} from './_services/location.service';
     MunchMatchedHostComponent,
     InterestsComponent,
     MunchMatchedHostComponent,
-    MunchMatchedComponent
+    MunchMatchedComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
