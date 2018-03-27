@@ -3,41 +3,29 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Interest} from '../_models/interest';
 import 'rxjs/add/observable/of';
+import {INTERESTS} from '../_models/interest-list';
 
 @Injectable()
 export class InterestService {
   private interestsUrl = '/api/interests';
-  int1: Interest = {_id: 'i1', name: 'int1'};
-  int2: Interest = {_id: 'i2', name: 'int2'};
-  int3: Interest = {_id: 'i3', name: 'int3'};
-  mockInterests: Interest[] = [this.int1, this.int2, this.int3];
+  interests: Interest[] = INTERESTS;
 
   constructor(private http: HttpClient) { }
 
-  getMockInterests(): Observable<Interest[]> {
-    return Observable.of(this.mockInterests);
-  }
-  // get("/api/Interests")
   getInterests(): Observable<Interest[]> {
-    return this.http.get<Interest[]>(this.interestsUrl);
+    return Observable.of(this.interests);
   }
 
-  // post("/api/Interests")
-  createInterests(newInterest: Interest): Observable<Interest> {
+  createInterest(newInterest: Interest): Observable<Interest> {
     return this.http.post<Interest>(this.interestsUrl, newInterest);
   }
 
   getInterest(getInterestId: string): Observable<Interest> {
-    if (getInterestId === this.int1._id) {
-      return Observable.of(this.int1);
+    for (const interest of this.interests) {
+      if (interest._id === getInterestId) {
+        return Observable.of(interest);
+      }
     }
-    if (getInterestId === this.int2._id) {
-      return Observable.of(this.int2);
-    }
-    if (getInterestId === this.int2._id) {
-      return Observable.of(this.int2);
-    }
-    return this.http.get<Interest>(this.interestsUrl  + '/' + getInterestId);
   }
 
   updateInterest(interest: Interest): Observable<Interest> {
