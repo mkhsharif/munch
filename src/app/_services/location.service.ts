@@ -6,15 +6,15 @@ import {LOCATIONS} from '../_models/location-list';
 
 @Injectable()
 export class LocationService {
-
+  locations: MunchLocation[] = LOCATIONS;
   constructor() { }
 
   getLocations(): Observable<MunchLocation[]> {
-    return Observable.of(LOCATIONS);
+    return Observable.of(this.locations);
   }
 
   getLocation(locationId): Observable<MunchLocation> {
-    for (const loc of LOCATIONS) {
+    for (const loc of this.locations) {
       if (loc._id === locationId) {
         return Observable.of(loc);
       }
