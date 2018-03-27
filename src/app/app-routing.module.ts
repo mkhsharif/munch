@@ -17,6 +17,7 @@ import {FoodafComponent} from './foodaf/foodaf.component';
 import {InterestsComponent} from './interests/interests.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
+import {MunchSetupComponent} from './munch-setup/munch-setup.component';
 
 // TODO: add ID to munch session URLs
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'interests', component: InterestsComponent},
   { path: 'waiting-page', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
+  { path: 'munch/setup2', component: MunchSetupComponent, canActivate: [] },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

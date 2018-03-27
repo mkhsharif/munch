@@ -2,11 +2,9 @@
   <h5 class="black-text">Munch Setup</h5>
   <div class="state-1 current">
     What are you hungry for? (Choose one)
-    <div class="image-button">Annex Caf</div>
-    <div class="image-button">Howard China</div>
-    <div class="image-button">Blackburn Caf</div>
-    <div class="image-button">Negril</div>
-    <div class="image-button">Chipotle</div>
+    <div class="image-button" *ngFor="let location of locations">
+      {{location.name}}
+    </div>
   </div>
 
   <div class="state-2">
@@ -49,3 +47,5 @@
     </span>
     <div>
     </div>
+  </div>
+</div>
