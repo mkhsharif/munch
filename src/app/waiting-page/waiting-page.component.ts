@@ -34,20 +34,21 @@ export class WaitingPageComponent implements OnInit {
 
   getRequests(): Observable<MunchRequest[]> {
     const id = this.route.snapshot.paramMap.get('id');
+    let observableRequests;
     if (id === 'r1' || id === 'r2') {
       console.log('Getting Mock Requests');
-      return this.requestService.getMockRequests()
-        .map((requests: MunchRequest[]) => {
-          this.requests = requests;
-          return this.requests;
-        });
+      observableRequests = this.requestService.getMockRequests();
     } else {
-      return this.requestService.getRequests() // TODO: revert this from mock
-        .map((requests: MunchRequest[]) => {
-          this.requests = requests;
-          return this.requests;
-        });
+      observableRequests = this.requestService.getRequests();
     }
+    return observableRequests.map((requests: MunchRequest[]) => {
+      for (const request of requests) {
+        if (request.pending === true && request.cron === true) {
+          this.requests.push(this.request);
+        }
+      }
+      return this.requests;
+    });
 
   }
 
