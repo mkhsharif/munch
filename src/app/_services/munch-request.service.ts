@@ -25,8 +25,8 @@ export class MunchRequestService {
     user_id: 'u2',
     time: null,
     location_id: 'l1',
-    pending: false,
-    cron: false,
+    pending: true,
+    cron: true,
     descriptionMessage: 'u2',
     interest_ids: [],
     diet_id: 'd1'
