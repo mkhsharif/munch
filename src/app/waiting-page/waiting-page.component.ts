@@ -33,7 +33,7 @@ export class WaitingPageComponent implements OnInit {
   }
 
   getRequests(): Observable<MunchRequest[]> {
-    return this.requestService.getRequests()
+    return this.requestService.getMockRequests() // TODO: revert this from mock
       .map((requests: MunchRequest[]) => {
         this.requests = requests;
         return this.requests;
