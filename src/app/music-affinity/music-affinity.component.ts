@@ -30,4 +30,11 @@ export class MusicAffinityComponent implements OnInit {
         return this.user;
     });
   }
+  submitInterests(): void {
+    let i = 1;
+    for (i ; i < this.interests.length; i++) {
+      console.log(document.getElementById('i' + i.toString())
+      );
+    }
+  }
 }
