@@ -48,10 +48,22 @@ export class MunchRequestService {
   }
 
   getRequest(requestId: string): Observable<MunchRequest> {
+    if (requestId === this.req1._id) {
+      return Observable.of(this.req1);
+    }
+
+    if (requestId === this.req2._id) {
+      return Observable.of(this.req2);
+    }
+
     return this.http.get<MunchRequest>(this.requestUrl  + '/' + requestId);
   }
 
   updateRequest(request: MunchRequest): Observable<MunchRequest> {
     return this.http.put<MunchRequest>(this.requestUrl + '/' + request._id, request);
+  }
+
+  getMockRequests(): Observable<MunchRequest[]> {
+    return Observable.of([this.req1, this.req2]);
   }
 }
