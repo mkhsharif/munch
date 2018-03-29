@@ -29,8 +29,6 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
-import { FoodafComponent } from './foodaf/foodaf.component';
-import { InterestsComponent } from './interests/interests.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,17 +60,12 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
     HomepageComponent,
     ProfileComponent,
     MusicAffinityComponent,
-    FoodafComponent,
-    InterestsComponent,
-    FoodafComponent,
     WaitingPageComponent,
     UserSettingsComponent,
     MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent,
-    InterestsComponent,
     MunchMatchedHostComponent,
-    InterestsComponent,
     MunchMatchedHostComponent,
     MunchMatchedComponent,
     LandingPageComponent
