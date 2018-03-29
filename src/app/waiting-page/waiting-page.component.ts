@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MunchRequest} from '../_models/munch-request';
 
 @Component({
   selector: 'app-waiting-page',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WaitingPageComponent implements OnInit {
 
+  request: MunchRequest;
   constructor() { }
 
   ngOnInit() {
