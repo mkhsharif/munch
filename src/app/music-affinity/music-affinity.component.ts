@@ -6,6 +6,7 @@ import {UserService} from '../_services/user.service';
 import {Interest} from '../_models/interest';
 import {INTERESTS} from '../_models/interest-list';
 
+
 @Component({
   selector: 'app-music-affinity',
   templateUrl: './music-affinity.component.html',
@@ -14,7 +15,6 @@ import {INTERESTS} from '../_models/interest-list';
 export class MusicAffinityComponent implements OnInit {
   user: User;
   interests: Interest[] = INTERESTS;
-
   constructor(private userService: UserService) {
 
   }

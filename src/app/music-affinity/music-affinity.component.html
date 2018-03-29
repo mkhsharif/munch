@@ -5,16 +5,9 @@
   <div  class="mx-auto" style="width: 200px;">
     <h3>Music Interest</h3>
 
-    <form action="music">
-      <input type="checkbox" id="kanye" class="Kanye">Kanye West<br>
-      <input type="checkbox" id="noname" class ="Noname">NoName<br>
-      <input type="checkbox" id="rglasper" class ="Robertglasper">Robert Glasper<br>
-      <input type="checkbox" id="jazz" class="jazz">Jazz<br>
-      <input type="checkbox" id="mozart" class="Mozart">Wolfgang Amadeus Mozart<br>
-
-      <input type="submit" routerLink="/profile" value="Submit" onclick="submit()">
-    </form>
-
+    <li *ngFor="let interest of interests">
+      {{ interest }}
+    </li>
     <br>
 
     <button class="btn btn-primary" routerLink="/profile">Back</button>
