@@ -56,4 +56,17 @@ export class WaitingPageComponent implements OnInit {
     return this.requestService.runCron(this.request);
   }
 
+  searchMatch(): void {
+    const match = true; // TODO: make this a let, change based on algorithm results
+    // do cosine similarity here
+    if (match) {
+      // create session
+      console.log('matched');
+    } else {
+      // start cron
+      console.log('starting cron');
+      this.cron = this.runCron();
+    }
+  }
+
 }
