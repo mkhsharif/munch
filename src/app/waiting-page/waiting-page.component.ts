@@ -103,13 +103,17 @@ export class WaitingPageComponent implements OnInit {
     if (match) {
       // create session
       console.log('matched');
+      let pin = String(Math.floor(Math.random() * 10));
+      pin += String(Math.floor(Math.random() * 10));
+      pin += String(Math.floor(Math.random() * 10));
+      pin += String(Math.floor(Math.random() * 10));
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
         user_ids: [this.currentUser._id, match.user_id],
         location_id: this.request.location_id,
         pending: true,
         active: false,
-        pin: '1234', // TODO: Generate this randomly in a function
+        pin: pin,
         common_interest_ids: [], // TODO: Generate this with set logic
         time_completed: null
       };
