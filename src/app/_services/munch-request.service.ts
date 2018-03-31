@@ -66,4 +66,8 @@ export class MunchRequestService {
   getMockRequests(): Observable<MunchRequest[]> {
     return Observable.of([this.req1, this.req2]);
   }
+
+  runCron(request: MunchRequest): Observable<MunchRequest> {
+    return this.http.put<MunchRequest>(this.requestUrl + '/cron/' + request._id, request);
+  }
 }

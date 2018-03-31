@@ -13,6 +13,7 @@ export class WaitingPageComponent implements OnInit {
 
   request: MunchRequest;
   requests: MunchRequest[];
+  cron: Observable<MunchRequest>;
   constructor(
     private route: ActivatedRoute,
     private requestService: MunchRequestService
@@ -49,7 +50,10 @@ export class WaitingPageComponent implements OnInit {
       }
       return this.requests;
     });
+  }
 
+  runCron(): Observable<MunchRequest> {
+    return this.requestService.runCron(this.request);
   }
 
 }
