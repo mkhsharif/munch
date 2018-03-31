@@ -14,6 +14,7 @@ export class SocketService {
   }
 
   createMatch(session: MunchSession): void {
+    console.log('Sending socket match with session id ' + session._id);
     this.socket.emit('create-match', session._id);
   }
 

@@ -9,6 +9,7 @@ import {MunchSession} from '../_models/munch-session';
 import {UserService} from '../_services/user.service';
 import {User} from '../_models/user';
 import {Subscription} from 'rxjs/Subscription';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-waiting-page',
@@ -18,7 +19,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class WaitingPageComponent implements OnInit {
 
   request: MunchRequest;
-  requests: MunchRequest[];
+  requests: MunchRequest[] = [];
   cron: Subscription;
   currentUser: User;
   constructor(
@@ -76,9 +77,11 @@ export class WaitingPageComponent implements OnInit {
     return observableRequests.map((requests: MunchRequest[]) => {
       for (const request of requests) {
         if (request.pending === true && request.cron === true) {
-          this.requests.push(this.request);
+          this.requests.push(request);
+          console.log(request);
         }
       }
+      console.log(this.requests);
       return this.requests;
     });
   }
@@ -97,6 +100,7 @@ export class WaitingPageComponent implements OnInit {
       .subscribe((newSession: MunchSession) => {
         this.router.navigate(['/munch/match/' + newSession._id])
           .then(() => {
+            this.socketService.createMatch(newSession);
             console.log('Navigating to session ' + newSession._id);
           }
         );
@@ -107,6 +111,7 @@ export class WaitingPageComponent implements OnInit {
   searchMatch(): void {
     const match = this.requestService.req2; // base on algorithm results
     // do cosine similarity here
+    console.log('Attempting to match');
     if (match) {
       // create session
       console.log('matched');
@@ -115,7 +120,9 @@ export class WaitingPageComponent implements OnInit {
       pin += String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
       const common_interest_ids = this.request.interest_ids.filter(
-        x => match.interest_ids.indexOf(x) < -1);
+        x => match.interest_ids.indexOf(x) > -1);
+      console.log(this.request.interest_ids);
+      console.log(match.interest_ids);
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
         user_ids: [this.currentUser._id, match.user_id],

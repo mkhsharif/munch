@@ -16,7 +16,7 @@ export class MunchRequestService {
     pending: false,
     cron: false,
     descriptionMessage: 'u1',
-    interest_ids: [],
+    interest_ids: ['i1', 'i2', 'i3', 'i4', 'i5'],
     diet_id: 'd1'
   };
 
@@ -28,7 +28,7 @@ export class MunchRequestService {
     pending: true,
     cron: true,
     descriptionMessage: 'u2',
-    interest_ids: [],
+    interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
     diet_id: 'd1'
   };
 

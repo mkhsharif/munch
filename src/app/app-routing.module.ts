@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'interests', component: InterestsComponent},
-  { path: 'waiting-page', component: WaitingPageComponent},
+  { path: 'munch/waiting/:id', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
   { path: 'munch-active', component: MunchActiveComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
