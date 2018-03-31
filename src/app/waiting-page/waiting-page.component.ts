@@ -6,6 +6,8 @@ import {MunchRequestService} from '../_services/munch-request.service';
 import {SocketService} from '../_services/socket.service';
 import {SessionService} from '../_services/munch-session.service';
 import {MunchSession} from '../_models/munch-session';
+import {UserService} from '../_services/user.service';
+import {User} from '../_models/user';
 
 @Component({
   selector: 'app-waiting-page',
@@ -17,16 +19,19 @@ export class WaitingPageComponent implements OnInit {
   request: MunchRequest;
   requests: MunchRequest[];
   cron: Observable<MunchRequest>;
+  currentUser: User;
   constructor(
     private route: ActivatedRoute,
     private requestService: MunchRequestService,
     private socketService: SocketService,
     private sessionService: SessionService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.initIo();
+    this.getCurrentUser().subscribe();
     this.getRequest().subscribe();
     this.getRequests().subscribe();
   }
@@ -37,6 +42,14 @@ export class WaitingPageComponent implements OnInit {
     this.socketService.onNewMatch()
       .subscribe((session_id: string) => {
         console.log('client to session ' + session_id);
+      });
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.userService.getUser('u1') // TODO: base this on local storage/cookie
+      .map((user: User) => {
+        this.currentUser = user;
+        return this.currentUser;
       });
   }
 
@@ -90,6 +103,9 @@ export class WaitingPageComponent implements OnInit {
     if (match) {
       // create session
       console.log('matched');
+      newSession: MunchSession = {
+
+      }
     } else {
       // start cron
       console.log('starting cron');
