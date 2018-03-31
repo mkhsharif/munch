@@ -3,6 +3,7 @@ import {MunchRequest} from '../_models/munch-request';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 import {MunchRequestService} from '../_services/munch-request.service';
+import {SocketService} from '../_services/socket.service';
 
 @Component({
   selector: 'app-waiting-page',
@@ -16,12 +17,23 @@ export class WaitingPageComponent implements OnInit {
   cron: Observable<MunchRequest>;
   constructor(
     private route: ActivatedRoute,
-    private requestService: MunchRequestService
+    private requestService: MunchRequestService,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
+    this.initIo();
     this.getRequest().subscribe();
     this.getRequests().subscribe();
+  }
+
+  initIo(): void {
+    this.socketService.initSocket();
+
+    this.socketService.onNewMatch()
+      .subscribe((session_id: string) => {
+        console.log('client to session ' + session_id);
+      });
   }
 
   getRequest(): Observable<MunchRequest> {
