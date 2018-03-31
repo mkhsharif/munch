@@ -36,6 +36,7 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "bulma": "^0.6.2",
+    "compute-cosine-similarity": "^1.0.0",
     "core-js": "^2.5.3",
     "express": "^4.16.2",
     "jquery": "^3.3.1",
