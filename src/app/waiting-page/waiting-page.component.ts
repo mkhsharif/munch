@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {MunchRequest} from '../_models/munch-request';
 import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MunchRequestService} from '../_services/munch-request.service';
 import {SocketService} from '../_services/socket.service';
+import {SessionService} from '../_services/munch-session.service';
+import {MunchSession} from '../_models/munch-session';
 
 @Component({
   selector: 'app-waiting-page',
@@ -18,7 +20,9 @@ export class WaitingPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private requestService: MunchRequestService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private sessionService: SessionService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -66,6 +70,18 @@ export class WaitingPageComponent implements OnInit {
 
   runCron(): Observable<MunchRequest> {
     return this.requestService.runCron(this.request);
+  }
+
+  createSession(session: MunchSession): void {
+    this.sessionService.createSession(session)
+      .subscribe((newSession: MunchSession) => {
+        this.router.navigate(['/munch/match/' + newSession._id])
+          .then(() => {
+            console.log('Navigating to session ' + newSession._id);
+          }
+        );
+      }
+    );
   }
 
   searchMatch(): void {
