@@ -50,3 +50,7 @@
 .inactive {
   display: none;
 }
+
+.greyed-out {
+  color: darkgray;
+}
