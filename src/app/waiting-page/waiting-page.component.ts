@@ -26,6 +26,7 @@ export class WaitingPageComponent implements OnInit {
   cron: Subscription;
   currentUser: User;
   interests: Interest[];
+  THRESHOLD = 0.4;
   constructor(
     private route: ActivatedRoute,
     private requestService: MunchRequestService,
@@ -83,7 +84,6 @@ export class WaitingPageComponent implements OnInit {
       for (const request of requests) {
         if (request.pending === true && request.cron === true) {
           this.requests.push(request);
-          console.log(request);
         }
       }
       console.log(this.requests);
@@ -125,20 +125,28 @@ export class WaitingPageComponent implements OnInit {
   searchMatch(): void {
     // const match = this.requestService.req2; // base on algorithm results
     this.initIo();
-    const match = null;
-    // do cosine similarity here
+    let match: MunchRequest = null;
+    let match_num = 0;
+    let new_num;
+    for (const request of this.requests) {
+      new_num = this.cosineSim(request);
+      console.log(request._id + ' ' + new_num);
+      if (new_num > match_num) {
+        match_num = new_num;
+        match = request;
+      }
+    }
+
     console.log('Attempting to match');
-    if (match) {
-      // create session
-      console.log('matched');
+    if (match && match_num > this.THRESHOLD) {
+      console.log('Matched!');
       let pin = String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
       const common_interest_ids = this.request.interest_ids.filter(
         x => match.interest_ids.indexOf(x) > -1);
-      console.log(this.request.interest_ids);
-      console.log(match.interest_ids);
+
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
         user_ids: [this.currentUser._id, match.user_id],
@@ -149,17 +157,30 @@ export class WaitingPageComponent implements OnInit {
         common_interest_ids: common_interest_ids,
         time_completed: null
       };
-      console.log(newSession);
+
       this.createSession(newSession);
     } else {
       // start cron
-      console.log('starting cron');
+      console.log('Starting cron');
       this.cron = this.runCron();
     }
   }
 
-  cosineSim(): void {
-    console.log(similarity([0, 1], [1, 1]));
+  requestToArray(request: MunchRequest): number[] {
+    const vector: number[] = [];
+    for (const interest of this.interests) {
+      if (request.interest_ids.indexOf(interest._id) > -1) {
+        vector.push(1);
+      } else {
+        vector.push(0);
+      }
+    } return vector;
+  }
+
+  cosineSim(otherRequest: MunchRequest): number {
+    const a1 = this.requestToArray(this.request);
+    const a2 = this.requestToArray(otherRequest);
+    return similarity(a1, a2);
   }
 
 }
