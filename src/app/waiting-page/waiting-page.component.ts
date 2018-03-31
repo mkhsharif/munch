@@ -107,6 +107,8 @@ export class WaitingPageComponent implements OnInit {
       pin += String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
+      const common_interest_ids = this.request.interest_ids.filter(
+        x => match.interest_ids.indexOf(x) < -1);
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
         user_ids: [this.currentUser._id, match.user_id],
@@ -114,7 +116,7 @@ export class WaitingPageComponent implements OnInit {
         pending: true,
         active: false,
         pin: pin,
-        common_interest_ids: [], // TODO: Generate this with set logic
+        common_interest_ids: common_interest_ids,
         time_completed: null
       };
       console.log(newSession);
