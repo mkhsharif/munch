@@ -10,6 +10,7 @@ import {UserService} from '../_services/user.service';
 import {User} from '../_models/user';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
+import * as similarity from 'compute-cosine-similarity';
 
 @Component({
   selector: 'app-waiting-page',
@@ -142,6 +143,10 @@ export class WaitingPageComponent implements OnInit {
       console.log('starting cron');
       this.cron = this.runCron();
     }
+  }
+
+  cosineSim(): void {
+    console.log(similarity([0, 1], [1, 1]));
   }
 
 }
