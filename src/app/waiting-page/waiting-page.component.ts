@@ -11,6 +11,8 @@ import {User} from '../_models/user';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
 import * as similarity from 'compute-cosine-similarity';
+import {Interest} from '../_models/interest';
+import {InterestService} from '../_services/interest.service';
 
 @Component({
   selector: 'app-waiting-page',
@@ -23,19 +25,22 @@ export class WaitingPageComponent implements OnInit {
   requests: MunchRequest[] = [];
   cron: Subscription;
   currentUser: User;
+  interests: Interest[];
   constructor(
     private route: ActivatedRoute,
     private requestService: MunchRequestService,
     private socketService: SocketService,
     private sessionService: SessionService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private interestService: InterestService
   ) { }
 
   ngOnInit() {
     this.getCurrentUser().subscribe();
     this.getRequest().subscribe();
     this.getRequests().subscribe();
+    this.getInterests().subscribe();
   }
 
   initIo(): void {
@@ -83,6 +88,14 @@ export class WaitingPageComponent implements OnInit {
       }
       console.log(this.requests);
       return this.requests;
+    });
+  }
+
+  getInterests(): Observable<Interest[]> {
+    return this.interestService.getInterests()
+      .map((interests: Interest[]) => {
+        this.interests = interests;
+        return this.interests;
     });
   }
 
