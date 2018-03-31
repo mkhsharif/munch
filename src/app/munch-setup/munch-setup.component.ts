@@ -51,7 +51,6 @@ export class MunchSetupComponent implements OnInit {
   }
 
   incrementState(): void {
-    console.log("incrementState");
     var stateString = this.state.toString();
     var currentStateElements = document.getElementsByClassName("state-"+stateString);
     var currentStateElement = (currentStateElements[0] as HTMLElement);
@@ -59,8 +58,8 @@ export class MunchSetupComponent implements OnInit {
     var newStateClassName = "state-" + newStateInt;
     var newStateElements = document.getElementsByClassName(newStateClassName);
     var newStateElement = newStateElements[0];
-    //currentStateElement.style.display = "none";
-    //newStateElement.style.display = "block";
+    currentStateElement.classList.add("inactive");
+    newStateElement.classList.remove("inactive");
     this.state = newStateInt;
   }
 
@@ -72,8 +71,8 @@ export class MunchSetupComponent implements OnInit {
     var newStateClassName = "state-" + newStateInt;
     var newStateElements = document.getElementsByClassName(newStateClassName);
     var newStateElement = newStateElements[0];
-    //currentStateElement.style.display = "none";
-    //newStateElement.style.display = "block";
+    currentStateElement.classList.add("inactive");
+    newStateElement.classList.remove("inactive");
     this.state = newStateInt;
   }
 }
