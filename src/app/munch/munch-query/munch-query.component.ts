@@ -41,20 +41,3 @@ export class MunchQueryComponent implements OnInit {
     }
   }
 }
-
-// State starts at 1
-var state = 1;
-
-function incrementState() {
-  // increment state by 1
-  // select element with class name (state + 1)
-  // add show to that class
-  // add hide to element with class name (state)
-}
-
-function decrementState() {
-  // decrement state by 1
-  // select element with class name (state - 1)
-  // add show to that class
-  // add hide to element with class name (state)
-}

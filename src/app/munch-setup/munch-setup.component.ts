@@ -16,7 +16,7 @@ import {MunchRequestService} from '../_services/munch-request.service';
   styleUrls: ['./munch-setup.component.css']
 })
 export class MunchSetupComponent implements OnInit {
-
+  state: number;
   locations: MunchLocation[];
   diets: Diet[] = DIETS;
   request: MunchRequest;
@@ -24,7 +24,9 @@ export class MunchSetupComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private userService: UserService,
-    private requestService: MunchRequestService) { }
+    private requestService: MunchRequestService) {
+    this.state = 1;
+  }
 
   ngOnInit() {
     this.getLocations().subscribe();
@@ -49,27 +51,29 @@ export class MunchSetupComponent implements OnInit {
   }
 
   incrementState(): void {
-    return;
+    console.log("incrementState");
+    var stateString = this.state.toString();
+    var currentStateElements = document.getElementsByClassName("state-"+stateString);
+    var currentStateElement = (currentStateElements[0] as HTMLElement);
+    var newStateInt = this.state + 1;
+    var newStateClassName = "state-" + newStateInt;
+    var newStateElements = document.getElementsByClassName(newStateClassName);
+    var newStateElement = newStateElements[0];
+    //currentStateElement.style.display = "none";
+    //newStateElement.style.display = "block";
+    this.state = newStateInt;
   }
 
   decrementState(): void {
-    return;
+    var stateString = this.state.toString();
+    var currentStateElements = document.getElementsByClassName("state-"+stateString);
+    var currentStateElement = (currentStateElements[0] as HTMLElement);
+    var newStateInt = this.state - 1;
+    var newStateClassName = "state-" + newStateInt;
+    var newStateElements = document.getElementsByClassName(newStateClassName);
+    var newStateElement = newStateElements[0];
+    //currentStateElement.style.display = "none";
+    //newStateElement.style.display = "block";
+    this.state = newStateInt;
   }
-
-  // State starts at 1
-  // var state = 1;
-
-  // function incrementState() {
-  //   // increment state by 1
-  //   // select element with class name (state + 1)
-  //   // add show to that class
-  //   // add hide to element with class name (state)
-  // }
-  //
-  // function decrementState() {
-  //   // decrement state by 1
-  //   // select element with class name (state - 1)
-  //   // add show to that class
-  //   // add hide to element with class name (state)
-  // }
 }
