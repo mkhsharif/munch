@@ -32,7 +32,6 @@ export class WaitingPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initIo();
     this.getCurrentUser().subscribe();
     this.getRequest().subscribe();
     this.getRequests().subscribe();
@@ -87,6 +86,7 @@ export class WaitingPageComponent implements OnInit {
   }
 
   runCron(): Subscription {
+    console.log('Waiting for match, starting cron timer');
     return this.requestService.runCron(this.request)
       .subscribe(() => {
         console.log('Request expired');
@@ -109,7 +109,9 @@ export class WaitingPageComponent implements OnInit {
   }
 
   searchMatch(): void {
-    const match = this.requestService.req2; // base on algorithm results
+    // const match = this.requestService.req2; // base on algorithm results
+    this.initIo();
+    const match = null;
     // do cosine similarity here
     console.log('Attempting to match');
     if (match) {

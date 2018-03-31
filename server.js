@@ -39,8 +39,8 @@ app.post("/api/shoutout_ids", createShoutout);
 app.get("/api/requests", getRequests);
 app.get("/api/requests/:id", getRequest);
 app.post("/api/requests", createRequest);
-app.put("/api/requests/:id", updateRequest);
 app.put("/api/requests/cron/:id", cronRequest);
+app.put("/api/requests/:id", updateRequest);
 
 // AUTH API FUNCTIONS
 app.post("/api/users/auth", authenticate);
@@ -284,6 +284,8 @@ function cronRequest(req, res) {
   schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
     console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
     var updateDoc = req.body;
+    console.log(req.params.id);
+    console.log(updateDoc._id);
     delete updateDoc._id;
     updateDoc.cron = false;
     updateDoc.pending = false;

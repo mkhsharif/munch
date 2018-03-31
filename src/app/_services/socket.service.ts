@@ -10,6 +10,7 @@ export class SocketService {
   constructor() { }
 
   initSocket(): void {
+    console.log('Initializing socket');
     this.socket = io();
   }
 
