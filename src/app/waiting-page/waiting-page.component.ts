@@ -98,14 +98,22 @@ export class WaitingPageComponent implements OnInit {
   }
 
   searchMatch(): void {
-    const match = true; // TODO: make this a let, change based on algorithm results
+    const match = this.requestService.req2; // base on algorithm results
     // do cosine similarity here
     if (match) {
       // create session
       console.log('matched');
-      newSession: MunchSession = {
-
-      }
+      const newSession: MunchSession = {
+        host_id: this.currentUser._id,
+        user_ids: [this.currentUser._id, match.user_id],
+        location_id: this.request.location_id,
+        pending: true,
+        active: false,
+        pin: '1234', // TODO: Generate this randomly in a function
+        common_interest_ids: [], // TODO: Generate this with set logic
+        time_completed: null
+      };
+      console.log(newSession);
     } else {
       // start cron
       console.log('starting cron');
