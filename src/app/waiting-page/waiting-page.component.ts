@@ -8,6 +8,7 @@ import {SessionService} from '../_services/munch-session.service';
 import {MunchSession} from '../_models/munch-session';
 import {UserService} from '../_services/user.service';
 import {User} from '../_models/user';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-waiting-page',
@@ -18,7 +19,7 @@ export class WaitingPageComponent implements OnInit {
 
   request: MunchRequest;
   requests: MunchRequest[];
-  cron: Observable<MunchRequest>;
+  cron: Subscription;
   currentUser: User;
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class WaitingPageComponent implements OnInit {
     this.socketService.onNewMatch()
       .subscribe((session_id: string) => {
         console.log('client to session ' + session_id);
+        this.cron.unsubscribe();
       });
   }
 
@@ -81,8 +83,13 @@ export class WaitingPageComponent implements OnInit {
     });
   }
 
-  runCron(): Observable<MunchRequest> {
-    return this.requestService.runCron(this.request);
+  runCron(): Subscription {
+    return this.requestService.runCron(this.request)
+      .subscribe(() => {
+        console.log('Request expired');
+        this.router.navigate(['/dashboard'])
+          .then(() => {console.log('Returning to Dashboard'); });
+    });
   }
 
   createSession(session: MunchSession): void {
@@ -120,6 +127,7 @@ export class WaitingPageComponent implements OnInit {
         time_completed: null
       };
       console.log(newSession);
+      this.createSession(newSession);
     } else {
       // start cron
       console.log('starting cron');
