@@ -41,6 +41,7 @@ import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import {SocketService} from './_services/socket.service';
     InterestsComponent,
     MunchMatchedHostComponent,
     MunchMatchedComponent,
-    LandingPageComponent
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +81,7 @@ import {SocketService} from './_services/socket.service';
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
+    TagCloudModule
   ],
   providers: [
     ShoutOutService,

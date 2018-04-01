@@ -1,27 +1,28 @@
 
 <!--Place Holders-->
-<div class="tags has-addons">
-  <span class="tag  is-danger">One</span>
-  <span class="tag">Two</span>
-  <span class="tag">Three</span>
-  <span class="tag">Four</span>
-  <span class="tag">Five</span>
-  <span class="tag">Six</span>
-  <span class="tag">Seven</span>
-  <span class="tag">Eight</span>
-  <span class="tag">Nine</span>
-  <span class="tag">Ten</span>
-  <span class="tag">Eleven</span>
-  <span class="tag">Twelve</span>
-  <span class="tag">Thirteen</span>
-  <span class="tag">Fourteen</span>
-  <span class="tag">Fifteen</span>
-  <span class="tag">Sixteen</span>
-  <span class="tag">Seventeen</span>
-  <span class="tag">Eighteen</span>
-  <span class="tag">Nineteen</span>
-  <span class="tag">Twenty</span>
+<div class = "box">
+<div class="tags">
+  <span class="tag is-primary is-large">Hiking</span>
+  <span class="tag is-warning">Art</span>
+  <span class="tag is-danger is-medium">Singing</span>
+  <span class="tag is-light">Cooking</span>
+  <span class="tag is-dark">Sports</span>
+  <span class="tag is-medium">Black Liberation</span>
+  <span class="tag is-link">Reading</span>
+  <span class="tag is-info">Hiphop</span>
+
 </div>
+</div>
+
+<div>
+  <angular-tag-cloud
+    [data]="data"
+    [width]="options.width"
+    [height]="options.height"
+    [overflow]="options.overflow">
+  </angular-tag-cloud>
+</div>
+
 
 <div id="button">
   <button type="button" class="btn btn-danger">Leave</button>
