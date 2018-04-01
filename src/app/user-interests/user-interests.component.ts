@@ -6,6 +6,11 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {InterestService} from '../_services/interest.service';
 
+class InterestSelection {
+  interest_id: string;
+  selected: boolean;
+}
+
 @Component({
   selector: 'app-user-interests',
   templateUrl: './user-interests.component.html',
@@ -56,12 +61,14 @@ export class UserInterestsComponent implements OnInit {
   }
 
   updateInterests(): void {
-    // update user object here
+    console.log(this.interestSelections);
+    // update user object here then pass to userService.update
+    // convert interests to user interests using the method in the service
+    // save them to the user object
   }
 
-}
+  toggleInterest(index, event) {
+    this.interestSelections[index].selected = event.checked;
+  }
 
-class InterestSelection {
-  interest_id: string;
-  selected: boolean;
 }
