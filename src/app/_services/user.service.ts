@@ -93,4 +93,11 @@ export class UserService {
   getMockUsers(): Observable<User[]> {
     return Observable.of([this.user1, this.user2]);
   }
+
+  public getInterestIds(user: User): string[] {
+    const interest_ids: string[] = [];
+    for (const userInterest of user.interests) {
+      interest_ids.push(userInterest.interest_id);
+    } return interest_ids;
+  }
 }
