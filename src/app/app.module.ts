@@ -40,6 +40,8 @@ import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-ho
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import {MatCheckboxModule} from '@angular/material';
+import { UserInterestsComponent } from './user-interests/user-interests.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
     MunchMatchedHostComponent,
     MunchMatchedHostComponent,
     MunchMatchedComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    UserInterestsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
+    MatCheckboxModule
   ],
   providers: [
     ShoutOutService,

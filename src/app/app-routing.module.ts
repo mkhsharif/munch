@@ -15,6 +15,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
+import {UserInterestsComponent} from './user-interests/user-interests.component';
 
 // TODO: add ID to munch session URLs
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'shoutouts', component: ShoutOutListComponent},
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
   { path: 'user', component: UserComponent },
+  { path: 'user/interests', component: UserInterestsComponent},
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'musicaf', component: MusicAffinityComponent},
