@@ -40,6 +40,7 @@ import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-ho
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import {SocketService} from './_services/socket.service';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
     InterestService,
     CanDeactivateGuard,
     LocationService,
+    SocketService,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
