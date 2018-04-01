@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {UserInterest} from '../_models/user-interest';
 import {User} from '../_models/user';
 import {Observable} from 'rxjs/Observable';
@@ -12,9 +12,11 @@ import {INTERESTS} from '../_models/interest-list';
   templateUrl: './music-affinity.component.html',
   styleUrls: ['./music-affinity.component.css']
 })
-export class MusicAffinityComponent implements OnInit {
+export class MusicAffinityComponent implements OnInit, AfterViewInit {
   user: User;
   interests: Interest[] = INTERESTS;
+  @ViewChild('i1') i1: ElementRef;
+
   constructor(private userService: UserService) {
 
   }
@@ -22,7 +24,6 @@ export class MusicAffinityComponent implements OnInit {
     this.getUser().subscribe();
     console.log(this.interests);
   }
-
   getUser(): Observable<User> {
     return this.userService.getUser('u1')
       .map((user: User) => {
@@ -30,11 +31,13 @@ export class MusicAffinityComponent implements OnInit {
         return this.user;
     });
   }
-  submitInterests(): void {
-    let i = 1;
-    for (i ; i < this.interests.length; i++) {
-      console.log(document.getElementById('i' + i.toString())
-      );
+  ngAfterViewInit() {
+    submit() {
+      console.log('i1 value: ');
+      console.log(this.i1.nativeElement);
     }
+
   }
 }
+
+

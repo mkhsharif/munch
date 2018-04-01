@@ -1,27 +1,23 @@
 
-
 <div>
 
   <div  class="mx-auto" style="width: 200px;">
     <h3>Music Interest</h3>
 
-    <li *ngFor="let interest of interests">
 
-      <form ngForm (ngSubmit)="submitInterests()">
-        <input type="checkbox" value="" id="{{interest._id}}">
-        {{interest.name}}
-
-        <button class="btn btn-primary" >Submit</button>
-      </form>
-    </li>
-
-
-    <button class="btn btn-primary" routerLink="/profile">Back</button>
-    <button class="btn btn-primary" (ngSubmit)="submitInterests()">Submit</button>
-
-
+      <div id="i1" #i1>
+        <button class="btn btn-primary">Music</button>
+      </div>
+    
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button class="btn btn-primary" routerLink="/profile">Back</button>
+  <button class="btn btn-primary" onclick="submit()">Submit</button>
 
 </div>
-
 
