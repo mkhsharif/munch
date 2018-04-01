@@ -22,7 +22,13 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
+    interests: [
+      {interest_id: 'i1', weight: 1},
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1}
+    ],
     diet_id: '',
   };
 
@@ -38,7 +44,13 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
+    interests: [
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1},
+      {interest_id: 'i6', weight: 1}
+    ],
     diet_id: '',
   };
 
