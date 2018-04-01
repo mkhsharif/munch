@@ -40,8 +40,6 @@ export class UserInterestsComponent implements OnInit {
       });
   }
 
-  userInterestTo
-
   updateInterests(): void {
     // update user object here
   }
