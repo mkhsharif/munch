@@ -11,10 +11,14 @@ import {InterestService} from '../_services/interest.service';
   templateUrl: './user-interests.component.html',
   styleUrls: ['./user-interests.component.css']
 })
+
 export class UserInterestsComponent implements OnInit {
 
   user: User;
   interests: Interest[] = INTERESTS;
+  interestSelections: InterestSelection[] = [];
+
+
   constructor(
     private userService: UserService,
     private interestsService: InterestService) { }
@@ -44,4 +48,9 @@ export class UserInterestsComponent implements OnInit {
     // update user object here
   }
 
+}
+
+class InterestSelection {
+  interest_id: string;
+  selected: boolean;
 }
