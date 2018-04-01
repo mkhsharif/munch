@@ -1,0 +1,5 @@
+<div class="container">
+  <div *ngFor="let interest of interests">
+    <mat-checkbox [(checked)]="interest._id in user.">{{interest.name}}</mat-checkbox>
+  </div>
+</div>

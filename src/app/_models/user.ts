@@ -14,4 +14,11 @@ export class User {
   avatarUrl: string;
   interests: UserInterest[];
   diet_id: string;
+
+  getInterestIds(): string[] {
+    const interest_ids: string[] = [];
+    for (const userInterest of this.interests) {
+      interest_ids.push(userInterest.interest_id);
+    } return interest_ids;
+  }
 }
