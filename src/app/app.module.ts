@@ -39,6 +39,8 @@ import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-ho
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import {SocketService} from './_services/socket.service';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 import {MatCheckboxModule} from '@angular/material';
 import { UserInterestsComponent } from './user-interests/user-interests.component';
 
@@ -69,7 +71,8 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     MunchMatchedHostComponent,
     MunchMatchedComponent,
     LandingPageComponent,
-    UserInterestsComponent
+    UserInterestsComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
+    TagCloudModule,
     MatCheckboxModule
   ],
   providers: [
@@ -90,6 +94,8 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     InterestService,
     CanDeactivateGuard,
     LocationService,
+    SocketService,
+    NavigationBarComponent,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
