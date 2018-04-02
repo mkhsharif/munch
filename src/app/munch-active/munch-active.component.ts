@@ -18,7 +18,7 @@ import {MunchLocation} from '../_models/munch-location';
 export class MunchActiveComponent implements OnInit {
 
   session: MunchSession;
-  interests: Interest[];
+  interests: Interest[] = [];
   location: MunchLocation;
 
   options: CloudOptions = {

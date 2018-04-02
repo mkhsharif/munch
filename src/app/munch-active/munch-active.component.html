@@ -1,32 +1,23 @@
-
-<!--Place Holders-->
-<div class = "box">
-<div class="tags">
-  <span class="tag is-primary is-large">{{ userInterest1.interest_id }}</span>
-  <span class="tag is-warning">{{ userInterest2.interest_id }}</span>
-  <span class="tag is-danger is-medium">{{ userInterest3.interest_id }}</span>
-  <span class="tag is-light">{{ userInterest3.interest_id }}</span>
-  <span class="tag is-dark">{{ userInterest4.interest_id }}</span>
-  <span class="tag is-medium">{{ userInterest5.interest_id }}</span>
-  <span class="tag is-link">{{ userInterest6.interest_id }}</span>
-  <span class="tag is-info">{{ userInterest7.interest_id }}</span>
-
+<div class="box">
+  <div class="tags" *ngFor="let interest of interests" >
+    <span class="tag is-primary is-large">{{ interest.name }}</span>
+  </div>
 </div>
-</div>
-
-<div span class="w1">
-  <angular-tag-cloud
-    [data]="data"
-    [width]="options.width"
-    [height]="options.height"
-    [overflow]="options.overflow">
-  </angular-tag-cloud>
-</div>
-
 
 <div id="button">
   <button type="button" class="btn btn-danger">Leave</button>
 </div>
+
+<!--<div class="w1">-->
+  <!--<angular-tag-cloud-->
+    <!--[data]="data"-->
+    <!--[width]="options.width"-->
+    <!--[height]="options.height"-->
+    <!--[overflow]="options.overflow">-->
+  <!--</angular-tag-cloud>-->
+<!--</div>-->
+
+
 
 
 
