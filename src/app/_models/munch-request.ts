@@ -10,5 +10,6 @@ export class MunchRequest {
   descriptionMessage: string;
   interest_ids: string[];
   diet_id: string;
-  gender: Genders;
+  gender_preference: Genders;
+  user_gender: Genders.FEMALE | Genders.MALE;
 }

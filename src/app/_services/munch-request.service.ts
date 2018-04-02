@@ -19,7 +19,8 @@ export class MunchRequestService {
     descriptionMessage: 'u1',
     interest_ids: ['i1', 'i2', 'i3', 'i4', 'i5'],
     diet_id: 'd1',
-    gender: Genders.ANY
+    gender_preference: Genders.ANY,
+    user_gender: Genders.FEMALE
   };
 
   req2: MunchRequest = {
@@ -32,7 +33,8 @@ export class MunchRequestService {
     descriptionMessage: 'u2',
     interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
     diet_id: 'd1',
-    gender: Genders.FEMALE
+    gender_preference: Genders.FEMALE,
+    user_gender: Genders.MALE
   };
 
   static handleError (error: any) {
