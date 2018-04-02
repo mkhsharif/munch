@@ -32,10 +32,8 @@ import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import { MunchMatchedClientComponent } from './munch-matched-client/munch-matched-client.component';
 import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
-import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
@@ -64,11 +62,8 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     ProfileComponent,
     WaitingPageComponent,
     UserSettingsComponent,
-    MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent,
-    MunchMatchedHostComponent,
-    MunchMatchedHostComponent,
     MunchMatchedComponent,
     LandingPageComponent,
     UserInterestsComponent,
