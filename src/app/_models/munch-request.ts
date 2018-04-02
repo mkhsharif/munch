@@ -1,4 +1,5 @@
 import {Genders} from './genders';
+import {Diets} from './diets';
 
 export class MunchRequest {
   _id?: string;
@@ -9,7 +10,7 @@ export class MunchRequest {
   cron: boolean;
   descriptionMessage: string;
   interest_ids: string[];
-  diet_id: string;
+  diet: Diets;
   gender_preference: Genders;
   user_gender: Genders.FEMALE | Genders.MALE;
 }

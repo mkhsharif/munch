@@ -7,7 +7,7 @@ export const GENDERPREFERENCE: Preference = {
 };
 
 export const DIETPREFERENCE: Preference = {
-  name: 'Diet',
+  name: 'Diets',
   options: DIETLIST
 };
 

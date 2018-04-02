@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';
 import {Genders} from '../_models/genders';
+import {Diets} from '../_models/diets';
 
 @Injectable()
 export class MunchRequestService {
@@ -18,7 +19,7 @@ export class MunchRequestService {
     cron: false,
     descriptionMessage: 'u1',
     interest_ids: ['i1', 'i2', 'i3', 'i4', 'i5'],
-    diet_id: 'd1',
+    diet: Diets.ANY,
     gender_preference: Genders.ANY,
     user_gender: Genders.FEMALE
   };
@@ -32,7 +33,7 @@ export class MunchRequestService {
     cron: true,
     descriptionMessage: 'u2',
     interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
-    diet_id: 'd1',
+    diet: Diets.ANY,
     gender_preference: Genders.FEMALE,
     user_gender: Genders.MALE
   };
