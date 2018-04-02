@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
-import {UserInterest} from '../_models/user-interest';
 import {MunchSession} from '../_models/munch-session';
+import {Observable} from 'rxjs/Observable';
+import {SessionService} from '../_services/munch-session.service';
+import {ActivatedRoute} from '@angular/router';
+import {InterestService} from '../_services/interest.service';
+import {Interest} from '../_models/interest';
+import {LocationService} from '../_services/location.service';
+import {MunchLocation} from '../_models/munch-location';
 
 @Component({
   selector: 'app-munch-active',
@@ -11,17 +17,9 @@ import {MunchSession} from '../_models/munch-session';
 })
 export class MunchActiveComponent implements OnInit {
 
-  munchSession: MunchSession;
-  userInterest1: UserInterest;
-  userInterest2: UserInterest;
-  userInterest3: UserInterest;
-  userInterest4: UserInterest;
-  userInterest5: UserInterest;
-  userInterest6: UserInterest;
-  userInterest7: UserInterest;
-
-  userInterests: UserInterest[];
-
+  session: MunchSession;
+  interests: Interest[];
+  location: MunchLocation;
 
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -41,59 +39,48 @@ export class MunchActiveComponent implements OnInit {
     // ...
   ];
 
-
-  constructor() { }
+  constructor(
+    private sessionService: SessionService,
+    private interestService: InterestService,
+    private locationService: LocationService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-   /* this.munchSession = {
-      _id: 's1',
-      host_id: 'u1',
-      user_ids: ['u1', 'u2'],
-      location_id: 'l1',
-      pending: true,
-      active: true,
-      pin: '1234',
-      common_interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
-      time_completed: null
-    };*/
-
-
-
-
-     this.userInterest1 = {
-       interest_id: 'i1',
-       weight: 4,
-     };
-
-      this.userInterest2 = {
-        interest_id: 'i2',
-      weight: 6,
-    };
-
-      this.userInterest3 = {
-        interest_id: 'i3',
-      weight: 10,
-    };
-
-      this.userInterest4 = {
-        interest_id: 'i4',
-      weight: 3,
-    };
-
-      this.userInterest5 = {
-        interest_id: 'i5',
-      weight: 7,
-    };
-
-      this.userInterest6 = {
-        interest_id: 'i6',
-      weight: 8,
-    };
-
-      this.userInterest7 = {
-        interest_id: 'i7',
-      weight: 1,
-    };
+    this.getSession().flatMap((session: MunchSession) => {
+      // get interests from ids in session
+      for (const interest_id of session.common_interest_ids) {
+        this.getInterest(interest_id)
+          .subscribe((interest: Interest) => {
+            this.interests.push(interest);
+        });
+      }
+      // get location from id in session
+      return this.getLocation(session.location_id);
+    }).subscribe();
   }
 
+  getSession(): Observable<MunchSession> {
+    const id = this.route.snapshot.paramMap.get('id');
+    return this.sessionService.getSession(id)
+      .map((session: MunchSession) => {
+        this.session = session;
+        return this.session;
+      });
+  }
+
+  getInterest(interest_id: string): Observable<Interest> {
+    return this.interestService.getInterest(interest_id)
+      .map((interest: Interest) => {
+        return interest;
+    });
+  }
+
+  getLocation(location_id: string): Observable<MunchLocation> {
+    return this.locationService.getLocation(location_id)
+      .map((location: MunchLocation) => {
+        this.location = location;
+        return this.location;
+      });
+  }
 }

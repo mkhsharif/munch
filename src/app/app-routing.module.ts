@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'munch/waiting/:id', component: WaitingPageComponent},
   { path: 'waiting-page', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
-  { path: 'munch-active', component: MunchActiveComponent},
+  { path: 'munch/active/:id', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
