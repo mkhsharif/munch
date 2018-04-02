@@ -1,3 +1,5 @@
+import {Genders} from './genders';
+
 export class MunchRequest {
   _id?: string;
   user_id: string;
@@ -8,4 +10,5 @@ export class MunchRequest {
   descriptionMessage: string;
   interest_ids: string[];
   diet_id: string;
+  gender: Genders;
 }
