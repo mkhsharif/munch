@@ -1,5 +1,5 @@
 .header-container {
-  background-color: none;
+  background-color: transparent;
 }
 
 .logo {
@@ -11,4 +11,11 @@
   text-align: center;
   color: white;
   line-height: 75px;
+}
+
+
+.landing-page {
+  height: 100vh;
+  background: darkorange;
+  color: white;
 }

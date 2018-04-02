@@ -22,7 +22,13 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
+    interests: [
+      {interest_id: 'i1', weight: 1},
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1}
+    ],
     diet_id: '',
   };
 
@@ -38,7 +44,13 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
+    interests: [
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1},
+      {interest_id: 'i6', weight: 1}
+    ],
     diet_id: '',
   };
 
@@ -92,5 +104,12 @@ export class UserService {
 
   getMockUsers(): Observable<User[]> {
     return Observable.of([this.user1, this.user2]);
+  }
+
+  public getInterestIds(user: User): string[] {
+    const interest_ids: string[] = [];
+    for (const userInterest of user.interests) {
+      interest_ids.push(userInterest.interest_id);
+    } return interest_ids;
   }
 }

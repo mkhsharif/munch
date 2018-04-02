@@ -14,6 +14,6 @@ export class UserComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout()
+    this.authService.logout();
   }
 }
