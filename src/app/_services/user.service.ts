@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {UserInterest} from '../_models/user-interest';
+import {Genders} from '../_models/genders';
 
 @Injectable()
 export class UserService {
@@ -30,6 +31,7 @@ export class UserService {
       {interest_id: 'i5', weight: 1}
     ],
     diet_id: '',
+    gender: Genders.FEMALE
   };
 
   user2: User = {
@@ -52,6 +54,7 @@ export class UserService {
       {interest_id: 'i6', weight: 1}
     ],
     diet_id: '',
+    gender: Genders.MALE
   };
 
   private static handleError (error: any) {
