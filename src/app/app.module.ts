@@ -28,19 +28,19 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
-import { InterestsComponent } from './interests/interests.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import { MunchMatchedClientComponent } from './munch-matched-client/munch-matched-client.component';
 import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
-import { MunchMatchedHostComponent } from './munch-matched-host/munch-matched-host.component';
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
 import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
+import { TagCloudModule } from 'angular-tag-cloud-module';
+import {MatCheckboxModule} from '@angular/material';
+import { UserInterestsComponent } from './user-interests/user-interests.component';
 
 @NgModule({
   declarations: [
@@ -60,18 +60,14 @@ import {SocketService} from './_services/socket.service';
     RewardListComponent,
     HomepageComponent,
     ProfileComponent,
-    InterestsComponent,
     WaitingPageComponent,
     UserSettingsComponent,
-    MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent,
-    InterestsComponent,
-    MunchMatchedHostComponent,
-    InterestsComponent,
-    MunchMatchedHostComponent,
     MunchMatchedComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    UserInterestsComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +76,8 @@ import {SocketService} from './_services/socket.service';
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
+    TagCloudModule,
+    MatCheckboxModule
   ],
   providers: [
     ShoutOutService,
@@ -92,6 +90,7 @@ import {SocketService} from './_services/socket.service';
     CanDeactivateGuard,
     LocationService,
     SocketService,
+    NavigationBarComponent,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [

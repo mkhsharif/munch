@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Interest} from '../_models/interest';
 import 'rxjs/add/observable/of';
 import {INTERESTS} from '../_models/interest-list';
+import {UserInterest} from '../_models/user-interest';
 
 @Injectable()
 export class InterestService {
@@ -30,5 +31,9 @@ export class InterestService {
 
   updateInterest(interest: Interest): Observable<Interest> {
     return this.http.put<Interest>(this.interestsUrl + '/' + interest._id, interest);
+  }
+
+  toUserInterest(interest: Interest, weight: number): UserInterest {
+    return {interest_id: interest._id, weight: weight};
   }
 }

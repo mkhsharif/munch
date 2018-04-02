@@ -1,4 +1,29 @@
-<div id="button">
-  <button type="button" class="btn btn-danger">Leave</button>
+<h2>Enjoy your munch at {{location.name}}</h2>
+<div class="box">
+  <h3>Here's what you two have in common.</h3>
+  <h4>Start a conversation!</h4>
+  <div class="tags" *ngFor="let interest of interests" >
+    <span class="tag is-primary is-large">{{ interest.name }}</span>
+  </div>
 </div>
+
+<div id="button">
+  <button (click)="leaveSession()" type="button" class="btn btn-danger">
+    Leave
+  </button>
+</div>
+
+<!--<div class="w1">-->
+  <!--<angular-tag-cloud-->
+    <!--[data]="data"-->
+    <!--[width]="options.width"-->
+    <!--[height]="options.height"-->
+    <!--[overflow]="options.overflow">-->
+  <!--</angular-tag-cloud>-->
+<!--</div>-->
+
+
+
+
+
 

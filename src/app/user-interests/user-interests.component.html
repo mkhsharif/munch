@@ -1,0 +1,11 @@
+<div class="container">
+  <div *ngFor="let interest of interests; let i=index">
+    <mat-checkbox
+      [(checked)]="interestSelections[i].selected"
+      (change)="toggleInterest(i, $event)">
+      {{interest.name}}
+    </mat-checkbox>
+  </div>
+  <button class="btn btn-success" (click)="updateInterests()">Update</button>
+  <button class="btn btn-danger" routerLink="/dashboard">Return</button>
+</div>

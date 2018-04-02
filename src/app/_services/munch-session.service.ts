@@ -16,7 +16,7 @@ export class SessionService {
     pending: true,
     active: true,
     pin: '1234',
-    common_interest_ids: [],
+    common_interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
     time_completed: null
   };
 

@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {UserInterest} from '../_models/user-interest';
+import {Genders} from '../_models/genders';
+import {Diets} from '../_models/diets';
 
 @Injectable()
 export class UserService {
@@ -22,8 +24,15 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
-    diet_id: '',
+    interests: [
+      {interest_id: 'i1', weight: 1},
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1}
+    ],
+    diet: Diets.ANY,
+    gender: Genders.FEMALE
   };
 
   user2: User = {
@@ -38,8 +47,15 @@ export class UserService {
     friend_ids: [],
     shoutout_ids: [],
     avatarUrl: '',
-    interests: [],
-    diet_id: '',
+    interests: [
+      {interest_id: 'i2', weight: 1},
+      {interest_id: 'i3', weight: 1},
+      {interest_id: 'i4', weight: 1},
+      {interest_id: 'i5', weight: 1},
+      {interest_id: 'i6', weight: 1}
+    ],
+    diet: Diets.ANY,
+    gender: Genders.MALE
   };
 
   private static handleError (error: any) {
@@ -92,5 +108,12 @@ export class UserService {
 
   getMockUsers(): Observable<User[]> {
     return Observable.of([this.user1, this.user2]);
+  }
+
+  public getInterestIds(user: User): string[] {
+    const interest_ids: string[] = [];
+    for (const userInterest of user.interests) {
+      interest_ids.push(userInterest.interest_id);
+    } return interest_ids;
   }
 }
