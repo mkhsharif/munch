@@ -5,9 +5,13 @@
 
 
 <div class="header-container">
-  <!--<h3 class="logo">{{title}}</h3>-->git 
+  <!--<h3 class="logo">{{title}}</h3>-->
+  <app-landing-page *ngIf="!navbar.loggedIn" ></app-landing-page>
+  <div *ngIf="navbar.loggedIn">
   <app-navigation-bar></app-navigation-bar>
   <router-outlet></router-outlet>
+  </div>
 </div>
+
 
 
