@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../app/_services/authentication.service';
+import { NavigationBarComponent} from './navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Munch';
+
+  constructor(public navbar: NavigationBarComponent) {}
 }

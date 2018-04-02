@@ -94,6 +94,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     CanDeactivateGuard,
     LocationService,
     SocketService,
+    NavigationBarComponent,
     {provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [

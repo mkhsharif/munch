@@ -16,6 +16,8 @@ import {InterestsComponent} from './interests/interests.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
 import {MunchActiveComponent} from './munch-active/munch-active.component';
+import {LandingPageComponent} from './landing-page/landing-page.component';
+
 
 // TODO: add ID to munch session URLs
 
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'munch/waiting/:id', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
   { path: 'munch-active', component: MunchActiveComponent},
+  { path: 'landing-page', component: LandingPageComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
