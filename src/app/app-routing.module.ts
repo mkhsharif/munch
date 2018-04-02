@@ -12,9 +12,11 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import {UserComponent} from './user/user.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProfileComponent} from './profile/profile.component';
+import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
 import {InterestsComponent} from './interests/interests.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
+import {UserInterestsComponent} from './user-interests/user-interests.component';
 import {MunchActiveComponent} from './munch-active/munch-active.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 
@@ -31,10 +33,13 @@ const routes: Routes = [
   { path: 'shoutouts', component: ShoutOutListComponent},
   { path: 'settings', component: UserSettingsComponent, canActivate: []},
   { path: 'user', component: UserComponent },
+  { path: 'user/interests', component: UserInterestsComponent},
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'interests', component: InterestsComponent},
   { path: 'munch/waiting/:id', component: WaitingPageComponent},
+  { path: 'musicaf', component: MusicAffinityComponent},
+  { path: 'waiting-page', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
   { path: 'munch-active', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},

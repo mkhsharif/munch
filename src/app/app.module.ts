@@ -29,6 +29,7 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InterestsComponent } from './interests/interests.component';
+import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +43,8 @@ import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
 import { TagCloudModule } from 'angular-tag-cloud-module';
+import {MatCheckboxModule} from '@angular/material';
+import { UserInterestsComponent } from './user-interests/user-interests.component';
 
 @NgModule({
   declarations: [
@@ -62,16 +65,17 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     HomepageComponent,
     ProfileComponent,
     InterestsComponent,
+    MusicAffinityComponent,
     WaitingPageComponent,
     UserSettingsComponent,
     MunchMatchedClientComponent,
     MunchActiveComponent,
     MunchSetupComponent,
-    InterestsComponent,
     MunchMatchedHostComponent,
-    InterestsComponent,
     MunchMatchedHostComponent,
     MunchMatchedComponent,
+    LandingPageComponent,
+    UserInterestsComponent
     LandingPageComponent,
   ],
   imports: [
@@ -82,6 +86,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     AppRoutingModule,
     NgbModule.forRoot(),
     TagCloudModule
+    MatCheckboxModule
   ],
   providers: [
     ShoutOutService,
