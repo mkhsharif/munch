@@ -28,8 +28,6 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
-import { InterestsComponent } from './interests/interests.component';
-import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,8 +62,6 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     RewardListComponent,
     HomepageComponent,
     ProfileComponent,
-    InterestsComponent,
-    MusicAffinityComponent,
     WaitingPageComponent,
     UserSettingsComponent,
     MunchMatchedClientComponent,
@@ -75,7 +71,7 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     MunchMatchedHostComponent,
     MunchMatchedComponent,
     LandingPageComponent,
-    UserInterestsComponent
+    UserInterestsComponent,
     LandingPageComponent,
   ],
   imports: [
@@ -85,7 +81,7 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    TagCloudModule
+    TagCloudModule,
     MatCheckboxModule
   ],
   providers: [
