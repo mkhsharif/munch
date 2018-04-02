@@ -83,4 +83,9 @@ export class MunchActiveComponent implements OnInit {
         return this.location;
       });
   }
+
+  leaveSession(): void {
+    console.log('Leaving session');
+    // mark session as inactive here, then navigate away
+  }
 }
