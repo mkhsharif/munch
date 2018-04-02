@@ -4,14 +4,15 @@
 </head>
 
 
-<div class="header-container">
-  <!--<h3 class="logo">{{title}}</h3>-->
-  <app-landing-page *ngIf="!navbar.loggedIn" ></app-landing-page>
-  <div *ngIf="navbar.loggedIn">
-  <app-navigation-bar></app-navigation-bar>
-  <router-outlet></router-outlet>
-  </div>
+<div *ngIf="!navbar.loggedIn" class="landing-page">
+  <h3 class="logo">{{title}}</h3>
+  <app-landing-page></app-landing-page>
 </div>
 
-
+<div *ngIf="navbar.loggedIn">
+  <div class="header-container">
+    <app-navigation-bar></app-navigation-bar>
+    <router-outlet></router-outlet>
+  </div>
+</div>
 

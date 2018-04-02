@@ -15,5 +15,7 @@
 
 
 .landing-page {
-  background-color: darkorange;
+  height: 100vh;
+  background: darkorange;
+  color: white;
 }

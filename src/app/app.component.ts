@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../app/_services/authentication.service';
 import { NavigationBarComponent} from './navigation-bar/navigation-bar.component';
 
 @Component({
