@@ -23,7 +23,7 @@ export class RegisterComponent {
     shoutout_ids: [],
     avatarUrl: '',
     interests: [],
-    diet_id: '',
+    diet: null,
     gender: null
   };
   loading = false;

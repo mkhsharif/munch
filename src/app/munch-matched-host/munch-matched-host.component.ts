@@ -43,7 +43,7 @@ export class MunchMatchedHostComponent implements OnInit {
       shoutout_ids: [],
       avatarUrl: '',
       interests: [],
-      diet_id: ''
+      diet: ''
     };
 
     this.matchedUser = {
@@ -59,7 +59,7 @@ export class MunchMatchedHostComponent implements OnInit {
       shoutout_ids: [],
       avatarUrl: '',
       interests: [],
-      diet_id: ''
+      diet: ''
     };
 
     this.location = {

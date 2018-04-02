@@ -1,5 +1,6 @@
 import {UserInterest} from './user-interest';
 import {Genders} from './genders';
+import {Diets} from './diets';
 
 export class User {
   _id?: string;
@@ -14,6 +15,6 @@ export class User {
   shoutout_ids: string[];
   avatarUrl: string;
   interests: UserInterest[];
-  diet_id: string;
+  diet: Diets;
   gender: Genders.MALE | Genders.FEMALE;
 }
