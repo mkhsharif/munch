@@ -9,6 +9,7 @@ import {MunchRequest} from '../_models/munch-request';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchRequestService} from '../_services/munch-request.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-munch-setup',
@@ -20,12 +21,14 @@ export class MunchSetupComponent implements OnInit {
   isStateOne: boolean;
   locations: MunchLocation[];
   diets: Diet[] = DIETS;
-  request: MunchRequest;
   user: User;
+  selectedLocation: MunchLocation;
+  description: string;
   constructor(
     private locationService: LocationService,
     private userService: UserService,
-    private requestService: MunchRequestService) {
+    private requestService: MunchRequestService,
+    private router: Router) {
     this.state = 1;
     this.isStateOne = true;
   }
@@ -50,6 +53,32 @@ export class MunchSetupComponent implements OnInit {
         this.user = user;
         return this.user;
       });
+  }
+
+  createRequest(): void {
+    const interest_ids: string[] = [];
+    for (const userInterest of this.user.interests) {
+      interest_ids.push(userInterest.interest_id);
+    }
+
+    const request: MunchRequest = {
+      user_id: this.user._id,
+      time: '',
+      location_id: this.selectedLocation._id,
+      pending: false,
+      cron: false,
+      descriptionMessage: this.description,
+      interest_ids: interest_ids,
+      diet_id: this.user.diet_id
+    };
+
+    this.requestService.createRequest(request)
+      .subscribe((newRequest: MunchRequest) => {
+        this.router.navigate(['/munch/waiting/' + newRequest._id])
+          .then(() => {
+            console.log('Navigating to request' + newRequest._id);
+          });
+    });
   }
 
   incrementState(): void {
