@@ -5,6 +5,7 @@ import {INTERESTS} from '../_models/interest-list';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {InterestService} from '../_services/interest.service';
+import {current} from 'codelyzer/util/syntaxKind';
 
 class InterestSelection {
   interest_id: string;
@@ -59,14 +60,19 @@ export class UserInterestsComponent implements OnInit {
         return this.interests;
       });
   }
-
   updateInterests(): void {
-    console.log(this.interestSelections);
+    const user_interests = [];
+    for (const interest of this.interestSelections) {
+      user_interests.push({interest: interest.interest_id, weight: interest.selected});
+    }
+    this.user.interests = user_interests;
+    console.log(this.user.interests);
+    }
     // update user object here then pass to userService.update
     // convert interests to user interests using the method in the service
     // save them to the user object
-  }
-
+    // console.log(this.interestsService.toUserInterest());
+    // console.log(this.interestsService.toUserInterest({_id: 'i1', name: 'Music'}, 0));
   toggleInterest(index, event) {
     this.interestSelections[index].selected = event.checked;
   }

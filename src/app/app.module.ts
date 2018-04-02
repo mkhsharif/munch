@@ -28,7 +28,6 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MusicAffinityComponent } from './music-affinity/music-affinity.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -61,7 +60,6 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     RewardListComponent,
     HomepageComponent,
     ProfileComponent,
-    MusicAffinityComponent,
     WaitingPageComponent,
     UserSettingsComponent,
     MunchMatchedClientComponent,

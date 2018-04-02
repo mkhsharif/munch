@@ -12,7 +12,6 @@ import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
 import {UserComponent} from './user/user.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProfileComponent} from './profile/profile.component';
-import {MusicAffinityComponent} from './music-affinity/music-affinity.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
 import {UserInterestsComponent} from './user-interests/user-interests.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
   { path: 'user/interests', component: UserInterestsComponent},
   { path: 'homepage', component: HomepageComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'musicaf', component: MusicAffinityComponent},
   { path: 'waiting-page', component: WaitingPageComponent},
   { path: 'munch/match/:id', component: MunchMatchedComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
