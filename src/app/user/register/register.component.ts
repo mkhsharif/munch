@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {User} from '../../_models/user';
 import {UserService} from '../../_services/user.service';
 import { Router} from '@angular/router';
@@ -11,6 +11,10 @@ import { Router} from '@angular/router';
 })
 
 export class RegisterComponent {
+
+  registerShow: boolean;
+  @Output() registerEvent = new EventEmitter<boolean>();
+
   user: User = {
     firstName: '',
     lastName: '',
@@ -42,6 +46,10 @@ export class RegisterComponent {
         console.log('User not created!');
         console.log(error);
       });
+  }
+
+  hideRegister() {
+    this.registerEvent.emit(this.registerShow);
   }
 
 }

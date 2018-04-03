@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
+  registerShowing: boolean;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  displayRegister1($event) {
+    this.registerShowing = !$event;
+  }
+
+  displayRegister2($event) {
+    this.registerShowing = $event;
   }
 
 }
