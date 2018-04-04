@@ -3,24 +3,13 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './user/register/register.component';
-import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ShoutOutsComponent } from './dashboard/shout-outs/shout-outs.component';
-import { ShoutOutListComponent } from './dashboard/shout-outs/shout-out-list/shout-out-list.component';
-import { ShoutOutDetailComponent } from './dashboard/shout-outs/shout-out-detail/shout-out-detail.component';
-import { MunchQueryComponent } from './munch/munch-query/munch-query.component';
-import { ShoutOutCreateComponent } from './dashboard/shout-outs/shout-out-create/shout-out-create.component';
-import { ShoutOutService } from './_services/shout-out.service';
 import {AuthenticationService} from './_services/authentication.service';
 import {UserService} from './_services/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { UserComponent } from './user/user.component';
-import { RewardsComponent } from './rewards/rewards.component';
-import { RewardDetailComponent } from './rewards/reward-detail/reward-detail.component';
-import { RewardListComponent } from './rewards/reward-list/reward-list.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {MunchRequestService} from './_services/munch-request.service';
 import {SessionService} from './_services/munch-session.service';
@@ -31,7 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {UserSettingsComponent} from './user/user-settings/user-settings.component';
+import {UserSettingsComponent} from './user-settings/user-settings.component';
 import { MunchActiveComponent } from './munch-active/munch-active.component';
 import { MunchSetupComponent } from './munch-setup/munch-setup.component';
 import { MunchMatchedComponent } from './munch-matched/munch-matched.component';
@@ -47,17 +36,7 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent,
-    ShoutOutsComponent,
-    ShoutOutListComponent,
-    ShoutOutDetailComponent,
-    MunchQueryComponent,
-    ShoutOutCreateComponent,
     NavigationBarComponent,
-    UserComponent,
-    RewardsComponent,
-    RewardDetailComponent,
-    RewardListComponent,
     HomepageComponent,
     ProfileComponent,
     WaitingPageComponent,
@@ -80,7 +59,6 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     MatCheckboxModule
   ],
   providers: [
-    ShoutOutService,
     AuthenticationService,
     UserService,
     AuthGuard,
