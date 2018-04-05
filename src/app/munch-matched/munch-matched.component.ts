@@ -3,10 +3,12 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchSession} from '../_models/munch-session';
+import {MunchLocation} from '../_models/munch-location';
 import {ActivatedRoute} from '@angular/router';
 import {SessionService} from '../_services/munch-session.service';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/forkJoin';
+import {LocationService} from '../_services/location.service';
 
 @Component({
   selector: 'app-munch-matched',
@@ -18,12 +20,13 @@ export class MunchMatchedComponent implements OnInit {
   hostUser: User;
   clientUser: User;
   session: MunchSession;
-  location: string;
+  location: MunchLocation;
   isHost: boolean;
 
   constructor(
     private userService: UserService,
     private sessionService: SessionService,
+    private locationService: LocationService,
     private route: ActivatedRoute
   ) { }
 
@@ -38,7 +41,7 @@ export class MunchMatchedComponent implements OnInit {
         } else {
           client_id = session.user_ids[0];
         }
-        this.location = session.location_id; // TODO: Make this the object
+        this.getLocation(session.location_id).subscribe();
         return Observable.forkJoin([
           this.userService.getUser(session.host_id),
           this.userService.getUser(client_id),
@@ -81,6 +84,15 @@ export class MunchMatchedComponent implements OnInit {
       .map((session: MunchSession) => {
         this.session = session;
         return this.session;
+    });
+  }
+
+  getLocation(id: string): Observable<MunchLocation> {
+
+    return this.locationService.getLocation(id)
+      .map((location: MunchLocation) => {
+        this.location = location;
+        return this.location;
     });
   }
 
