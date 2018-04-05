@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
-    this.returnUrl = '/dashboard';
+    this.returnUrl = '/homepage';
   }
 
   login(): void {
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('Logging in');
           console.log(data);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/homepage']);
         },
         error => {
           console.log('Failure to log in');
