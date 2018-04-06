@@ -1,9 +1,9 @@
-<div *ngIf="!navbar.loggedIn" class="landing-page">
-  <!--<h3 class="logo">{{title}}</h3>-->
+<!--<div *ngIf="!navbar.loggedIn" class="landing-page">
+  <!--<h3 class="logo">{{title}}</h3>--
   <app-landing-page></app-landing-page>
-</div>
+</div>-->
 
-<div *ngIf="navbar.loggedIn">
+<div *ngIf="!navbar.loggedIn">
   <div class="header-container">
     <app-navigation-bar></app-navigation-bar>
     <router-outlet></router-outlet>
