@@ -3,6 +3,8 @@ import { MunchRequest } from '../_models/munch-request';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {HttpClient} from '@angular/common/http';
+import {Genders} from '../_models/genders';
+import {Diets} from '../_models/diets';
 
 @Injectable()
 export class MunchRequestService {
@@ -17,7 +19,10 @@ export class MunchRequestService {
     cron: false,
     descriptionMessage: 'u1',
     interest_ids: ['i1', 'i2', 'i3', 'i4', 'i5'],
-    diet_id: 'd1'
+    diet_preference: Diets.ANY,
+    gender_preference: Genders.ANY,
+    user_gender: Genders.FEMALE,
+    user_diet: Diets.VEGETARIAN
   };
 
   req2: MunchRequest = {
@@ -29,14 +34,12 @@ export class MunchRequestService {
     cron: true,
     descriptionMessage: 'u2',
     interest_ids: ['i2', 'i3', 'i4', 'i5', 'i6'],
-    diet_id: 'd1'
+    diet_preference: Diets.ANY,
+    gender_preference: Genders.FEMALE,
+    user_gender: Genders.MALE,
+    user_diet: Diets.ANY
   };
 
-  static handleError (error: any) {
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-  }
   constructor(private http: HttpClient) { }
 
   createRequest(request: MunchRequest): Observable<MunchRequest> {

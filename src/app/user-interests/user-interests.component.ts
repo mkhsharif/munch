@@ -5,6 +5,7 @@ import {INTERESTS} from '../_models/interest-list';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {InterestService} from '../_services/interest.service';
+import {UserInterest} from '../_models/user-interest';
 
 class InterestSelection {
   interest_id: string;
@@ -61,10 +62,23 @@ export class UserInterestsComponent implements OnInit {
   }
 
   updateInterests(): void {
-    console.log(this.interestSelections);
-    // update user object here then pass to userService.update
-    // convert interests to user interests using the method in the service
-    // save them to the user object
+    const user_interests: UserInterest[] = [];
+    for (const interest of this.interestSelections) {
+      if (interest.selected === true) {
+        user_interests.push({interest_id: interest.interest_id, weight: 1});
+      }
+    }
+    this.user.interests = user_interests;
+    if (('u1' === this.user._id) || ('u2' === this.user._id)) {
+      console.log(this.user.interests);
+      console.log(this.user);
+      console.log('Updated interests for ' + this.user.userName);
+    } else {
+      this.userService.updateUser(this.user)
+        .subscribe((user: User) => {
+          console.log('Updated interests for ' + user.userName);
+        });
+    }
   }
 
   toggleInterest(index, event) {

@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {User} from '../../_models/user';
-import {UserService} from '../../_services/user.service';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
 import { Router} from '@angular/router';
 
 @Component({
@@ -11,6 +11,10 @@ import { Router} from '@angular/router';
 })
 
 export class RegisterComponent {
+
+  registerShow: boolean;
+  @Output() registerEvent = new EventEmitter<boolean>();
+
   user: User = {
     firstName: '',
     lastName: '',
@@ -23,7 +27,8 @@ export class RegisterComponent {
     shoutout_ids: [],
     avatarUrl: '',
     interests: [],
-    diet_id: ''
+    diet: null,
+    gender: null
   };
   loading = false;
 
@@ -34,13 +39,17 @@ export class RegisterComponent {
   registerUser(): void {
     this.userService.createUser(this.user)
       .subscribe(data => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/homepage']);
         console.log(this.user.userName + ' created');
       }, error => {
         this.loading = false;
         console.log('User not created!');
         console.log(error);
       });
+  }
+
+  hideRegister() {
+    this.registerEvent.emit(this.registerShow);
   }
 
 }

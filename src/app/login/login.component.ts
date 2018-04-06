@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService} from '../../_services/authentication.service';
+import { AuthenticationService} from '../_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
   user: any = {};
   loading = false;
   returnUrl: string;
+  registerShow: boolean;
+  @Output() registerEvent = new EventEmitter<boolean>();
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
-    this.returnUrl = '/dashboard';
+    this.returnUrl = '/homepage';
   }
 
   login(): void {
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('Logging in');
           console.log(data);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/homepage']);
         },
         error => {
           console.log('Failure to log in');
@@ -38,6 +40,10 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  showRegister() {
+    this.registerEvent.emit(this.registerShow);
   }
 
 }

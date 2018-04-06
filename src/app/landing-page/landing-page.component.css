@@ -1,0 +1,24 @@
+.headline {
+  background-color: darkorange;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  margin: 0px;
+  font-size: 50px;
+  height: 75px;
+  text-align: left;
+  color: white;
+  line-height: 75px;
+  padding-left: 14px;
+
+}
+
+.tagline {
+  margin-top: 50px;
+  text-align: left;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  padding-left: 14px;
+}
+
+.form {
+  margin-top: 50px;
+}
