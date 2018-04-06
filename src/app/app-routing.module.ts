@@ -7,10 +7,10 @@ import {HomepageComponent} from './homepage/homepage.component';
 import {ProfileComponent} from './profile/profile.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
+import {MunchSetupComponent} from './munch-setup/munch-setup.component';
 import {UserInterestsComponent} from './user-interests/user-interests.component';
 import {MunchActiveComponent} from './munch-active/munch-active.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-import {MunchSetupComponent} from './munch-setup/munch-setup.component';
 
 
 // TODO: add ID to munch session URLs
@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'munch/match/:id', component: MunchMatchedComponent},
   { path: 'munch/active/:id', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},
-  { path: '', redirectTo: '/homepage', pathMatch: 'full' }
+  { path: 'munch/setup2', component: MunchSetupComponent, canActivate: [] },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,3 +1,46 @@
-<p>
-  munch-setup works!
-</p>
+<button (click)="check()">Check</button>
+<div class="munch-setup">
+  <h5 class="black-text">Munch Setup</h5>
+  <div class="state-1">
+    What are you hungry for? (Choose one)
+    <div class="image-button" *ngFor="let location of locations">
+      {{location.name}}
+    </div>
+  </div>
+
+  <div class="state-2 inactive">
+    My diet is (Choose one)....
+    <mat-radio-group [(ngModel)]="selectedDiet">
+      <mat-radio-button *ngFor="let diet of diets;" [value]="diet">
+        {{diet}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="state-3 inactive">
+    I prefer to eat with...
+    xyz
+  </div>
+
+  <div class="state-4 inactive">
+    Describe your outfit in a few words
+  </div>
+
+  <div class="state-5 inactive">
+    Ready to meet your match?
+    Start!
+  </div>
+  <div class="lower-navigation-bar back-button">
+    <span class="lower-navigation-bar-button">
+      <a class="button-text" role="button" (click)="decrementState()">Back</a>
+    </span>
+    <span class="lower-navigation-bar-button">
+      <a class="button-text" routerLink="/dashboard" role="button">Home</a>
+    </span>
+    <span class="lower-navigation-bar-button next-button">
+      <a class="button-text" role="button" (click)="incrementState()">Next</a>
+    </span>
+    <div>
+    </div>
+  </div>
+</div>
