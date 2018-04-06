@@ -149,7 +149,10 @@ export class WaitingPageComponent implements OnInit {
 
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
-        user_ids: [this.currentUser._id, match.user_id],
+        user_descriptions: [
+          {user_id: this.currentUser._id, text: this.request.descriptionMessage},
+          {user_id: match.user_id, text: match.descriptionMessage }
+          ],
         location_id: this.request.location_id,
         pending: true,
         active: false,

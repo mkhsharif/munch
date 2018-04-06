@@ -32,14 +32,14 @@ export class MunchMatchedComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser(false)
-      .flatMap((user: User) => { // TODO: optimize this
+      .flatMap(() => {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
         let client_id = '';
-        if (session.user_ids[0] === session.host_id) {
-          client_id = session.user_ids[1];
+        if (session.user_descriptions[0].user_id === session.host_id) {
+          client_id = session.user_descriptions[1].user_id;
         } else {
-          client_id = session.user_ids[0];
+          client_id = session.user_descriptions[0].user_id;
         }
         this.getLocation(session.location_id).subscribe();
         return Observable.forkJoin([
