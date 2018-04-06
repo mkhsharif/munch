@@ -3,12 +3,13 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchSession} from '../_models/munch-session';
-import {MunchLocation} from '../_models/munch-location';
 import {ActivatedRoute} from '@angular/router';
 import {SessionService} from '../_services/munch-session.service';
+import {MunchLocation} from '../_models/munch-location';
+import {LocationService} from '../_services/location.service';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/forkJoin';
-import {LocationService} from '../_services/location.service';
+
 
 @Component({
   selector: 'app-munch-matched',
@@ -88,7 +89,6 @@ export class MunchMatchedComponent implements OnInit {
   }
 
   getLocation(id: string): Observable<MunchLocation> {
-
     return this.locationService.getLocation(id)
       .map((location: MunchLocation) => {
         this.location = location;

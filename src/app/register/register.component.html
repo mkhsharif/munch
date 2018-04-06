@@ -1,5 +1,4 @@
 <div class="container">
-  <h2>Register</h2>
   <form #register="ngForm" name="form" novalidate
         (ngSubmit)="register.form.valid && registerUser()">
     <fieldset>
@@ -7,9 +6,9 @@
       <div *ngIf="register.submitted && !password.valid" class="description" style="color:crimson">*Required</div>
 
       <div class="form-group">
-        <label for="userName">Username</label>
+        <label for="userName">Username (Bison Email)</label>
         <input type="text" class="form-control" id="userName" name="userName"
-               required [(ngModel)]="user.userName" #userName="ngModel">
+               required [(ngModel)]="user.userName" #userName="ngModel" placeholder="first.last@bison.howard.edu">
       </div>
       <div *ngIf="register.submitted && !userName.valid" class="description" style="color:crimson">*Required</div>
 
@@ -44,14 +43,14 @@
       <div class="form-group">
         <label for="password">Password (Howard ID Suggested)</label>
         <input type="password" class="form-control" id="password" required name="password"
-               [(ngModel)]="user.password" #password="ngModel">
+               [(ngModel)]="user.password" #password="ngModel" placeholder="@55555555">
       </div>
 
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Register</button>
         <div *ngIf="loading" class="description">Loading</div>
         <button [disabled]="loading" class="btn btn-outline-light btn-lg btn-block" (click)="hideRegister()">Cancel</button>
-      </div>git
+      </div>
     </fieldset>
   </form>
 </div>
