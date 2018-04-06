@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {LocationService} from '../_services/location.service';
 import {MunchLocation} from '../_models/munch-location';
 import {Observable} from 'rxjs/Observable';
-import {Diet} from '../_models/diet';
 import 'rxjs/add/observable/of';
-import {DIETS} from '../_models/diet-list';
 import {MunchRequest} from '../_models/munch-request';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchRequestService} from '../_services/munch-request.service';
 import {Router} from '@angular/router';
+import {Diets} from '../_models/diets';
+import {Genders} from '../_models/genders';
 
 @Component({
   selector: 'app-munch-setup',
@@ -20,7 +20,10 @@ export class MunchSetupComponent implements OnInit {
   state: number;
   isStateOne: boolean;
   locations: MunchLocation[];
-  diets: Diet[] = DIETS;
+  diets: Diets[] = [Diets.ANY, Diets.VEGETARIAN, Diets.HALAL, Diets.PESCATARIAN, Diets.VEGAN];
+  selectedDiet: Diets;
+  genders: Genders[] = [Genders.ANY, Genders.MALE, Genders.FEMALE];
+  selectedGender: Genders;
   user: User;
   selectedLocation: MunchLocation;
   description: string;
@@ -63,13 +66,16 @@ export class MunchSetupComponent implements OnInit {
 
     const request: MunchRequest = {
       user_id: this.user._id,
-      time: '',
+      time: new Date(),
       location_id: this.selectedLocation._id,
       pending: false,
       cron: false,
       descriptionMessage: this.description,
       interest_ids: interest_ids,
-      diet_id: this.user.diet_id
+      diet_preference: this.selectedDiet,
+      gender_preference: this.selectedGender,
+      user_gender: this.user.gender,
+      user_diet: this.user.diet
     };
 
     this.requestService.createRequest(request)
