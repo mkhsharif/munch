@@ -1,3 +1,4 @@
+<button (click)="check()">Check</button>
 <div class="munch-setup">
   <h5 class="black-text">Munch Setup</h5>
   <div class="state-1">
@@ -9,9 +10,11 @@
 
   <div class="state-2 inactive">
     My diet is (Choose one)....
-    <div class="image-button" *ngFor="let diet of diets">
-      {{diet.name}}
-    </div>
+    <mat-radio-group [(ngModel)]="selectedDiet">
+      <mat-radio-button *ngFor="let diet of diets;" [value]="diet">
+        {{diet}}
+      </mat-radio-button>
+    </mat-radio-group>
   </div>
 
   <div class="state-3 inactive">

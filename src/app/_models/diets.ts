@@ -1,6 +1,6 @@
 export enum Diets {
-  VEGETARIAN = 'Male',
-  VEGAN = 'Female',
+  VEGETARIAN = 'Vegetarian',
+  VEGAN = 'Vegan',
   PESCATARIAN = 'Pescatarian',
   HALAL = 'Halal',
   ANY = 'Any'

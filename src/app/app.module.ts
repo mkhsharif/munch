@@ -29,6 +29,7 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import {MatCheckboxModule} from '@angular/material';
+import {MatRadioModule} from '@angular/material';
 import { UserInterestsComponent } from './user-interests/user-interests.component';
 
 @NgModule({
@@ -56,7 +57,8 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     AppRoutingModule,
     NgbModule.forRoot(),
     TagCloudModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [
     AuthenticationService,
