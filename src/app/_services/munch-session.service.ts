@@ -11,7 +11,10 @@ export class SessionService {
   session1: MunchSession = {
     _id: 's1',
     host_id: 'u1',
-    user_ids: ['u1', 'u2'],
+    user_descriptions: [
+      {user_id: 'u1', text: 'red shoes'},
+      {user_id: 'u2', text: 'blue shoes'}
+      ],
     location_id: 'l1',
     pending: true,
     active: true,

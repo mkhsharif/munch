@@ -10,7 +10,8 @@ export class MunchRequest {
   cron: boolean;
   descriptionMessage: string;
   interest_ids: string[];
-  diet: Diets;
+  diet_preference: Diets;
   gender_preference: Genders;
   user_gender: Genders.FEMALE | Genders.MALE;
+  user_diet: Diets;
 }

@@ -13,6 +13,8 @@ import 'rxjs/add/observable/of';
 import * as similarity from 'compute-cosine-similarity';
 import {Interest} from '../_models/interest';
 import {InterestService} from '../_services/interest.service';
+import {Diets} from '../_models/diets';
+import {Genders} from '../_models/genders';
 
 @Component({
   selector: 'app-waiting-page',
@@ -82,7 +84,7 @@ export class WaitingPageComponent implements OnInit {
     }
     return observableRequests.map((requests: MunchRequest[]) => {
       for (const request of requests) {
-        if (request.pending === true && request.cron === true) {
+        if (request.pending === true && request.cron === true && this.isRequestMatch(this.request)) {
           this.requests.push(request);
         }
       }
@@ -126,19 +128,19 @@ export class WaitingPageComponent implements OnInit {
     // const match = this.requestService.req2; // base on algorithm results
     this.initIo();
     let match: MunchRequest = null;
-    let match_num = 0;
-    let new_num;
+    let match_percentage = 0;
+    let new_percentage;
     for (const request of this.requests) {
-      new_num = this.cosineSim(request);
-      console.log(request._id + ' ' + new_num);
-      if (new_num > match_num) {
-        match_num = new_num;
+      new_percentage = this.cosineSim(request);
+      console.log(request._id + ' ' + new_percentage);
+      if (new_percentage > match_percentage) {
+        match_percentage = new_percentage;
         match = request;
       }
     }
 
     console.log('Attempting to match');
-    if (match && match_num > this.THRESHOLD) {
+    if (match && match_percentage > this.THRESHOLD) {
       console.log('Matched!');
       let pin = String(Math.floor(Math.random() * 10));
       pin += String(Math.floor(Math.random() * 10));
@@ -149,7 +151,10 @@ export class WaitingPageComponent implements OnInit {
 
       const newSession: MunchSession = {
         host_id: this.currentUser._id,
-        user_ids: [this.currentUser._id, match.user_id],
+        user_descriptions: [
+          {user_id: this.currentUser._id, text: this.request.descriptionMessage},
+          {user_id: match.user_id, text: match.descriptionMessage }
+          ],
         location_id: this.request.location_id,
         pending: true,
         active: false,
@@ -181,6 +186,14 @@ export class WaitingPageComponent implements OnInit {
     const a1 = this.requestToArray(this.request);
     const a2 = this.requestToArray(otherRequest);
     return similarity(a1, a2);
+  }
+
+  isRequestMatch(otherRequest: MunchRequest): boolean {
+    const dietMatch: boolean = this.request.diet_preference === otherRequest.user_diet || this.request.diet_preference === Diets.ANY;
+    const genderMatch: boolean = (this.request.gender_preference === otherRequest.user_gender
+      || this.request.gender_preference === Genders.ANY);
+    console.log(dietMatch && genderMatch);
+    return dietMatch && genderMatch;
   }
 
 }
