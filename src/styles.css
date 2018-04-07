@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 h1 {
   color: floralwhite;
 }
@@ -14,4 +14,8 @@ body{
 .b {
   background-color: whitesmoke;
   color: black;
+}
+
+.centered {
+  text-align: center;
 }

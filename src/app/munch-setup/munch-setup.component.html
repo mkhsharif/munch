@@ -1,41 +1,51 @@
-<button (click)="check()">Check</button>
 <div class="munch-setup">
-  <h5 class="black-text">Munch Setup</h5>
-  <div class="state-1">
+  <h3 class="black-text">Munch Setup</h3>
+  <div class="state-1 centered" style="text-align: center">
     What are you hungry for? (Choose one)
-    <div class="image-button" *ngFor="let location of locations">
-      {{location.name}}
-    </div>
+    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedLocation">
+      <mat-card class="image-button" *ngFor="let location of locations">
+        <mat-card-header>
+          <mat-card-title>{{location.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-button-toggle aria-label="" [value]="location">Select</mat-button-toggle>
+      </mat-card>
+    </mat-button-toggle-group>
   </div>
 
-  <div class="state-2 inactive">
-    My diet is (Choose one)....
-    <mat-radio-group [(ngModel)]="selectedDiet">
-      <mat-radio-button *ngFor="let diet of diets;" [value]="diet">
+  <div class="state-2 inactive centered">
+    <h4>My diet is (Choose one)....</h4>
+    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedDiet">
+      <mat-button-toggle *ngFor="let diet of diets;" [value]="diet">
         {{diet}}
-      </mat-radio-button>
-    </mat-radio-group>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
-  <div class="state-3 inactive">
-    I prefer to eat with...
-    xyz
+  <div class="state-3 inactive centered" style="text-align: center">
+    <h4>I prefer to eat with...</h4>
+    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedGender">
+      <mat-button-toggle *ngFor="let gender of genders;" [value]="gender">
+        {{gender}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
-  <div class="state-4 inactive">
-    Describe your outfit in a few words
+  <div class="state-4 inactive centered">
+    Describe your outfit in a few words:
+      <textarea title="description" matInput matTextareaAutosize [(ngModel)]="description"></textarea>
   </div>
 
-  <div class="state-5 inactive">
+  <div class="state-5 inactive centered">
     Ready to meet your match?
-    Start!
+    <button (click)="createRequest()">Start Searching!</button>
   </div>
+
   <div class="lower-navigation-bar back-button">
     <span class="lower-navigation-bar-button">
       <a class="button-text" role="button" (click)="decrementState()">Back</a>
     </span>
     <span class="lower-navigation-bar-button">
-      <a class="button-text" routerLink="/dashboard" role="button">Home</a>
+      <a class="button-text" routerLink="/homepage" role="button">Home</a>
     </span>
     <span class="lower-navigation-bar-button next-button">
       <a class="button-text" role="button" (click)="incrementState()">Next</a>
