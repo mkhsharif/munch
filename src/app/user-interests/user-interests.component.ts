@@ -6,11 +6,14 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {InterestService} from '../_services/interest.service';
 import {UserInterest} from '../_models/user-interest';
+import {Genders} from '../_models/genders';
 
 class InterestSelection {
   interest_id: string;
   selected: boolean;
 }
+
+
 
 @Component({
   selector: 'app-user-interests',
@@ -23,7 +26,8 @@ export class UserInterestsComponent implements OnInit {
   user: User;
   interests: Interest[] = INTERESTS;
   interestSelections: InterestSelection[] = [];
-
+  genders: Genders[] = [Genders.MALE, Genders.FEMALE];
+  selectedGender: Genders.MALE | Genders.FEMALE;
   constructor(
     private userService: UserService,
     private interestsService: InterestService) { }
@@ -79,10 +83,11 @@ export class UserInterestsComponent implements OnInit {
           console.log('Updated interests for ' + user.userName);
         });
     }
+      this.user.gender = this.selectedGender;
+      console.log('Users updated gender:' + this.user.gender);
   }
 
   toggleInterest(index, event) {
     this.interestSelections[index].selected = event.checked;
   }
-
 }
