@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 import {MunchSession} from '../_models/munch-session';
 import {Observable} from 'rxjs/Observable';
 import {SessionService} from '../_services/munch-session.service';
-import {ActivatedRoute} from '@angular/router';
 import {InterestService} from '../_services/interest.service';
 import {Interest} from '../_models/interest';
 import {LocationService} from '../_services/location.service';
@@ -52,7 +52,8 @@ export class MunchActiveComponent implements OnInit {
     private interestService: InterestService,
     private locationService: LocationService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -139,9 +140,13 @@ export class MunchActiveComponent implements OnInit {
     return this.userService.getMockUser2();
   }
 
-
   leaveSession(): void {
     console.log('Leaving session');
-    // mark session as inactive here, then navigate away
+    this.session.active = false;
+    console.log('Session Active: ' + this.session.active);
+    this.sessionService.updateSession(this.session).subscribe((session: MunchSession) => {
+      console.log('Session:' + this.session);
+    });
+    this.router.navigate(['/homepage']);
   }
 }
