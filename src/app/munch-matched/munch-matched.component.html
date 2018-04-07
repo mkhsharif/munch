@@ -3,12 +3,14 @@
 <p *ngIf="location">Location id: {{location.name}}</p>
 <p *ngIf="isHost">Pin: {{session.pin}}</p>
 <div *ngIf="!isHost">
-  <form>
-    <div *ngIf="!isHost" class="form group">
-      <label for="pin">Host Pin Entry</label>
-      <input type="number" class="form-control" id="pin" required>
-    </div>
-    <button type="submit" class="btn btn-success">Join</button>
-  </form>
+  <div *ngIf="!isHost" class="form group">
+    <label for="pin">Host Pin Entry</label>
+    <input [(ngModel)]="pin" type="number" class="form-control" id="pin" required>
+    <button type="submit" (click)="joinSession()" class="btn btn-success">
+      Join
+    </button>
+    {{pin}}
+  </div>
+
 </div>
 <button>Cancel</button>
