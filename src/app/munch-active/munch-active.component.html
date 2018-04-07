@@ -7,6 +7,12 @@
   </div>
 </div>
 
+<div id="discription">
+  <h6>{{session.user_descriptions[0].user_id}}</h6>
+  <p>{{session.user_descriptions[0].text}}</p>
+</div>
+
+
 <div id="button">
   <button (click)="leaveSession()" type="button" class="btn btn-danger">
     Leave

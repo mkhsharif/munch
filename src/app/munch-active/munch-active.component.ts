@@ -8,6 +8,7 @@ import {InterestService} from '../_services/interest.service';
 import {Interest} from '../_models/interest';
 import {LocationService} from '../_services/location.service';
 import {MunchLocation} from '../_models/munch-location';
+import {UserDescription} from '../_models/user-description';
 
 @Component({
   selector: 'app-munch-active',
@@ -20,6 +21,7 @@ export class MunchActiveComponent implements OnInit {
   session: MunchSession;
   interests: Interest[] = [];
   location: MunchLocation;
+  userDescription: UserDescription;
 
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -82,6 +84,16 @@ export class MunchActiveComponent implements OnInit {
         this.location = location;
         return this.location;
       });
+  }
+
+  getDescription(): Observable<UserDescription> {
+    const id = this.route.snapshot.paramMap.get('id');
+    return this.sessionService.getSession(id)
+      .map((session: MunchSession) => {
+        this.session = session;
+        return this.session.user_descriptions[0];
+      });
+
   }
 
   leaveSession(): void {
