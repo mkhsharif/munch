@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchSession} from '../_models/munch-session';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SessionService} from '../_services/munch-session.service';
 import {MunchLocation} from '../_models/munch-location';
 import {LocationService} from '../_services/location.service';
@@ -23,13 +23,15 @@ export class MunchMatchedComponent implements OnInit {
   session: MunchSession;
   location: MunchLocation;
   isHost: boolean;
+  pin: string;
 
 
   constructor(
     private userService: UserService,
     private sessionService: SessionService,
     private locationService: LocationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -96,5 +98,18 @@ export class MunchMatchedComponent implements OnInit {
         return this.location;
     });
   }
+
+  joinSession(): void {
+    if (this.pin.toString() === this.session.pin) {
+      this.router.navigate(['/munch/active/' + this.session._id])
+        .then(() => {
+          // socket here
+          console.log('Navigating to active session ' + this.session._id);
+        });
+    } else {
+      console.log('Wrong pin');
+    }
+  }
+
 
 }
