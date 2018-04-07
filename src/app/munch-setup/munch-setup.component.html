@@ -3,9 +3,14 @@
   <h5 class="black-text">Munch Setup</h5>
   <div class="state-1">
     What are you hungry for? (Choose one)
-    <div class="image-button" *ngFor="let location of locations">
-      {{location.name}}
-    </div>
+    <mat-button-toggle-group style="width: 100%" [vertical]="true" [(ngModel)]="selectedLocation">
+      <mat-card class="image-button" *ngFor="let location of locations">
+        <mat-card-header>
+          <mat-card-title>{{location.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-button-toggle aria-label="" [value]="location">Select</mat-button-toggle>
+      </mat-card>
+    </mat-button-toggle-group>
   </div>
 
   <div class="state-2 inactive">
@@ -39,7 +44,7 @@
       <a class="button-text" role="button" (click)="decrementState()">Back</a>
     </span>
     <span class="lower-navigation-bar-button">
-      <a class="button-text" routerLink="/dashboard" role="button">Home</a>
+      <a class="button-text" routerLink="/homepage" role="button">Home</a>
     </span>
     <span class="lower-navigation-bar-button next-button">
       <a class="button-text" role="button" (click)="incrementState()">Next</a>

@@ -142,6 +142,6 @@ export class MunchSetupComponent implements OnInit {
   }
 
   check(): void {
-    console.log(this.selectedGender);
+    console.log(this.selectedLocation.name);
   }
 }
