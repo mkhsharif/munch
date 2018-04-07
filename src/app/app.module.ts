@@ -31,6 +31,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import {MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
 import { UserInterestsComponent } from './user-interests/user-interests.component';
+import { UserDietsComponent } from './user-diets/user-diets.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     LandingPageComponent,
     UserInterestsComponent,
     LandingPageComponent,
+    UserDietsComponent,
   ],
   imports: [
     BrowserModule,

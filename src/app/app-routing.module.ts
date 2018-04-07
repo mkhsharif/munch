@@ -11,7 +11,7 @@ import {MunchSetupComponent} from './munch-setup/munch-setup.component';
 import {UserInterestsComponent} from './user-interests/user-interests.component';
 import {MunchActiveComponent} from './munch-active/munch-active.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-
+import {UserDietsComponent} from './user-diets/user-diets.component';
 
 // TODO: add ID to munch session URLs
 
@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'munch/active/:id', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},
   { path: 'munch/setup2', component: MunchSetupComponent, canActivate: [] },
+  { path: 'profile/diets', component: UserDietsComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
