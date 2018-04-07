@@ -105,7 +105,8 @@ function onConnect(socket) {
   socket.on('disconnect', disconnect);
   socket.on('save-message', saveMessage);
   socket.on('create-match', createMatch);
-  socket.on('end-session', endSession)
+  socket.on('end-session', endSession);
+  socket.on('join-session', joinSession);
 }
 
 // SOCKET.IO FUNCTION DEFINITIONS BELOW
@@ -126,6 +127,11 @@ function createMatch (data) {
 function endSession (data) {
   console.log(data);
   globalSocket.broadcast.emit('user_id-exit', data);
+}
+
+function joinSession (data) {
+  console.log(data);
+  globalSocket.broadcast.emit('session-joined', data);
 }
 // API FUNCTIONS BELOW
 
