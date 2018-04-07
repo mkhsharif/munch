@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import {Observable} from 'rxjs/Observable';
 import {MunchSession} from '../_models/munch-session';
+import {observable} from 'rxjs/symbol/observable';
 
 @Injectable()
 export class SocketService {
@@ -24,6 +25,19 @@ export class SocketService {
       observer => {
         this.socket.on('new-match', (data: string) => observer.next(data));
     });
+  }
+
+  joinSession(session: MunchSession): void {
+    console.log('Sending socket join message with session id ' + session._id);
+    this.socket.emit('join-session', session._id);
+  }
+
+  onSessionJoined(): Observable<string> {
+    return new Observable<string>(
+      observer => {
+        this.socket.on('session-joined', (data: string) => observer.next(data));
+      }
+    );
   }
 
 }
