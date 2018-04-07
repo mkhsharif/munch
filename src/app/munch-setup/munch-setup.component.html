@@ -19,7 +19,11 @@
 
   <div class="state-3 inactive">
     I prefer to eat with...
-    xyz
+    <mat-radio-group [(ngModel)]="selectedGender">
+      <mat-radio-button *ngFor="let gender of genders;" [value]="gender">
+        {{gender}}
+      </mat-radio-button>
+    </mat-radio-group>
   </div>
 
   <div class="state-4 inactive">
