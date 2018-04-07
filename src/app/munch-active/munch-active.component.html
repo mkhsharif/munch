@@ -1,4 +1,4 @@
-<h2>Enjoy your munch at {{location.name}}</h2>
+<h2>Enjoy your munch at {{ location.name }}</h2>
 <div class="box">
   <h3>Here's what you two have in common.</h3>
   <h4>Start a conversation!</h4>
@@ -7,17 +7,26 @@
   </div>
 </div>
 
-<div id="discription">
-  <h6>{{session.user_descriptions[0].user_id}}</h6>
-  <p>{{session.user_descriptions[0].text}}</p>
+
+
+<div class="description"  *ngIf="!isHost">
+  <h6><i>You've matched with {{ session.user_descriptions[0].user_id }}!</i></h6>
+  <p class="box">Here's what they're wearing: <br/>{{ session.user_descriptions[0].text }}</p>
 </div>
 
+
+<div class="description"  *ngIf="isHost">
+  <h6>{{ session.user_descriptions[1].user_id }}</h6>
+  <p>{{ session.user_descriptions[1].text }}</p>
+</div>
 
 <div id="button">
   <button (click)="leaveSession()" type="button" class="btn btn-danger">
     Leave
   </button>
 </div>
+
+
 
 <!--<div class="w1">-->
   <!--<angular-tag-cloud-->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
@@ -23,6 +23,7 @@ export class MunchMatchedComponent implements OnInit {
   session: MunchSession;
   location: MunchLocation;
   isHost: boolean;
+
 
   constructor(
     private userService: UserService,
@@ -95,6 +96,5 @@ export class MunchMatchedComponent implements OnInit {
         return this.location;
     });
   }
-
 
 }
