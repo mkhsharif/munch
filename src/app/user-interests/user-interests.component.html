@@ -1,3 +1,6 @@
+
+<h2><b>What are you interested in?</b></h2>
+<br>
 <div class="container">
   <div *ngFor="let interest of interests; let i=index">
     <mat-checkbox
@@ -6,6 +9,15 @@
       {{interest.name}}
     </mat-checkbox>
   </div>
+  <br>
+  <h4><b>Which gender would you like to meet?</b></h4>
+  <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedGender">
+    <mat-button-toggle *ngFor="let gender of genders;" [value]="gender">
+      {{gender}}
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <br>
+  <br>
   <button class="btn btn-success" (click)="updateInterests()">Update</button>
   <button class="btn btn-danger" routerLink="/dashboard">Return</button>
 </div>
