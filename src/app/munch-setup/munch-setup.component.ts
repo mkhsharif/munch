@@ -140,8 +140,4 @@ export class MunchSetupComponent implements OnInit {
       this.state = newStateInt;
     }
   }
-
-  check(): void {
-    console.log(this.description);
-  }
 }

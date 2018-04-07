@@ -15,3 +15,7 @@ body{
   background-color: whitesmoke;
   color: black;
 }
+
+.centered {
+  text-align: center;
+}
