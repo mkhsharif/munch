@@ -15,7 +15,7 @@ import {MunchRequestService} from './_services/munch-request.service';
 import {SessionService} from './_services/munch-session.service';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
-import { HomepageComponent } from './home/home.component';
+import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import {InterestService} from './_services/interest.service';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
