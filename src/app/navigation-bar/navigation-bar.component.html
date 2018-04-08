@@ -1,21 +1,25 @@
 <nav class="navbar">
   <ul class="nav nav-pills nav-fill w-100 align-items-start">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/home">
+      <a class="nav-link" routerLink="/profile">
         <div style="font-size:2em">
-        <i class="fas fa-map-marker-alt"></i>
-      </div>
+        <i class="fas fa-user"></i>
+        </div>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/munch/setup2">
+      <a class="nav-link" routerLink="/munch/setup">
         <div style="font-size:2em">
         <i class="fas fa-utensils"></i>
       </div>
       </a>
     </li>
     <li *ngIf="loggedIn" class="nav-item">
-      <a class="nav-link" routerLink="/profile">{{userName}}</a>
+      <a class="nav-link" routerLink="/settings">
+        <div style="font-size:2em">
+          <i class="fas fa-cog"></i>
+        </div>
+      </a>
     </li>
     <li *ngIf="!loggedIn" class="nav-item">
       <a class="nav-link" routerLink="/login">

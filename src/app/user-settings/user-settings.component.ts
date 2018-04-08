@@ -10,6 +10,7 @@ export class UserSettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('settings');
   }
 
 }
