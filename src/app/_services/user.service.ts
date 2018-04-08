@@ -12,7 +12,7 @@ import {Diets} from '../_models/diets';
 export class UserService {
   private usersUrl = '/api/users';
 
-  user1: User = {
+  static user1: User = {
     _id: 'u1',
     userName: 'u1',
     firstName: '',
