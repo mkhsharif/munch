@@ -39,7 +39,7 @@ export class RegisterComponent {
   registerUser(): void {
     this.userService.createUser(this.user)
       .subscribe(data => {
-        this.router.navigate(['/homepage']);
+        this.router.navigate(['/home']);
         console.log(this.user.userName + ' created');
       }, error => {
         this.loading = false;

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {CanDeactivateGuard} from './_guards/can-deactivate-guard.service';
-import {HomepageComponent} from './homepage/homepage.component';
+import {HomepageComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {MunchMatchedComponent} from './munch-matched/munch-matched.component';
