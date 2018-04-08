@@ -21,20 +21,19 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<User> {
     const u1: User = UserService.user1;
     if (username === 'test') {
       localStorage.setItem('currentUser', JSON.stringify(u1));
       console.log('Test user logged in ' + u1.userName);
       return Observable.of(u1);
     } else {
-      return this.http.post(this.authUrl, {
-        userName: username, password: password
-      }).map((response: HttpResponse<User>) => {
-        if (response) {
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          console.log('Data verified and saved for ' + username);
-        }
+      return this.http.post(this.authUrl, {userName: username, password: password})
+        .map((response: User) => {
+          if (response) {
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            console.log('Data verified and saved for ' + username);
+          }
         return response;
       });
     }
