@@ -21,7 +21,7 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  login(username: string, password: string): Observable<User> | Observable<HttpResponse<User>> {
+  login(username: string, password: string) {
     const u1: User = UserService.user1;
     if (username === 'test') {
       localStorage.setItem('currentUser', JSON.stringify(u1));
