@@ -10,7 +10,6 @@ import {Diets} from '../_models/diets';
 
 @Injectable()
 export class UserService {
-  private usersUrl = '/api/users';
 
   static user1: User = {
     _id: 'u1',
@@ -34,6 +33,8 @@ export class UserService {
     diet: Diets.ANY,
     gender: Genders.FEMALE
   };
+
+  private usersUrl = '/api/users';
 
   user2: User = {
     _id: 'u2',
@@ -82,7 +83,7 @@ export class UserService {
 
   // get("/api/users/:id")
   getUser(getUserId: string): Observable<User> {
-    if (getUserId === this.user1._id) {
+    if (getUserId === UserService.user1._id) {
       return this.getMockUser1();
     }
 
@@ -99,7 +100,7 @@ export class UserService {
   }
 
   getMockUser1(): Observable<User> {
-    return Observable.of(this.user1);
+    return Observable.of(UserService.user1);
   }
 
   getMockUser2(): Observable<User> {
@@ -107,7 +108,7 @@ export class UserService {
   }
 
   getMockUsers(): Observable<User[]> {
-    return Observable.of([this.user1, this.user2]);
+    return Observable.of([UserService.user1, this.user2]);
   }
 
   public getInterestIds(user: User): string[] {
