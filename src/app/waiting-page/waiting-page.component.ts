@@ -48,15 +48,21 @@ export class WaitingPageComponent implements OnInit {
   initIo(): void {
     this.socketService.initSocket();
 
-    this.socketService.onNewMatch()
-      .subscribe((session_id: string) => {
-        console.log('client to session ' + session_id);
-        this.cron.unsubscribe();
-        this.router.navigate(['/munch/match/' + session_id])
-          .then(() => {
-              console.log('Navigating to session ' + session_id);
-            }
-          );
+    this.socketService.onMatchFound()
+      .subscribe((data) => {
+        if (data.user_ids.includes(this.currentUser._id)) {
+          console.log('client to session ' + data.session_id);
+          if (this.cron) {
+            this.cron.unsubscribe();
+          }
+          this.router.navigate(['/munch/match/' + data.session_id])
+            .then(() => {
+                console.log('Navigating to session ' + data.session_id);
+              }
+            );
+        } else {
+          console.log('False');
+        }
       });
   }
 
@@ -107,27 +113,24 @@ export class WaitingPageComponent implements OnInit {
     console.log('Waiting for match, starting cron timer');
     this.request.cron = true;
     this.request.pending = true;
-    return this.requestService.updateRequest(this.request)
-      .subscribe((request: MunchRequest) => {
-        return this.requestService.runCron(request)
-          .subscribe(() => {
-            console.log('Request expired');
-            this.router.navigate(['/dashboard'])
-              .then(() => {console.log('Returning to Dashboard'); });
-          });
+    this.requestService.updateRequest(this.request).subscribe(() => {
+      console.log('Request marked as pending for 30 seconds');
     });
+    return this.requestService.runCron(this.request)
+      .subscribe(() => {
+        console.log('Request expired');
+        this.router.navigate(['/home'])
+          .then(() => {console.log('Returning to home'); });
+      }
+    );
 
   }
 
-  createSession(session: MunchSession): void {
+  createSession(session: MunchSession, user_ids: string[]): void {
     this.sessionService.createSession(session)
       .subscribe((newSession: MunchSession) => {
-        this.router.navigate(['/munch/match/' + newSession._id])
-          .then(() => {
-            this.socketService.createMatch(newSession);
-            console.log('Navigating to session ' + newSession._id);
-          }
-        );
+        this.socketService.createMatch(newSession, user_ids);
+        console.log('Creating session ' + newSession);
       }
     );
   }
@@ -175,7 +178,7 @@ export class WaitingPageComponent implements OnInit {
           time_completed: null
         };
 
-        this.createSession(newSession);
+        this.createSession(newSession, [this.currentUser._id, match.user_id ]);
       } else {
         // start cron
         console.log('Starting cron');

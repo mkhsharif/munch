@@ -97,7 +97,7 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
     console.log("App now running on port", port);
   });
   io = require('socket.io')(appServer);
-  io.on('connection', onConnect);
+  io.sockets.on('connection', onConnect);
 });
 
 // BASE SOCKET.IO FUNCTION
@@ -118,23 +118,23 @@ function disconnect() {
 
 function saveMessage (data) {
   console.log(data);
-  io.emit('new-message', { message: data });
+  globalSocket.broadcast.emit('new-message', { message: data });
 }
 
 function createMatch (data) {
   console.log(data);
-  globalSocket.emit('new-match', data);
+  globalSocket.broadcast.emit('match-found', data);
 }
 
 function endSession (data) {
   console.log(data);
-  globalSocket.emit('user_id-exit', data);
+  globalSocket.broadcast.emit('user_id-exit', data);
 }
 
 function activateSession (data) {
   console.log(data);
   console.log('Session activate socket received');
-  globalSocket.emit('session-activated', data);
+  globalSocket.broadcast.emit('session-activated', data);
 }
 // API FUNCTIONS BELOW
 
@@ -290,7 +290,7 @@ function createRequest(req, res) {
 }
 
 function cronRequest(req, res) {
-  schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
+  return schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
     console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
     var updateDoc = req.body;
     console.log(req.params.id);
