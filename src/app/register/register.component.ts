@@ -4,6 +4,7 @@ import {UserService} from '../_services/user.service';
 import { Router} from '@angular/router';
 import {Genders} from '../_models/genders';
 import {Diets} from '../_models/diets';
+import {INTERESTS} from '../_models/interest-list';
 
 
 @Component({
@@ -14,6 +15,7 @@ import {Diets} from '../_models/diets';
 })
 
 export class RegisterComponent {
+  diets: Diets[] = [Diets.ANY, Diets.HALAL, Diets.PESCATARIAN, Diets.VEGAN, Diets.VEGETARIAN];
   selectedDiet: Diets;
   genders: Genders[] = [Genders.MALE, Genders.FEMALE];
   selectedGender: Genders.MALE | Genders.FEMALE;
