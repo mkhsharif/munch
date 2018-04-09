@@ -27,6 +27,8 @@ export class MunchActiveComponent implements OnInit {
   currentUser: User;
   hostUser: User;
   clientUser: User;
+  hostDescription: string;
+  clientDescription: string;
   isHost: boolean;
 
   options: CloudOptions = {
@@ -70,15 +72,19 @@ export class MunchActiveComponent implements OnInit {
     }).subscribe();
 
 
-    this.getCurrentUser(false)
+    this.getCurrentUser()
       .flatMap(() => {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
       let client_id = '';
       if (session.user_descriptions[0].user_id === session.host_id) {
         client_id = session.user_descriptions[1].user_id;
+        this.clientDescription = session.user_descriptions[1].text;
+        this.hostDescription = session.user_descriptions[0].text;
       } else {
         client_id = session.user_descriptions[0].user_id;
+        this.clientDescription = session.user_descriptions[0].text;
+        this.hostDescription = session.user_descriptions[1].text;
       }
       this.getLocation(session.location_id).subscribe();
       return Observable.forkJoin([
@@ -89,6 +95,8 @@ export class MunchActiveComponent implements OnInit {
       this.hostUser = data[0];
       this.clientUser = data[1];
       this.isHost = this.hostUser._id === this.currentUser._id;
+      console.log(this.hostUser._id);
+      console.log(this.currentUser._id);
       console.log(data);
     }).subscribe();
   }
@@ -119,17 +127,12 @@ export class MunchActiveComponent implements OnInit {
 
   // TODO: Remove the following 3 methods when wiring in real data
   getCurrentUser(host): Observable<User> {
-    if (host === true) {
-      return this.getHost().map((user: User) => {
+    const id = this.userService.getCurrentUser()._id
+    return this.userService.getUser(id)
+      .map((user: User) => {
         this.currentUser = user;
         return this.currentUser;
       });
-    } else {
-      return this.getClient().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    }
   }
 
   getHost(): Observable<User> {
