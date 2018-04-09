@@ -129,8 +129,12 @@ export class WaitingPageComponent implements OnInit {
   createSession(session: MunchSession, user_ids: string[]): void {
     this.sessionService.createSession(session)
       .subscribe((newSession: MunchSession) => {
-        this.socketService.createMatch(newSession, user_ids);
-        console.log('Creating session ' + newSession);
+        this.router.navigate(['/munch/match/' + newSession._id])
+          .then(() => {
+              this.socketService.createMatch(newSession, user_ids);
+              console.log('Navigating to session ' + newSession._id);
+            }
+          );
       }
     );
   }
@@ -143,7 +147,7 @@ export class WaitingPageComponent implements OnInit {
     let new_percentage;
     this.getRequests().subscribe(() => {
       for (const request of this.requests) {
-        if (request.pending === true && request.cron === true && this.isRequestMatch(this.request)) {
+        if (request.pending === true && request.cron === true && this.isRequestMatch(request)) {
           console.log(request._id);
           new_percentage = this.cosineSim(request);
           console.log(request._id + ' ' + new_percentage);
@@ -205,11 +209,13 @@ export class WaitingPageComponent implements OnInit {
   }
 
   isRequestMatch(otherRequest: MunchRequest): boolean {
+    console.log(otherRequest._id);
     const dietMatch: boolean = this.request.diet_preference === otherRequest.user_diet || this.request.diet_preference === Diets.ANY;
     const genderMatch: boolean = (this.request.gender_preference === otherRequest.user_gender
       || this.request.gender_preference === Genders.ANY);
-    console.log(dietMatch && genderMatch);
-    return dietMatch && genderMatch;
+    console.log(this.request._id, otherRequest._id);
+    const different_reqs = this.request._id !== otherRequest._id;
+    console.log(dietMatch && genderMatch && different_reqs);
+    return dietMatch && genderMatch && different_reqs;
   }
-
 }
