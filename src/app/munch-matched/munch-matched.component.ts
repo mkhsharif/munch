@@ -70,13 +70,17 @@ export class MunchMatchedComponent implements OnInit {
   initIo(): void {
     this.socketService.initSocket();
 
-    this.socketService.onSessionJoined()
+    this.socketService.onSessionActivated()
       .subscribe((session_id: string) => {
-        console.log('Client joined session ' + session_id);
-        this.router.navigate(['/munch/active/' + session_id])
-          .then(() => {
-            console.log('Navigating to active session ' + session_id);
-          });
+        if (session_id === this.session._id) {
+          console.log('Client joined session ' + session_id);
+          this.router.navigate(['/munch/active/' + session_id])
+            .then(() => {
+              console.log('Navigating to active session ' + session_id);
+            });
+        } else {
+          console.log('Not this session!');
+        }
       });
   }
 
@@ -114,14 +118,14 @@ export class MunchMatchedComponent implements OnInit {
           .subscribe((session: MunchSession) => {
             this.router.navigate(['/munch/active/' + session._id])
               .then(() => {
-                this.socketService.joinSession(session);
+                this.socketService.activateSession(session);
                 console.log('Navigating to active session ' + session._id);
               });
         });
       } else {
         this.router.navigate(['/munch/active/' + this.session._id])
           .then(() => {
-            this.socketService.joinSession(this.session);
+            this.socketService.activateSession(this.session);
             console.log('Navigating to active session ' + this.session._id);
           });
       }
