@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Diets} from '../_models/diets';
 import {User} from '../_models/user';
 import {Observable} from 'rxjs/Observable';
-import {Interest} from '../_models/interest';
-import {UserInterest} from '../_models/user-interest';
 import {UserService} from '../_services/user.service';
 
 @Component({
@@ -25,7 +23,8 @@ export class UserDietsComponent implements OnInit {
   }
 
   getUser(): Observable<User> {
-   return this.userService.getUser('u1')
+    const id: string = this.userService.getCurrentUser()._id;
+   return this.userService.getUser(id)
      .map((user: User) => {
        this.user = user;
        return this.user;
@@ -34,7 +33,9 @@ export class UserDietsComponent implements OnInit {
 
   updateDiet(): void {
     this.user.diet = this.selectedDiet;
-    console.log('User updated diet: ' + this.user.diet);
+    this.userService.updateUser(this.user).subscribe(() => {
+      console.log('User updated diet: ' + this.user.diet);
+    });
   }
 }
 
