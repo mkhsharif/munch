@@ -9,6 +9,7 @@ import {UserService} from '../_services/user.service';
   templateUrl: './user-diets.component.html',
   styleUrls: ['./user-diets.component.css']
 })
+
 export class UserDietsComponent implements OnInit {
 
   user: User;
@@ -32,6 +33,7 @@ export class UserDietsComponent implements OnInit {
   }
 
   updateDiet(): void {
+    console.log('Previous diet:' + this.user.diet);
     this.user.diet = this.selectedDiet;
     this.userService.updateUser(this.user).subscribe(() => {
       console.log('User updated diet: ' + this.user.diet);
