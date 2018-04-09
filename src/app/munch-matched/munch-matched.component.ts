@@ -38,7 +38,7 @@ export class MunchMatchedComponent implements OnInit {
 
   ngOnInit() {
     this.initIo();
-    this.getCurrentUser(false)
+    this.getCurrentUser()
       .flatMap(() => {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
@@ -73,28 +73,12 @@ export class MunchMatchedComponent implements OnInit {
       });
   }
 
-
-  // TODO: Remove the following 3 methods when wiring in real data
-  getCurrentUser(host): Observable<User> {
-    if (host === true) {
-      return this.getHost().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    } else {
-      return this.getClient().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    }
-  }
-
-  getHost(): Observable<User> {
-    return this.userService.getMockUser1();
-  }
-
-  getClient(): Observable<User> {
-    return this.userService.getMockUser2();
+  getCurrentUser(): Observable<User> {
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id).map((user: User) => {
+      this.currentUser = user;
+      return this.currentUser;
+    });
   }
 
   getSession(): Observable<MunchSession> {
