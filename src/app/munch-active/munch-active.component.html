@@ -10,23 +10,23 @@
 <div class="description">
   <div class="h6">
     <div class="i">You've matched with
-      <ng-container *ngIf="isHost; then hostBlock else clientBlock"></ng-container>
-      <ng-template #hostBlock >{{ clientUser.userName }}!</ng-template>
-      <ng-template #clientBlock >{{ hostUser.userName }}!</ng-template>
+      <ng-container *ngIf="!isHost && clientUser">
+        {{ clientUser.userName }}!
+      </ng-container>
+      <ng-container *ngIf="isHost && hostUser">
+        {{ hostUser.userName }}!
+      </ng-container>
     </div>
   </div>
   <div class="p box">Here's how they've described themselves:<br/>
-    <ng-container *ngIf="isHost; then hostBlock else clientBlock"></ng-container>
-    <ng-template #hostBlock >{{ clientDescription }}</ng-template>
-    <ng-template #clientBlock >{{ hostDescription }}</ng-template>
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+    <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
   </div>
 </div>
 
-<div id="button">
   <button (click)="leaveSession()" type="button" class="btn btn-danger">
-    Leave
+    Close
   </button>
-</div>
 
 
 
