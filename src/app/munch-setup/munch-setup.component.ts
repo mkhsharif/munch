@@ -49,9 +49,9 @@ export class MunchSetupComponent implements OnInit {
       });
   }
 
-  // TODO: Make this get the current user, not a mock
   getUser(): Observable<User> {
-    return this.userService.getUser('u1')
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id)
       .map((user: User) => {
         this.user = user;
         return this.user;
