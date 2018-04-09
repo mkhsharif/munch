@@ -1,12 +1,20 @@
-<h2><b>What is your diet?</b></h2>
+<h2><b>What is your preferred diet?</b></h2>
 <br><br>
 
 <div class="centered">
 <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedDiet">
   <mat-button-toggle *ngFor="let diet of diets;" [value]="diet">
+
     {{ diet }}
   </mat-button-toggle>
 </mat-button-toggle-group>
+
+  <!--<div *ngFor="let diet of diets;" [value]="diet">
+    <mat-checkbox>
+      {{diet}}
+    </mat-checkbox>
+
+  </div>-->
 </div>
 
 <div class="centered">
