@@ -13,7 +13,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --aot -prod",
+    "local": "ng serve --aot --proxy-config src/proxy-conf.json"
   },
   "private": true,
   "dependencies": {
