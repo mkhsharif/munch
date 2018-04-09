@@ -25,6 +25,8 @@ export class MunchMatchedComponent implements OnInit {
   location: MunchLocation;
   isHost: boolean;
   pin: string;
+  hostDescription: string;
+  clientDescription: string;
 
 
   constructor(
@@ -43,11 +45,15 @@ export class MunchMatchedComponent implements OnInit {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
         let client_id = '';
-        if (session.user_descriptions[0].user_id === session.host_id) {
-          client_id = session.user_descriptions[1].user_id;
-        } else {
-          client_id = session.user_descriptions[0].user_id;
-        }
+      if (session.user_descriptions[0].user_id === session.host_id) {
+        client_id = session.user_descriptions[1].user_id;
+        this.clientDescription = session.user_descriptions[1].text;
+        this.hostDescription = session.user_descriptions[0].text;
+      } else {
+        client_id = session.user_descriptions[0].user_id;
+        this.clientDescription = session.user_descriptions[0].text;
+        this.hostDescription = session.user_descriptions[1].text;
+      }
         this.getLocation(session.location_id).subscribe();
         return Observable.forkJoin([
           this.userService.getUser(session.host_id),
@@ -56,6 +62,7 @@ export class MunchMatchedComponent implements OnInit {
       }).map((data: User[]) => {
         this.hostUser = data[0];
         this.clientUser = data[1];
+        console.log(this.hostUser, this.clientUser);
         this.isHost = this.hostUser._id === this.currentUser._id;
     }).subscribe();
   }
@@ -123,6 +130,4 @@ export class MunchMatchedComponent implements OnInit {
       console.log('Wrong pin');
     }
   }
-
-
 }

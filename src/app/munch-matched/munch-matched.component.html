@@ -1,14 +1,36 @@
-<p *ngIf="isHost && clientUser">Matched {{clientUser.userName}}</p>
-<p *ngIf="!isHost && hostUser">Matched {{hostUser.userName}}</p>
-<p *ngIf="location">Location id: {{location.name}}</p>
-<p *ngIf="isHost">Pin: {{session.pin}}</p>
-<div *ngIf="!isHost">
-  <div *ngIf="!isHost" class="form group">
-    <label for="pin">Host Pin Entry</label>
+<div class="p" style="text-align: center">Matched
+  <ng-container *ngIf="!isHost && clientUser">
+    {{ clientUser.userName }}!
+  </ng-container>
+  <ng-container *ngIf="isHost && hostUser">
+    {{ hostUser.userName }}!
+  </ng-container>
+</div>
+
+<div class="p" *ngIf="location" style="text-align: center">
+  You can find them at {{location.name}}.<br/>
+  They've described themselves as follows:<br/>
+  <div style="text-align: center">
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+    <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
+  </div>
+  <br/>
+</div>
+
+<ng-container *ngIf="!isHost && clientUser">
+  <div style="text-align: center">
+    <p>Pin for matched user to enter: {{session.pin}}</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="isHost && hostUser">
+  <div style="text-align: center" class="form group">
+    <label  for="pin">Enter pin provided by the host here:</label>
     <input [(ngModel)]="pin" type="number" class="form-control" id="pin" required>
-    <button type="submit" (click)="joinSession()" class="btn btn-success">
+    <button style="text-align: center" type="submit" (click)="joinSession()" class="btn btn-success">
       Join
     </button>
   </div>
+</ng-container>
+<div style="text-align: center; margin: 0 auto;">
+  <button class="btn btn-warning">Cancel</button>
 </div>
-<button>Cancel</button>

@@ -126,8 +126,8 @@ export class MunchActiveComponent implements OnInit {
   }
 
   // TODO: Remove the following 3 methods when wiring in real data
-  getCurrentUser(host): Observable<User> {
-    const id = this.userService.getCurrentUser()._id
+  getCurrentUser(): Observable<User> {
+    const id = this.userService.getCurrentUser()._id;
     return this.userService.getUser(id)
       .map((user: User) => {
         this.currentUser = user;
