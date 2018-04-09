@@ -5,7 +5,14 @@ import { Router} from '@angular/router';
 import {Genders} from '../_models/genders';
 import {Diets} from '../_models/diets';
 import {INTERESTS} from '../_models/interest-list';
+import {Interest} from '../_models/interest';
 
+
+
+class SelectedGenders {
+  genderType: Genders;
+  selected: boolean;
+}
 
 @Component({
   selector: 'app-register',
@@ -14,12 +21,16 @@ import {INTERESTS} from '../_models/interest-list';
   providers: [UserService]
 })
 
+
+
 export class RegisterComponent {
   diets: Diets[] = [Diets.ANY, Diets.HALAL, Diets.PESCATARIAN, Diets.VEGAN, Diets.VEGETARIAN];
   selectedDiet: Diets;
   genders: Genders[] = [Genders.MALE, Genders.FEMALE];
   selectedGender: Genders.MALE | Genders.FEMALE;
+  selectedGenders: SelectedGenders[] = [];
   registerShow: boolean;
+  interest: Interest[] = INTERESTS;
   @Output() registerEvent = new EventEmitter<boolean>();
 
 
@@ -49,7 +60,7 @@ export class RegisterComponent {
       .subscribe(data => {
         this.user.gender = this.selectedGender;
         this.user.diet = this.selectedDiet;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
       }, error => {
         this.loading = false;
@@ -58,10 +69,24 @@ export class RegisterComponent {
       });
   }
 
-
-
   hideRegister() {
     this.registerEvent.emit(this.registerShow);
+  }
+
+  toggleGender(index, event) {
+    this.selectedGenders[index].selected = event.checked;
+    console.log(this.selectedGenders[index].genderType);
+    /*for (const gender of this.selectedGenders) {
+      if (gender.selected) {
+        gender.selected = true;
+      } else {
+        this.selectedGenders[index].genderType = this.selectedGender;
+      }
+    }*/
+  }
+
+  toggleDiet(event) {
+    this.selectedDiet = event.checked;
   }
 
 }

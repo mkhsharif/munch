@@ -48,16 +48,16 @@
 
 
       <div>
-        <h6>Choose your gender:</h6>
-        <mat-checkbox *ngFor="let gender of genders; let i=index">
+        <h6><b>Choose your gender:</b></h6>
+        <mat-checkbox color="primary" *ngFor="let gender of genders; let i=index"
+                      (change)="toggleGender(i, $event)">
           {{ gender }}
           <br>
         </mat-checkbox>
-      </div>
 
-      <div>
-        <h6>Choose your preferred diet:</h6>
-        <mat-checkbox *ngFor="let diet of diets; let i=index">
+        <h6><b>Choose your preferred diet:</b></h6>
+        <mat-checkbox color="primary" *ngFor="let diet of diets;"
+                      (change)="toggleDiet($event)">
           {{ diet }}
           <br>
         </mat-checkbox>
