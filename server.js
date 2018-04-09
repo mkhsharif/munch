@@ -98,6 +98,8 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
   });
   io = require('socket.io')(appServer);
   io.sockets.on('connection', onConnect);
+  io.set('heartbeat timeout', 4000);
+  io.set('heartbeat interval', 2000);
 });
 
 // BASE SOCKET.IO FUNCTION
@@ -290,7 +292,7 @@ function createRequest(req, res) {
 }
 
 function cronRequest(req, res) {
-  return schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
+  schedule.scheduleJob(Date.now() + CRON_SECONDS, function (fireDate) {
     console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());
     var updateDoc = req.body;
     console.log(req.params.id);
@@ -304,6 +306,7 @@ function cronRequest(req, res) {
         return db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc);
       }).then(function() {
         console.log("Cron and Pending marked false for " + req.params.id );
+        res.status(200).json(updateDoc);
       }).catch(function (err) {
         handleError(res, err.message, "Failed to create new request");
       });
