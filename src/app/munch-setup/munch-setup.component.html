@@ -1,14 +1,22 @@
-<div class="munch-setup">
+<div>
   <h3 class="black-text">Munch Setup</h3>
-  <div class="state-1 centered" style="text-align: center">
+  <div class="state-1 centered">
     What are you hungry for? (Choose one)
     <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedLocation">
-      <mat-card class="image-button" *ngFor="let location of locations">
+      <mat-card  *ngFor="let location of locations">
         <mat-card-header>
-          <mat-card-title>{{location.name}}</mat-card-title>
+            <div class="text">
+            <b>{{location.name}}</b>
+          </div>
         </mat-card-header>
+       <!-- <div class="img"> -->
+        <img mat-card-image src={{location.picUrl}}>
+        <!-- </div> -->
+        <mat-card-actions>
         <mat-button-toggle aria-label="" [value]="location">Select</mat-button-toggle>
+        </mat-card-actions>
       </mat-card>
+      <br><br>
     </mat-button-toggle-group>
   </div>
 
