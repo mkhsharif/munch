@@ -131,6 +131,7 @@ function endSession (data) {
 
 function joinSession (data) {
   console.log(data);
+  console.log('Session joined');
   globalSocket.broadcast.emit('session-joined', data);
 }
 // API FUNCTIONS BELOW

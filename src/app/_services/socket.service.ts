@@ -35,7 +35,10 @@ export class SocketService {
   onSessionJoined(): Observable<string> {
     return new Observable<string>(
       observer => {
-        this.socket.on('session-joined', (data: string) => observer.next(data));
+        this.socket.on('session-joined', (data: string) => {
+          observer.next(data);
+          console.log('Received join request for session');
+        });
       }
     );
   }
