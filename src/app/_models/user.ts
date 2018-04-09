@@ -17,4 +17,5 @@ export class User {
   interests: UserInterest[];
   diet: Diets;
   gender: Genders.MALE | Genders.FEMALE;
+
 }

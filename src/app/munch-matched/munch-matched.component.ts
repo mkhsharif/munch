@@ -25,6 +25,8 @@ export class MunchMatchedComponent implements OnInit {
   location: MunchLocation;
   isHost: boolean;
   pin: string;
+  hostDescription: string;
+  clientDescription: string;
 
 
   constructor(
@@ -38,16 +40,20 @@ export class MunchMatchedComponent implements OnInit {
 
   ngOnInit() {
     this.initIo();
-    this.getCurrentUser(false)
+    this.getCurrentUser()
       .flatMap(() => {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
         let client_id = '';
-        if (session.user_descriptions[0].user_id === session.host_id) {
-          client_id = session.user_descriptions[1].user_id;
-        } else {
-          client_id = session.user_descriptions[0].user_id;
-        }
+      if (session.user_descriptions[0].user_id === session.host_id) {
+        client_id = session.user_descriptions[1].user_id;
+        this.clientDescription = session.user_descriptions[1].text;
+        this.hostDescription = session.user_descriptions[0].text;
+      } else {
+        client_id = session.user_descriptions[0].user_id;
+        this.clientDescription = session.user_descriptions[0].text;
+        this.hostDescription = session.user_descriptions[1].text;
+      }
         this.getLocation(session.location_id).subscribe();
         return Observable.forkJoin([
           this.userService.getUser(session.host_id),
@@ -56,6 +62,7 @@ export class MunchMatchedComponent implements OnInit {
       }).map((data: User[]) => {
         this.hostUser = data[0];
         this.clientUser = data[1];
+        console.log(this.hostUser, this.clientUser);
         this.isHost = this.hostUser._id === this.currentUser._id;
     }).subscribe();
   }
@@ -63,38 +70,26 @@ export class MunchMatchedComponent implements OnInit {
   initIo(): void {
     this.socketService.initSocket();
 
-    this.socketService.onSessionJoined()
+    this.socketService.onSessionActivated()
       .subscribe((session_id: string) => {
-        console.log('Client joined session ' + session_id);
-        this.router.navigate(['/munch/active/' + session_id])
-          .then(() => {
-            console.log('Navigating to active session ' + session_id);
-          });
+        if (session_id === this.session._id) {
+          console.log('Client joined session ' + session_id);
+          this.router.navigate(['/munch/active/' + session_id])
+            .then(() => {
+              console.log('Navigating to active session ' + session_id);
+            });
+        } else {
+          console.log('Not this session!');
+        }
       });
   }
 
-
-  // TODO: Remove the following 3 methods when wiring in real data
-  getCurrentUser(host): Observable<User> {
-    if (host === true) {
-      return this.getHost().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    } else {
-      return this.getClient().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    }
-  }
-
-  getHost(): Observable<User> {
-    return this.userService.getMockUser1();
-  }
-
-  getClient(): Observable<User> {
-    return this.userService.getMockUser2();
+  getCurrentUser(): Observable<User> {
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id).map((user: User) => {
+      this.currentUser = user;
+      return this.currentUser;
+    });
   }
 
   getSession(): Observable<MunchSession> {
@@ -123,14 +118,14 @@ export class MunchMatchedComponent implements OnInit {
           .subscribe((session: MunchSession) => {
             this.router.navigate(['/munch/active/' + session._id])
               .then(() => {
-                this.socketService.joinSession(session);
+                this.socketService.activateSession(session);
                 console.log('Navigating to active session ' + session._id);
               });
         });
       } else {
         this.router.navigate(['/munch/active/' + this.session._id])
           .then(() => {
-            this.socketService.joinSession(this.session);
+            this.socketService.activateSession(this.session);
             console.log('Navigating to active session ' + this.session._id);
           });
       }
@@ -139,6 +134,4 @@ export class MunchMatchedComponent implements OnInit {
       console.log('Wrong pin');
     }
   }
-
-
 }

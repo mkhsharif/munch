@@ -1,5 +1,5 @@
-<h2>Enjoy your munch at {{ location.name }}</h2>
-<div class="box">
+<h2 *ngIf="location">Enjoy your munch at {{ location.name }}</h2>
+<div *ngIf="interests" class="box">
   <h3>Here's what you two have in common.</h3>
   <h4>Start a conversation!</h4>
   <div class="tags" *ngFor="let interest of interests" >
@@ -7,24 +7,26 @@
   </div>
 </div>
 
-
-
-<div class="description"  *ngIf="!isHost">
-  <h6><i>You've matched with {{ session.user_descriptions[0].user_id }}!</i></h6>
-  <p class="box">Here's what they're wearing: <br/>{{ session.user_descriptions[0].text }}</p>
+<div class="description">
+  <div class="h6">
+    <div class="i">You've matched with
+      <ng-container *ngIf="!isHost && clientUser">
+        {{ clientUser.userName }}!
+      </ng-container>
+      <ng-container *ngIf="isHost && hostUser">
+        {{ hostUser.userName }}!
+      </ng-container>
+    </div>
+  </div>
+  <div class="p box">Here's how they've described themselves:<br/>
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+    <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
+  </div>
 </div>
 
-
-<div class="description"  *ngIf="isHost">
-  <h6>{{ session.user_descriptions[1].user_id }}</h6>
-  <p>{{ session.user_descriptions[1].text }}</p>
-</div>
-
-<div id="button">
   <button (click)="leaveSession()" type="button" class="btn btn-danger">
-    Leave
+    Close
   </button>
-</div>
 
 
 
