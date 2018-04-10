@@ -4,6 +4,7 @@ import {Diets} from '../_models/diets';
 import {User} from '../_models/user';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../_services/user.service';
+import {Genders} from '../_models/genders';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class UserSettingsComponent implements OnInit {
   user: User;
   diets: Diets[] = [Diets.ANY, Diets.VEGETARIAN, Diets.HALAL, Diets.PESCATARIAN, Diets.VEGAN];
   selectedDiet: Diets;
+  genders: Genders[] = [Genders.MALE, Genders.FEMALE];
+  selectedGender: Genders.MALE | Genders.FEMALE;
 
 
   constructor(public authService: AuthenticationService,
@@ -39,7 +42,7 @@ export class UserSettingsComponent implements OnInit {
       });
   }
 
-  updateDiet(): void {
+  updateSettings(): void {
     console.log('Previous diet:' + this.user.diet);
     this.user.diet = this.selectedDiet;
     this.userService.updateUser(this.user).subscribe(() => {
