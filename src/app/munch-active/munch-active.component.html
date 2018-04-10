@@ -1,5 +1,5 @@
-<h2>Enjoy your munch at {{location.name}}</h2>
-<div class="box">
+<h2 *ngIf="location">Enjoy your munch at {{ location.name }}</h2>
+<div *ngIf="interests" class="box">
   <h3>Here's what you two have in common.</h3>
   <h4>Start a conversation!</h4>
   <div class="tags" *ngFor="let interest of interests" >
@@ -7,11 +7,28 @@
   </div>
 </div>
 
-<div id="button">
-  <button (click)="leaveSession()" type="button" class="btn btn-danger">
-    Leave
-  </button>
+<div class="description">
+  <div class="h6">
+    <div class="i">You've matched with
+      <ng-container *ngIf="!isHost && clientUser">
+        {{ clientUser.userName }}!
+      </ng-container>
+      <ng-container *ngIf="isHost && hostUser">
+        {{ hostUser.userName }}!
+      </ng-container>
+    </div>
+  </div>
+  <div class="p box">Here's how they've described themselves:<br/>
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+    <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
+  </div>
 </div>
+
+  <button (click)="leaveSession()" type="button" class="btn btn-danger">
+    Close
+  </button>
+
+
 
 <!--<div class="w1">-->
   <!--<angular-tag-cloud-->

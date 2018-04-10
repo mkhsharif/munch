@@ -3,12 +3,13 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import {MunchSession} from '../_models/munch-session';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SessionService} from '../_services/munch-session.service';
 import {MunchLocation} from '../_models/munch-location';
 import {LocationService} from '../_services/location.service';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/forkJoin';
+import {SocketService} from '../_services/socket.service';
 
 
 @Component({
@@ -23,25 +24,36 @@ export class MunchMatchedComponent implements OnInit {
   session: MunchSession;
   location: MunchLocation;
   isHost: boolean;
+  pin: string;
+  hostDescription: string;
+  clientDescription: string;
+
 
   constructor(
     private userService: UserService,
     private sessionService: SessionService,
     private locationService: LocationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
-    this.getCurrentUser(false)
+    this.initIo();
+    this.getCurrentUser()
       .flatMap(() => {
         return this.getSession();
       }).flatMap((session: MunchSession) => {
         let client_id = '';
-        if (session.user_descriptions[0].user_id === session.host_id) {
-          client_id = session.user_descriptions[1].user_id;
-        } else {
-          client_id = session.user_descriptions[0].user_id;
-        }
+      if (session.user_descriptions[0].user_id === session.host_id) {
+        client_id = session.user_descriptions[1].user_id;
+        this.clientDescription = session.user_descriptions[1].text;
+        this.hostDescription = session.user_descriptions[0].text;
+      } else {
+        client_id = session.user_descriptions[0].user_id;
+        this.clientDescription = session.user_descriptions[0].text;
+        this.hostDescription = session.user_descriptions[1].text;
+      }
         this.getLocation(session.location_id).subscribe();
         return Observable.forkJoin([
           this.userService.getUser(session.host_id),
@@ -50,33 +62,34 @@ export class MunchMatchedComponent implements OnInit {
       }).map((data: User[]) => {
         this.hostUser = data[0];
         this.clientUser = data[1];
+        console.log(this.hostUser, this.clientUser);
         this.isHost = this.hostUser._id === this.currentUser._id;
-        console.log(data);
     }).subscribe();
   }
 
+  initIo(): void {
+    this.socketService.initSocket();
 
-  // TODO: Remove the following 3 methods when wiring in real data
-  getCurrentUser(host): Observable<User> {
-    if (host === true) {
-      return this.getHost().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
+    this.socketService.onSessionActivated()
+      .subscribe((session_id: string) => {
+        if (session_id === this.session._id) {
+          console.log('Client joined session ' + session_id);
+          this.router.navigate(['/munch/active/' + session_id])
+            .then(() => {
+              console.log('Navigating to active session ' + session_id);
+            });
+        } else {
+          console.log('Not this session!');
+        }
       });
-    } else {
-      return this.getClient().map((user: User) => {
-        this.currentUser = user;
-        return this.currentUser;
-      });
-    }
   }
 
-  getHost(): Observable<User> {
-    return this.userService.getMockUser1();
-  }
-
-  getClient(): Observable<User> {
-    return this.userService.getMockUser2();
+  getCurrentUser(): Observable<User> {
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id).map((user: User) => {
+      this.currentUser = user;
+      return this.currentUser;
+    });
   }
 
   getSession(): Observable<MunchSession> {
@@ -96,5 +109,29 @@ export class MunchMatchedComponent implements OnInit {
     });
   }
 
+  joinSession(): void {
+    if (this.pin.toString() === this.session.pin) {
+      if (this.session._id !== 's1') {
+        this.session.active = true;
+        this.session.pending = false;
+        this.sessionService.updateSession(this.session)
+          .subscribe((session: MunchSession) => {
+            this.router.navigate(['/munch/active/' + session._id])
+              .then(() => {
+                this.socketService.activateSession(session);
+                console.log('Navigating to active session ' + session._id);
+              });
+        });
+      } else {
+        this.router.navigate(['/munch/active/' + this.session._id])
+          .then(() => {
+            this.socketService.activateSession(this.session);
+            console.log('Navigating to active session ' + this.session._id);
+          });
+      }
 
+    } else {
+      console.log('Wrong pin');
+    }
+  }
 }

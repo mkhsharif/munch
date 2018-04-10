@@ -50,7 +50,8 @@ export class UserInterestsComponent implements OnInit {
   }
 
   getUser(): Observable<User> {
-    return this.userService.getUser('u1')
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id)
       .map((user: User) => {
         this.user = user;
         return this.user;
@@ -72,6 +73,8 @@ export class UserInterestsComponent implements OnInit {
         user_interests.push({interest_id: interest.interest_id, weight: 1});
       }
     }
+    this.user.gender = this.selectedGender;
+    console.log('Users updated gender:' + this.user.gender);
     this.user.interests = user_interests;
     if (('u1' === this.user._id) || ('u2' === this.user._id)) {
       console.log(this.user.interests);
@@ -83,8 +86,6 @@ export class UserInterestsComponent implements OnInit {
           console.log('Updated interests for ' + user.userName);
         });
     }
-      this.user.gender = this.selectedGender;
-      console.log('Users updated gender:' + this.user.gender);
   }
 
   toggleInterest(index, event) {

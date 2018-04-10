@@ -52,3 +52,25 @@
 .greyed-out {
   color: darkgray;
 }
+
+.img {
+  background-size: cover;
+  margin: fill;
+
+
+}
+
+.text {
+  z-index: 2;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 30px;
+  position: absolute;
+  padding-top: 110px;
+  padding: auto;
+  font-family: Skia;
+}
+
+.h1 {
+
+}

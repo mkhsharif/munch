@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService} from '../_services/authentication.service';
+import {User} from '../_models/user';
 
 @Component({
   selector: 'app-login',
@@ -21,18 +22,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
-    this.returnUrl = '/homepage';
+    this.returnUrl = '/home';
   }
 
   login(): void {
     this.loading = true;
     console.log('Attempting Login');
     this.authenticationService.login(this.user.userName, this.user.password)
-      .subscribe(
-        data => {
+      .subscribe((data: User) => {
           console.log('Logging in');
           console.log(data);
-          this.router.navigate(['/homepage']);
+          this.router.navigate(['/home']).then(() => {
+            console.log('logged in');
+          });
         },
         error => {
           console.log('Failure to log in');

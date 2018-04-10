@@ -14,16 +14,35 @@ export class SocketService {
     this.socket = io();
   }
 
-  createMatch(session: MunchSession): void {
-    console.log('Sending socket match with session id ' + session._id);
-    this.socket.emit('create-match', session._id);
+  createMatch(session: MunchSession, user_ids: string[]): void {
+    console.log('Creating socket match with session id ' + session._id);
+    this.socket.emit('create-match', {session_id: session._id, user_ids: user_ids});
   }
 
-  onNewMatch(): Observable<string> {
+  onMatchFound(): Observable<any> {
     return new Observable<string>(
       observer => {
-        this.socket.on('new-match', (data: string) => observer.next(data));
+        this.socket.on('match-found', (data) => {
+          observer.next(data);
+          console.log('Received notification that session ' + data.session_id + 'is built and pending ');
+        });
     });
+  }
+
+  activateSession(session: MunchSession): void {
+    console.log('Sending socket activate message with session id ' + session._id);
+    this.socket.emit('activate-session', session._id);
+  }
+
+  onSessionActivated(): Observable<string> {
+    return new Observable<string>(
+      observer => {
+        this.socket.on('session-activated', (data: string) => {
+          observer.next(data);
+          console.log('Received notification that session ' + data + 'is active ');
+        });
+      }
+    );
   }
 
 }

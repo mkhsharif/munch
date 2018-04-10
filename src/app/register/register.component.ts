@@ -2,6 +2,18 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
 import { Router} from '@angular/router';
+import {Genders} from '../_models/genders';
+import {Diets} from '../_models/diets';
+import {INTERESTS} from '../_models/interest-list';
+import {Interest} from '../_models/interest';
+import {AuthenticationService} from '../_services/authentication.service';
+
+
+
+class SelectedGenders {
+  genderType: Genders;
+  selected: boolean;
+}
 
 @Component({
   selector: 'app-register',
@@ -10,10 +22,19 @@ import { Router} from '@angular/router';
   providers: [UserService]
 })
 
-export class RegisterComponent {
 
+
+export class RegisterComponent {
+  diets: Diets[] = [Diets.ANY, Diets.HALAL, Diets.PESCATARIAN, Diets.VEGAN, Diets.VEGETARIAN];
+  selectedDiet: Diets;
+  genders: Genders[] = [Genders.MALE, Genders.FEMALE];
+  selectedGender: Genders.MALE | Genders.FEMALE;
+  selectedGenders: SelectedGenders[] = [];
   registerShow: boolean;
+  interest: Interest[] = INTERESTS;
   @Output() registerEvent = new EventEmitter<boolean>();
+
+
 
   user: User = {
     firstName: '',
@@ -34,13 +55,18 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    private userService: UserService) {}
+    private userService: UserService,
+    private authService: AuthenticationService) {}
 
   registerUser(): void {
     this.userService.createUser(this.user)
       .subscribe(data => {
-        this.router.navigate(['/homepage']);
+        this.user.gender = this.selectedGender;
+        this.user.diet = this.selectedDiet;
+        this.authService.login(this.user.userName, this.user.password).subscribe();
+        this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
+        console.log(this.user.password);
       }, error => {
         this.loading = false;
         console.log('User not created!');
@@ -51,5 +77,23 @@ export class RegisterComponent {
   hideRegister() {
     this.registerEvent.emit(this.registerShow);
   }
+
+  toggleGender(index, event) {
+    this.selectedGenders[index].selected = event.checked;
+    console.log(this.selectedGenders[index].genderType);
+    /*for (const gender of this.selectedGenders) {
+      if (gender.selected) {
+        gender.selected = true;
+      } else {
+        this.selectedGenders[index].genderType = this.selectedGender;
+      }
+    }*/
+  }
+
+  toggleDiet(event) {
+    this.selectedDiet = event.checked;
+  }
+
+
 
 }

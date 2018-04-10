@@ -1,26 +1,36 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
+'use strict';
 
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongodb = require("mongodb");
+const ObjectID = mongodb.ObjectID;
+const app = express();
+const path = require('path');
+const schedule = require('node-schedule');
+app.use(bodyParser.json());
+// to support URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Create a database variable outside of the database connection callback to
+// reuse the connection pool in your app.
+var db;
+var mongoUri;
+var mongoPort;
+var io;
+var globalSocket;
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
+var CRON_SECONDS = 30000;
+
+// MONGO COLLECTION DEFINITIONS
 var USERS_COLLECTION = "users";
 var SHOUTOUTS_COLLECTION = "shoutout_ids";
 var REQUESTS_COLLECTION = "requests";
 var SESSIONS_COLLECTION = "sessions";
 var INTERESTS_COLLECTION = "interests";
-
-var app = express();
-var path = require('path');
-var schedule = require('node-schedule');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
-var CRON_SECONDS = 30000;
-
-// Create link to Angular build directory
-var distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
 
 // USER API FUNCTIONS
 app.get("/api/users", getUsers);
@@ -58,14 +68,7 @@ app.post("/api/interests", createInterest);
 app.put("/api/interests/:id", updateInterest);
 
 
-// Create a database variable outside of the database connection callback to
-// reuse the connection pool in your app.
-var db;
-var mongoUri;
-var mongoPort;
-var appServer;
-var io;
-var globalSocket;
+
 // Connect to the database before starting the application server.
 var myArgs = process.argv.slice(2);
 
@@ -88,14 +91,15 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
   console.log("Database connection ready");
 
   // Initialize the app.
-  appServer = app.listen(mongoPort || 8080, function () {
+  var appServer = app.listen(mongoPort || 8080, function () {
     var port = appServer.address().port;
     appServer.listen(process.env.PORT);
     console.log("App now running on port", port);
   });
-  // Socket.io functions
-  io = require('socket.io').listen(appServer);
-  io.on('connection', onConnect);
+  io = require('socket.io')(appServer);
+  io.sockets.on('connection', onConnect);
+  io.set('heartbeat timeout', 4000);
+  io.set('heartbeat interval', 2000);
 });
 
 // BASE SOCKET.IO FUNCTION
@@ -105,7 +109,8 @@ function onConnect(socket) {
   socket.on('disconnect', disconnect);
   socket.on('save-message', saveMessage);
   socket.on('create-match', createMatch);
-  socket.on('end-session', endSession)
+  socket.on('end-session', endSession);
+  socket.on('activate-session', activateSession);
 }
 
 // SOCKET.IO FUNCTION DEFINITIONS BELOW
@@ -115,17 +120,23 @@ function disconnect() {
 
 function saveMessage (data) {
   console.log(data);
-  io.emit('new-message', { message: data });
+  globalSocket.broadcast.emit('new-message', { message: data });
 }
 
 function createMatch (data) {
   console.log(data);
-  globalSocket.broadcast.emit('new-match', data);
+  globalSocket.broadcast.emit('match-found', data);
 }
 
 function endSession (data) {
   console.log(data);
   globalSocket.broadcast.emit('user_id-exit', data);
+}
+
+function activateSession (data) {
+  console.log(data);
+  console.log('Session activate socket received');
+  globalSocket.broadcast.emit('session-activated', data);
 }
 // API FUNCTIONS BELOW
 
@@ -295,6 +306,7 @@ function cronRequest(req, res) {
         return db.collection(REQUESTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc);
       }).then(function() {
         console.log("Cron and Pending marked false for " + req.params.id );
+        res.status(200).json(updateDoc);
       }).catch(function (err) {
         handleError(res, err.message, "Failed to create new request");
       });

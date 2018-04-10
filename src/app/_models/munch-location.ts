@@ -3,4 +3,5 @@ export class MunchLocation {
   name: string;
   longitude: string;
   latitude: string;
+  picUrl: string;
 }

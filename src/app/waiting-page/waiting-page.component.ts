@@ -42,22 +42,33 @@ export class WaitingPageComponent implements OnInit {
   ngOnInit() {
     this.getCurrentUser().subscribe();
     this.getRequest().subscribe();
-    this.getRequests().subscribe();
     this.getInterests().subscribe();
   }
 
   initIo(): void {
     this.socketService.initSocket();
 
-    this.socketService.onNewMatch()
-      .subscribe((session_id: string) => {
-        console.log('client to session ' + session_id);
-        this.cron.unsubscribe();
+    this.socketService.onMatchFound()
+      .subscribe((data) => {
+        if (data.user_ids.includes(this.currentUser._id)) {
+          console.log('client to session ' + data.session_id);
+          if (this.cron) {
+            this.cron.unsubscribe();
+          }
+          this.router.navigate(['/munch/match/' + data.session_id])
+            .then(() => {
+                console.log('Navigating to session ' + data.session_id);
+              }
+            );
+        } else {
+          console.log('False');
+        }
       });
   }
 
   getCurrentUser(): Observable<User> {
-    return this.userService.getUser('u1') // TODO: base this on local storage/cookie
+    const id = this.userService.getCurrentUser()._id;
+    return this.userService.getUser(id) // TODO: base this on local storage/cookie
       .map((user: User) => {
         this.currentUser = user;
         return this.currentUser;
@@ -68,6 +79,7 @@ export class WaitingPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     return this.requestService.getRequest(id)
       .map((request: MunchRequest) => {
+        console.log(request);
         this.request = request;
         return this.request;
     });
@@ -83,11 +95,7 @@ export class WaitingPageComponent implements OnInit {
       observableRequests = this.requestService.getRequests();
     }
     return observableRequests.map((requests: MunchRequest[]) => {
-      for (const request of requests) {
-        if (request.pending === true && request.cron === true && this.isRequestMatch(this.request)) {
-          this.requests.push(request);
-        }
-      }
+      this.requests = requests;
       console.log(this.requests);
       return this.requests;
     });
@@ -103,23 +111,30 @@ export class WaitingPageComponent implements OnInit {
 
   runCron(): Subscription {
     console.log('Waiting for match, starting cron timer');
+    this.request.cron = true;
+    this.request.pending = true;
+    this.requestService.updateRequest(this.request).subscribe(() => {
+      console.log('Request marked as pending for 30 seconds');
+    });
     return this.requestService.runCron(this.request)
       .subscribe(() => {
         console.log('Request expired');
-        this.router.navigate(['/dashboard'])
-          .then(() => {console.log('Returning to Dashboard'); });
-    });
+        this.router.navigate(['/home'])
+          .then(() => {console.log('Returning to home'); });
+      }
+    );
+
   }
 
-  createSession(session: MunchSession): void {
+  createSession(session: MunchSession, user_ids: string[]): void {
     this.sessionService.createSession(session)
       .subscribe((newSession: MunchSession) => {
         this.router.navigate(['/munch/match/' + newSession._id])
           .then(() => {
-            this.socketService.createMatch(newSession);
-            console.log('Navigating to session ' + newSession._id);
-          }
-        );
+              this.socketService.createMatch(newSession, user_ids);
+              console.log('Navigating to session ' + newSession._id);
+            }
+          );
       }
     );
   }
@@ -130,45 +145,50 @@ export class WaitingPageComponent implements OnInit {
     let match: MunchRequest = null;
     let match_percentage = 0;
     let new_percentage;
-    for (const request of this.requests) {
-      new_percentage = this.cosineSim(request);
-      console.log(request._id + ' ' + new_percentage);
-      if (new_percentage > match_percentage) {
-        match_percentage = new_percentage;
-        match = request;
+    this.getRequests().subscribe(() => {
+      for (const request of this.requests) {
+        if (request.pending === true && request.cron === true && this.isRequestMatch(request)) {
+          console.log(request._id);
+          new_percentage = this.cosineSim(request);
+          console.log(request._id + ' ' + new_percentage);
+          if (new_percentage > match_percentage) {
+            match_percentage = new_percentage;
+            match = request;
+          }
+        }
       }
-    }
 
-    console.log('Attempting to match');
-    if (match && match_percentage > this.THRESHOLD) {
-      console.log('Matched!');
-      let pin = String(Math.floor(Math.random() * 10));
-      pin += String(Math.floor(Math.random() * 10));
-      pin += String(Math.floor(Math.random() * 10));
-      pin += String(Math.floor(Math.random() * 10));
-      const common_interest_ids = this.request.interest_ids.filter(
-        x => match.interest_ids.indexOf(x) > -1);
+      console.log('Attempting to match');
+      if (match && match_percentage > this.THRESHOLD) {
+        console.log('Matched!');
+        let pin = String(Math.floor(Math.random() * 10));
+        pin += String(Math.floor(Math.random() * 10));
+        pin += String(Math.floor(Math.random() * 10));
+        pin += String(Math.floor(Math.random() * 10));
+        const common_interest_ids = this.request.interest_ids.filter(
+          x => match.interest_ids.indexOf(x) > -1);
 
-      const newSession: MunchSession = {
-        host_id: this.currentUser._id,
-        user_descriptions: [
-          {user_id: this.currentUser._id, text: this.request.descriptionMessage},
-          {user_id: match.user_id, text: match.descriptionMessage }
+        const newSession: MunchSession = {
+          host_id: this.currentUser._id,
+          user_descriptions: [
+            {user_id: this.currentUser._id, text: this.request.descriptionMessage},
+            {user_id: match.user_id, text: match.descriptionMessage }
           ],
-        location_id: this.request.location_id,
-        pending: true,
-        active: false,
-        pin: pin,
-        common_interest_ids: common_interest_ids,
-        time_completed: null
-      };
+          location_id: this.request.location_id,
+          pending: true,
+          active: false,
+          pin: pin,
+          common_interest_ids: common_interest_ids,
+          time_completed: null
+        };
 
-      this.createSession(newSession);
-    } else {
-      // start cron
-      console.log('Starting cron');
-      this.cron = this.runCron();
-    }
+        this.createSession(newSession, [this.currentUser._id, match.user_id ]);
+      } else {
+        // start cron
+        console.log('Starting cron');
+        this.cron = this.runCron();
+      }
+    });
   }
 
   requestToArray(request: MunchRequest): number[] {
@@ -189,11 +209,13 @@ export class WaitingPageComponent implements OnInit {
   }
 
   isRequestMatch(otherRequest: MunchRequest): boolean {
+    console.log(otherRequest._id);
     const dietMatch: boolean = this.request.diet_preference === otherRequest.user_diet || this.request.diet_preference === Diets.ANY;
     const genderMatch: boolean = (this.request.gender_preference === otherRequest.user_gender
       || this.request.gender_preference === Genders.ANY);
-    console.log(dietMatch && genderMatch);
-    return dietMatch && genderMatch;
+    console.log(this.request._id, otherRequest._id);
+    const different_reqs = this.request._id !== otherRequest._id;
+    console.log(dietMatch && genderMatch && different_reqs);
+    return dietMatch && genderMatch && different_reqs;
   }
-
 }
