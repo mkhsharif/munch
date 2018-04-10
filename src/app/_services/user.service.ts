@@ -7,9 +7,12 @@ import 'rxjs/add/observable/of';
 import {UserInterest} from '../_models/user-interest';
 import {Genders} from '../_models/genders';
 import {Diets} from '../_models/diets';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class UserService {
+
+  authService: AuthenticationService;
 
   static user1: User = {
     _id: 'u1',

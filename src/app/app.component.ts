@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavigationBarComponent} from './navigation-bar/navigation-bar.component';
+import {RegisterComponent} from './register/register.component';
 
 @Component({
   selector: 'app-root',

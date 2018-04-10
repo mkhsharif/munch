@@ -6,6 +6,7 @@ import {Genders} from '../_models/genders';
 import {Diets} from '../_models/diets';
 import {INTERESTS} from '../_models/interest-list';
 import {Interest} from '../_models/interest';
+import {AuthenticationService} from '../_services/authentication.service';
 
 
 
@@ -34,6 +35,7 @@ export class RegisterComponent {
   @Output() registerEvent = new EventEmitter<boolean>();
 
 
+
   user: User = {
     firstName: '',
     lastName: '',
@@ -53,15 +55,18 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    private userService: UserService) {}
+    private userService: UserService,
+    private authService: AuthenticationService) {}
 
   registerUser(): void {
     this.userService.createUser(this.user)
       .subscribe(data => {
         this.user.gender = this.selectedGender;
         this.user.diet = this.selectedDiet;
+        this.authService.login(this.user.userName, this.user.password).subscribe();
         this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
+        console.log(this.user.password);
       }, error => {
         this.loading = false;
         console.log('User not created!');
@@ -88,5 +93,7 @@ export class RegisterComponent {
   toggleDiet(event) {
     this.selectedDiet = event.checked;
   }
+
+
 
 }
