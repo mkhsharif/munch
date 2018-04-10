@@ -1,2 +1,28 @@
-<h2>settings</h2>
+
+
+<div>
+  <h2><b>What is your preferred diet?</b></h2>
+  <br><br>
+
+  <div class="centered">
+    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedDiet">
+      <mat-button-toggle *ngFor="let diet of diets;" [value]="diet">
+        {{ diet }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="centered">
+    <br><br><br>
+    <button class="btn btn-success" (click)="updateDiet()">Update Settings</button>
+    <button class="btn btn-danger" routerLink="/profile">Return</button>
+  </div>
+</div>
+
+<div>
+
+</div>
+
+<div id="logoutBtn">
 <button (click)=logout() class="btn btn-primary big-button">Logout</button>
+</div>
