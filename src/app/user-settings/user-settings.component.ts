@@ -45,8 +45,10 @@ export class UserSettingsComponent implements OnInit {
   updateSettings(): void {
     console.log('Previous diet:' + this.user.diet);
     this.user.diet = this.selectedDiet;
+    this.user.gender = this.selectedGender;
     this.userService.updateUser(this.user).subscribe(() => {
        console.log('User updated diet: ' + this.user.diet);
+      console.log('User updated gender: ' + this.user.gender);
       });
     }
 }
