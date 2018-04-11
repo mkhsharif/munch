@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import {Observable} from 'rxjs/Observable';
 import {MunchSession} from '../_models/munch-session';
+import {observable} from 'rxjs/symbol/observable';
 
 @Injectable()
 export class SocketService {
