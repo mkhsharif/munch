@@ -30,7 +30,6 @@ import {SocketService} from './_services/socket.service';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-import { UserInterestsComponent } from './user-interests/user-interests.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     MunchSetupComponent,
     MunchMatchedComponent,
     LandingPageComponent,
-    UserInterestsComponent,
     LandingPageComponent,
   ],
   imports: [
