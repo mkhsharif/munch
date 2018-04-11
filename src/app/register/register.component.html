@@ -3,71 +3,63 @@
         (ngSubmit)="register.form.valid && registerUser()">
     <fieldset>
 
-      <div *ngIf="register.submitted && !password.valid" class="description" style="color:crimson">*Required</div>
+      <div *ngIf="register.submitted && userName.invalid" class="description" style="color:crimson">*Required</div>
 
       <div class="form-group">
         <label for="userName">Username (Bison Email)</label>
         <input type="text" class="form-control" id="userName" name="userName"
                required [(ngModel)]="user.userName" #userName="ngModel" placeholder="first.last@bison.howard.edu">
       </div>
-      <div *ngIf="register.submitted && !userName.valid" class="description" style="color:crimson">*Required</div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="firstName">First Name</label>-->
-        <!--<input type="text" class="form-control" id="firstName" required name="firstName"-->
-               <!--[(ngModel)]="user_id.firstName" #firstName="ngModel">-->
-      <!--</div>-->
-      <!--<div *ngIf="register.submitted && !firstName.valid" class="description">Required</div>-->
 
-      <!--<div class="form-group">-->
-        <!--<label for="lastName">Last Name</label>-->
-        <!--<input type="text" class="form-control" id="lastName" required name="lastName"-->
-               <!--[(ngModel)]="user_id.lastName" #lastName="ngModel">-->
-      <!--</div>-->
-      <!--<div *ngIf="register.submitted && !lastName.valid" class="description">Required</div>-->
-
-      <!--<div class="form-group">-->
-        <!--<label for="email">Email</label>-->
-        <!--<input type="text" class="form-control" id="email" required name="email"-->
-               <!--[(ngModel)]="user_id.email" #email="ngModel">-->
-      <!--</div>-->
-      <!--<div *ngIf="register.submitted && !email.valid" class="description">Required</div>-->
-
-      <!--<div class="form-group">-->
-        <!--<label for="phone">Phone</label>-->
-        <!--<input type="text" class="form-control" id="phone" required name="phone"-->
-               <!--[(ngModel)]="user_id.phone" #phone="ngModel">-->
-      <!--</div>-->
-      <!--<div *ngIf="register.submitted && !phone.valid" class="description">Required</div>-->
+      <div *ngIf="register.submitted && password.invalid" class="description" style="color:crimson">*Required</div>
 
       <div class="form-group">
         <label for="password">Password (Howard ID Suggested)</label>
         <input type="password" class="form-control" id="password" required name="password"
                [(ngModel)]="user.password" #password="ngModel" placeholder="@55555555">
       </div>
+    </fieldset>
 
 
-      <div>
-        <h6><b>Choose your gender:</b></h6>
-        <mat-checkbox color="primary" *ngFor="let gender of genders; let i=index"
-                      (change)="toggleGender(i, $event)">
+
+
+    <h6><b>Choose your gender:</b></h6>
+    <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
+
+    <div class="form-group" required="gender" name="gender" >
+    <fieldset id="gender">
+        <mat-radio-button color="primary" *ngFor="let gender of genders;"
+                          (change)="onSelectChangeGen(gender)">
           {{ gender }}
           <br>
-        </mat-checkbox>
+        </mat-radio-button>
+        </fieldset>
+      </div>
 
-        <h6><b>Choose your preferred diet:</b></h6>
-        <mat-checkbox color="primary" *ngFor="let diet of diets;"
-                      (change)="toggleDiet($event)">
+
+    <h6><b>Choose your preferred diet:</b></h6>
+    <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
+
+    <fieldset id="diet">
+        <mat-radio-button color="primary" *ngFor="let diet of diets;"
+                          (change)="onSelectChangeDiet(diet)">
           {{ diet }}
           <br>
-        </mat-checkbox>
-      </div>
+        </mat-radio-button>
+     </fieldset>
+
+
 
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Register</button>
         <div *ngIf="loading" class="description">Loading</div>
         <button [disabled]="loading" class="btn btn-outline-light btn-lg btn-block" (click)="hideRegister()">Cancel</button>
       </div>
-    </fieldset>
   </form>
-</div>
+
+    <!--  <div>
+        <button (click)="showPick()">SHOW</button>
+      </div> -->
+
+

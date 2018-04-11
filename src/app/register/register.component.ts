@@ -29,7 +29,6 @@ export class RegisterComponent {
   selectedDiet: Diets;
   genders: Genders[] = [Genders.MALE, Genders.FEMALE];
   selectedGender: Genders.MALE | Genders.FEMALE;
-  selectedGenders: SelectedGenders[] = [];
   registerShow: boolean;
   interest: Interest[] = INTERESTS;
   @Output() registerEvent = new EventEmitter<boolean>();
@@ -67,6 +66,8 @@ export class RegisterComponent {
         this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
         console.log(this.user.password);
+        console.log(this.user.gender);
+        console.log(this.user.diet);
       }, error => {
         this.loading = false;
         console.log('User not created!');
@@ -78,22 +79,18 @@ export class RegisterComponent {
     this.registerEvent.emit(this.registerShow);
   }
 
-  toggleGender(index, event) {
-    this.selectedGenders[index].selected = event.checked;
-    console.log(this.selectedGenders[index].genderType);
-    /*for (const gender of this.selectedGenders) {
-      if (gender.selected) {
-        gender.selected = true;
-      } else {
-        this.selectedGenders[index].genderType = this.selectedGender;
-      }
-    }*/
+  showPick(): void {
+    console.log(this.user.gender);
+    console.log(this.user.diet);
   }
 
-  toggleDiet(event) {
-    this.selectedDiet = event.checked;
+  onSelectChangeGen(gender) {
+    this.selectedGender = gender;
+    this.user.gender = this.selectedGender;
   }
 
-
-
+  onSelectChangeDiet(diet) {
+    this.selectedDiet = diet;
+    this.user.diet = this.selectedDiet;
+  }
 }
