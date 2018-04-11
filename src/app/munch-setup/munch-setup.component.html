@@ -8,19 +8,17 @@
                        style="display: inline-flex; flex-direction: column;">
         <mat-card *ngFor="let location of locations"
                   (click)="selectedLocation = location">
+          <mat-card-title><b>{{location.name}}</b></mat-card-title>
           <mat-card-header>
-            <div class="text">
-              <b>{{location.name}}</b>
-            </div>
+
           </mat-card-header>
           <img mat-card-image src={{location.picUrl}}>
           <mat-card-actions>
             <mat-radio-button aria-label="" [value]="location"></mat-radio-button>
           </mat-card-actions>
-          <br>
         </mat-card>
-        <br><br>
       </mat-radio-group>
+      <br><br>
     </div>
 
     <div class="form-group state-2 inactive centered"
