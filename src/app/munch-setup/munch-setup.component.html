@@ -1,59 +1,79 @@
-<div>
-  <h3 class="black-text">Munch Setup</h3>
-  <div class="state-1 centered">
-    What are you hungry for? (Choose one)
-    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedLocation">
-      <mat-card  *ngFor="let location of locations">
-        <mat-card-header>
+<div class="container">
+  <h2 class="black-text centered">Munch Setup</h2>
+  <form (ngSubmit)="createRequest()" #munchForm="ngForm">
+    <div class="state-1 centered form-group">
+      <h4><label>What are you hungry for? (Choose one)</label></h4>
+      <mat-radio-group [(ngModel)]="selectedLocation" required
+                       class="form-control" name="location"
+                       style="display: inline-flex; flex-direction: column;">
+        <mat-card *ngFor="let location of locations"
+                  (click)="selectedLocation = location">
+          <mat-card-header>
             <div class="text">
-            <b>{{location.name}}</b>
-          </div>
-        </mat-card-header>
-       <!-- <div class="img"> -->
-        <img mat-card-image src={{location.picUrl}}>
-        <!-- </div> -->
-        <mat-card-actions>
-        <mat-radio-button aria-label="" [value]="location"></mat-radio-button>
-        </mat-card-actions>
-      </mat-card>
-      <br><br>
-    </mat-button-toggle-group>
-  </div>
+              <b>{{location.name}}</b>
+            </div>
+          </mat-card-header>
+          <img mat-card-image src={{location.picUrl}}>
+          <mat-card-actions>
+            <mat-radio-button aria-label="" [value]="location"></mat-radio-button>
+          </mat-card-actions>
+        </mat-card>
+        <br><br>
+      </mat-radio-group>
+    </div>
 
-  <div class="state-2 inactive centered">
-    <h4>I want to eat with someone whose diet is...</h4>
-    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedDiet">
-      <mat-button-toggle *ngFor="let diet of diets;" [value]="diet">
-        {{diet}}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+    <div class="form-group state-2 inactive centered"
+         style="text-align: center">
+      <h4><label>I want to eat with someone whose diet is...</label></h4>
+      <mat-radio-group [(ngModel)]="selectedDiet" required
+                       class="form-control" name="diet"
+                       style="display: inline-flex; flex-direction: column;">
+        <mat-radio-button *ngFor="let diet of diets;"
+                          [value]="diet"
+                          (click)="selectedDiet = diet">
+          {{diet}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
 
-  <div class="state-3 inactive centered" style="text-align: center">
-    <h4>I prefer to eat with...</h4>
-    <mat-button-toggle-group [vertical]="true" [(ngModel)]="selectedGender">
-      <mat-button-toggle *ngFor="let gender of genders;" [value]="gender">
-        {{gender}}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+    <div class="form-group state-3 inactive centered"
+         style="text-align: center">
+      <h4>I prefer to eat with...</h4>
+      <mat-radio-group [(ngModel)]="selectedGender" required
+                       name="gender" class="form-control"
+                       style="display: inline-flex; flex-direction: column;">
+        <mat-radio-button *ngFor="let gender of genders;"
+                          [value]="gender"
+                          (click)="selectedGender = gender">
+          {{gender}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
 
-  <div class="state-4 inactive centered">
-    Describe your outfit in a few words:
-      <textarea title="description" matInput matTextareaAutosize [(ngModel)]="description"></textarea>
-  </div>
+    <div class="form-group state-4 inactive centered">
+      <mat-form-field>
+        <textarea [(ngModel)]="description" name="description" required
+                  placeholder="Describe your appearance in a few words"
+                  title="description"
+                  matInput matTextareaAutosize></textarea>
+      </mat-form-field>
+    </div>
 
-  <div class="state-5 inactive centered">
-    Ready to meet your match?
-    <button (click)="createRequest()">Start Searching!</button>
-  </div>
+    <div class="state-5 inactive centered">
+      Ready to meet your match?<br><br>
+      <button type="submit" class="centered" mat-fab
+              style="width: 300px; height: 300px; font-size: 40px"
+              color="primary" [disabled]="!munchForm.form.valid"
+              (click)="createRequest()">MUNCH NOW!</button>
+    </div>
+  </form>
 
   <div class="lower-navigation-bar back-button">
     <span class="lower-navigation-bar-button">
       <a class="button-text" role="button" (click)="decrementState()">Back</a>
     </span>
     <span class="lower-navigation-bar-button">
-      <a class="button-text" routerLink="/profilegit " role="button">Profile</a>
+      <a class="button-text" routerLink="/profile" role="button">Home</a>
     </span>
     <span class="lower-navigation-bar-button next-button">
       <a class="button-text" role="button" (click)="incrementState()">Next</a>
@@ -61,4 +81,5 @@
     <div>
     </div>
   </div>
+
 </div>
