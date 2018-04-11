@@ -29,7 +29,7 @@
 
     <div class="form-group" required="gender" name="gender" >
     <fieldset id="gender">
-        <mat-radio-button color="primary" *ngFor="let gender of genders;"
+        <mat-radio-button name="gender" color="primary" *ngFor="let gender of genders;"
                           (change)="onSelectChangeGen(gender)">
           {{ gender }}
           <br>
@@ -42,7 +42,7 @@
     <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
 
     <fieldset id="diet">
-        <mat-radio-button color="primary" *ngFor="let diet of diets;"
+        <mat-radio-button name="name" color="primary" *ngFor="let diet of diets;"
                           (change)="onSelectChangeDiet(diet)">
           {{ diet }}
           <br>
