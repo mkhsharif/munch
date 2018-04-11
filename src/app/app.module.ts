@@ -28,7 +28,7 @@ import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
 import { TagCloudModule } from 'angular-tag-cloud-module';
-import {MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
 import { UserInterestsComponent } from './user-interests/user-interests.component';
 
@@ -61,7 +61,8 @@ import { UserInterestsComponent } from './user-interests/user-interests.componen
     MatRadioModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     AuthenticationService,
