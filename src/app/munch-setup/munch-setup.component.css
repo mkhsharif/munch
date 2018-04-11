@@ -61,7 +61,7 @@
 }
 
 .text {
-  z-index: 2;
+  z-index: 1.5;
   color: whitesmoke;
   text-align: center;
   font-size: 30px;
