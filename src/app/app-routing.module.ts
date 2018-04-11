@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'munch/active/:id', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},
   { path: 'settings', component: UserSettingsComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/profile', pathMatch: 'full' }
 ];
 
 @NgModule({
