@@ -58,10 +58,10 @@ export class RegisterComponent {
     private authService: AuthenticationService) {}
 
   registerUser(): void {
+    this.user.gender = this.selectedGender;
+    this.user.diet = this.selectedDiet;
     this.userService.createUser(this.user)
       .subscribe(data => {
-        this.user.gender = this.selectedGender;
-        this.user.diet = this.selectedDiet;
         this.authService.login(this.user.userName, this.user.password).subscribe();
         this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
@@ -82,15 +82,5 @@ export class RegisterComponent {
   showPick(): void {
     console.log(this.user.gender);
     console.log(this.user.diet);
-  }
-
-  onSelectChangeGen(gender) {
-    this.selectedGender = gender;
-    this.user.gender = this.selectedGender;
-  }
-
-  onSelectChangeDiet(diet) {
-    this.selectedDiet = diet;
-    this.user.diet = this.selectedDiet;
   }
 }

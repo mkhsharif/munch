@@ -29,11 +29,15 @@
 
     <div class="form-group" required="gender" name="gender" >
     <fieldset id="gender">
-        <mat-radio-button name="gender" color="primary" *ngFor="let gender of genders;"
-                          (change)="onSelectChangeGen(gender)">
-          {{ gender }}
-          <br>
-        </mat-radio-button>
+        <mat-radio-group name="gender" color="primary"
+                         required [(ngModel)] = "selectedGender">
+          <mat-radio-button *ngFor="let gender of genders;"
+                            [value]="gender"
+                            (click)="selectedGender = gender">
+            {{ gender }}
+            <br>
+          </mat-radio-button>
+        </mat-radio-group>
         </fieldset>
       </div>
 
@@ -42,17 +46,22 @@
     <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
 
     <fieldset id="diet">
-        <mat-radio-button name="name" color="primary" *ngFor="let diet of diets;"
-                          (change)="onSelectChangeDiet(diet)">
+
+        <mat-radio-group name="name" color="primary"
+                           required [(ngModel)] = "selectedDiet">
+          <mat-radio-button *ngFor="let diet of diets;"
+                            [value]="diet"
+                            (click)="selectedDiet = diet">
           {{ diet }}
+          </mat-radio-button>
           <br>
-        </mat-radio-button>
+        </mat-radio-group>
      </fieldset>
 
 
 
       <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Register</button>
+        <button [disabled]="register.form.invalid" class="btn btn-primary btn-lg btn-block">Register</button>
         <div *ngIf="loading" class="description">Loading</div>
         <button [disabled]="loading" class="btn btn-outline-light btn-lg btn-block" (click)="hideRegister()">Cancel</button>
       </div>
