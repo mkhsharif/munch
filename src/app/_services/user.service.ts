@@ -11,9 +11,6 @@ import {AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class UserService {
-
-  authService: AuthenticationService;
-
   static user1: User = {
     _id: 'u1',
     userName: 'u1',

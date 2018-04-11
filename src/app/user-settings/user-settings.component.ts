@@ -38,6 +38,8 @@ export class UserSettingsComponent implements OnInit {
     return this.userService.getUser(id)
       .map((user: User) => {
         this.user = user;
+        this.selectedDiet = user.diet;
+        this.selectedGender = user.gender;
         return this.user;
       });
   }
