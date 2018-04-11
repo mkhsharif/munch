@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data: User) => {
           console.log('Logging in');
           console.log(data);
-          this.router.navigate(['/home']).then(() => {
+          this.router.navigate(['/profile']).then(() => {
             console.log('logged in');
           });
         },
