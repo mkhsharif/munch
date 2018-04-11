@@ -29,7 +29,6 @@ export class RegisterComponent {
   selectedDiet: Diets;
   genders: Genders[] = [Genders.MALE, Genders.FEMALE];
   selectedGender: Genders.MALE | Genders.FEMALE;
-  selectedGenders: SelectedGenders[] = [];
   registerShow: boolean;
   interest: Interest[] = INTERESTS;
   @Output() registerEvent = new EventEmitter<boolean>();
@@ -59,14 +58,16 @@ export class RegisterComponent {
     private authService: AuthenticationService) {}
 
   registerUser(): void {
+    this.user.gender = this.selectedGender;
+    this.user.diet = this.selectedDiet;
     this.userService.createUser(this.user)
       .subscribe(data => {
-        this.user.gender = this.selectedGender;
-        this.user.diet = this.selectedDiet;
         this.authService.login(this.user.userName, this.user.password).subscribe();
         this.router.navigate(['/profile']);
         console.log(this.user.userName + ' created');
         console.log(this.user.password);
+        console.log(this.user.gender);
+        console.log(this.user.diet);
       }, error => {
         this.loading = false;
         console.log('User not created!');
@@ -78,22 +79,8 @@ export class RegisterComponent {
     this.registerEvent.emit(this.registerShow);
   }
 
-  toggleGender(index, event) {
-    this.selectedGenders[index].selected = event.checked;
-    console.log(this.selectedGenders[index].genderType);
-    /*for (const gender of this.selectedGenders) {
-      if (gender.selected) {
-        gender.selected = true;
-      } else {
-        this.selectedGenders[index].genderType = this.selectedGender;
-      }
-    }*/
+  showPick(): void {
+    console.log(this.user.gender);
+    console.log(this.user.diet);
   }
-
-  toggleDiet(event) {
-    this.selectedDiet = event.checked;
-  }
-
-
-
 }

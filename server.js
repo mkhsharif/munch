@@ -17,11 +17,11 @@ var db;
 var mongoUri;
 var mongoPort;
 var io;
-var globalSocket;
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
+app.get('/', home);
 
 var CRON_SECONDS = 30000;
 
@@ -67,8 +67,6 @@ app.get("/api/interests/:id", getInterest);
 app.post("/api/interests", createInterest);
 app.put("/api/interests/:id", updateInterest);
 
-
-
 // Connect to the database before starting the application server.
 var myArgs = process.argv.slice(2);
 
@@ -97,47 +95,31 @@ mongodb.MongoClient.connect(mongoUri, function (err, database) {
     console.log("App now running on port", port);
   });
   io = require('socket.io')(appServer);
-  io.sockets.on('connection', onConnect);
   io.set('heartbeat timeout', 4000);
   io.set('heartbeat interval', 2000);
+  io.on('connection', function (socket) {
+    console.log('Client connected');
+    // SOCKET.IO FUNCTION DEFINITIONS BELOW
+    socket.on('disconnect', function () {
+      console.log('Client disconnected');
+    });
+
+    socket.on('create-match', function (data) {
+      console.log(data);
+      socket.broadcast.emit('match-found', data);
+    });
+
+    socket.on('end-session', function (data) {
+      console.log(data);
+      socket.broadcast.emit('user_id-exit', data);
+    });
+    socket.on('activate-session', function (data) {
+      console.log(data);
+      console.log('Session activate socket received');
+      socket.broadcast.emit('session-activated', data);
+    });
+  });
 });
-
-// BASE SOCKET.IO FUNCTION
-function onConnect(socket) {
-  console.log('Client connected');
-  globalSocket = socket;
-  socket.on('disconnect', disconnect);
-  socket.on('save-message', saveMessage);
-  socket.on('create-match', createMatch);
-  socket.on('end-session', endSession);
-  socket.on('activate-session', activateSession);
-}
-
-// SOCKET.IO FUNCTION DEFINITIONS BELOW
-function disconnect() {
-  console.log('Client disconnected');
-}
-
-function saveMessage (data) {
-  console.log(data);
-  globalSocket.broadcast.emit('new-message', { message: data });
-}
-
-function createMatch (data) {
-  console.log(data);
-  globalSocket.broadcast.emit('match-found', data);
-}
-
-function endSession (data) {
-  console.log(data);
-  globalSocket.broadcast.emit('user_id-exit', data);
-}
-
-function activateSession (data) {
-  console.log(data);
-  console.log('Session activate socket received');
-  globalSocket.broadcast.emit('session-activated', data);
-}
 // API FUNCTIONS BELOW
 
 // Generic error handler used by all endpoints.

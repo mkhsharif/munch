@@ -1,20 +1,18 @@
-
-
-<div>
-  <div  class="mx-auto" style="width: 200px;">
-    <button routerLink="/profile/interests">interests</button>
-    <form action="/action_page.php">
-      New Username: <input type="text" name="fname"><br>
-      New Password: <input type="text" name="lname"><br>
-      <button class="btn btn-primary" routerLink="/profile/diets">Diet Preference</button>
-      <br>
-      <button class="btn btn-primary" routerLink="/profile/interests">Interests</button>
-      <br>
-      <button class="btn btn-primary">Update</button>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-    <br>
-    <button class="btn btn-primary" routerLink="/home">Back</button>
+<h2><b>What are you interested in?</b></h2>
+<br>
+<div *ngIf="interests && interestSelections.length !== 0" class="container">
+  <div *ngFor="let interest of interests; let i=index">
+    <mat-checkbox
+      [(checked)]="interestSelections[i].selected"
+      (change)="toggleInterest(i, $event)">
+      {{interest.name}}
+    </mat-checkbox>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="centered">
+  <button class="btn btn-success" (click)="updateInterests()">Update</button>
+  <button class="btn btn-danger" routerLink="/munch/setup">Return</button>
   </div>
 </div>

@@ -28,10 +28,15 @@ import {LocationService} from './_services/location.service';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {SocketService} from './_services/socket.service';
 import { TagCloudModule } from 'angular-tag-cloud-module';
-import {MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule, MatSelectModule
+} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-import { UserInterestsComponent } from './user-interests/user-interests.component';
-import { UserDietsComponent } from './user-diets/user-diets.component';
 
 @NgModule({
   declarations: [
@@ -47,9 +52,7 @@ import { UserDietsComponent } from './user-diets/user-diets.component';
     MunchSetupComponent,
     MunchMatchedComponent,
     LandingPageComponent,
-    UserInterestsComponent,
     LandingPageComponent,
-    UserDietsComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,10 @@ import { UserDietsComponent } from './user-diets/user-diets.component';
     MatRadioModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     AuthenticationService,

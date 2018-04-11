@@ -41,6 +41,9 @@ export class MunchSetupComponent implements OnInit {
     this.getUser().subscribe();
   }
 
+  test(): void {
+    console.log(this.description);
+  }
   getLocations(): Observable<MunchLocation[]> {
     return this.locationService.getLocations()
       .map((locations: MunchLocation[]) => {

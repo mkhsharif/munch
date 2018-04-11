@@ -8,10 +8,10 @@
 </div>
 
 <div class="p" *ngIf="location" style="text-align: center">
-  You can find them at {{location.name}}.<br/>
+  You can find them at {{ location.name }}.<br/>
   They've described themselves as follows:<br/>
   <div style="text-align: center">
-    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription }}</ng-container>
     <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
   </div>
   <br/>
@@ -19,7 +19,7 @@
 
 <ng-container *ngIf="!isHost && clientUser">
   <div style="text-align: center">
-    <p>Pin for matched user to enter: {{session.pin}}</p>
+    <p>Pin for matched user to enter: {{ session.pin }}</p>
   </div>
 </ng-container>
 <ng-container *ngIf="isHost && hostUser">
@@ -32,5 +32,5 @@
   </div>
 </ng-container>
 <div style="text-align: center; margin: 0 auto;">
-  <button class="btn btn-warning">Cancel</button>
+  <button (click)="cancelSession()" class="btn btn-warning">Cancel</button>
 </div>

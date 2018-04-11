@@ -134,4 +134,21 @@ export class MunchMatchedComponent implements OnInit {
       console.log('Wrong pin');
     }
   }
+
+  cancelSession(): void {
+    let other: User;
+
+    if (this.userService.getCurrentUser()._id === this.hostUser._id) {
+      other = this.clientUser;
+    } else {
+      other = this.hostUser;
+    }
+    this.session.active = false;
+    this.sessionService.updateSession(this.session)
+      .subscribe(() => {
+        console.log('Canceling Session with ' + other);
+        this.router.navigate(['/profile']);
+      });
+
+  }
 }
