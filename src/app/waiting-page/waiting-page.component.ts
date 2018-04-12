@@ -119,7 +119,11 @@ export class WaitingPageComponent implements OnInit {
     return this.requestService.runCron(this.request)
       .subscribe(() => {
         console.log('Request expired');
-        this.router.navigate(['/home'])
+        this.router.navigate(['/profile'])
+          .then(() => {console.log('Returning to home'); });
+      }, (error) => {
+        console.log(error);
+        this.router.navigate(['/profile'])
           .then(() => {console.log('Returning to home'); });
       }
     );

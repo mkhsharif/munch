@@ -15,7 +15,6 @@ import {UserSettingsComponent} from './user-settings/user-settings.component';
 // TODO: add ID to munch session URLs
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent},

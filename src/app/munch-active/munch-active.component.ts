@@ -150,6 +150,6 @@ export class MunchActiveComponent implements OnInit {
     this.sessionService.updateSession(this.session).subscribe((session: MunchSession) => {
       console.log('Session:' + this.session);
     });
-    this.router.navigate(['/home']);
+    this.router.navigate(['/profile']);
   }
 }
