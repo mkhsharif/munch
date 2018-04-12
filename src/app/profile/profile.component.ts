@@ -7,6 +7,7 @@ import {UserService} from '../_services/user.service';
 import {Observable} from 'rxjs/Observable';
 import {InterestService} from '../_services/interest.service';
 import {UserInterest} from '../_models/user-interest';
+import * as $ from 'jquery';
 
 
 class InterestSelection {
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
               private  userService: UserService) { }
 
   ngOnInit() {
+    $('html').css('background-color', 'whitesmoke');
     this.getInterests().flatMap(() => {
       return this.getUser();
     }).subscribe((user: User) => {
