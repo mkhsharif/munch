@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,6 +13,7 @@ export class LandingPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('html').css('background-color', 'darkorange');
   }
 
   displayRegister1($event) {
@@ -21,5 +23,4 @@ export class LandingPageComponent implements OnInit {
   displayRegister2($event) {
     this.registerShowing = $event;
   }
-
 }
