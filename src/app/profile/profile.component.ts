@@ -8,6 +8,8 @@ import {Observable} from 'rxjs/Observable';
 import {InterestService} from '../_services/interest.service';
 import {UserInterest} from '../_models/user-interest';
 import * as $ from 'jquery';
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 
 
 class InterestSelection {
@@ -22,13 +24,17 @@ class InterestSelection {
 })
 export class ProfileComponent implements OnInit {
 
+
   user: User;
   interests: Interest[] = INTERESTS;
   interestSelections: InterestSelection[] = [];
 
   constructor(private authService: AuthenticationService,
               private interestService: InterestService,
-              private  userService: UserService) { }
+              private  userService: UserService,
+              public snackBar: MatSnackBar,
+              private  router: Router) { }
+
 
   ngOnInit() {
     $('html').css('background-color', 'whitesmoke');
@@ -81,6 +87,16 @@ export class ProfileComponent implements OnInit {
 
   toggleInterest(index, event) {
     this.interestSelections[index].selected = event.checked;
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Interests Updated!', 'Go Munch'{
+      duration: 5000,
+    });
+
+  this.snackBar._openedSnackBarRef.onAction().subscribe(() => {
+    this.router.navigate(['/munch/setup']);
+  });
   }
 
 }

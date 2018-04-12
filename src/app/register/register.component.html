@@ -3,7 +3,7 @@
         (ngSubmit)="register.form.valid && registerUser()">
     <fieldset>
 
-      <div *ngIf="register.submitted && userName.invalid" class="description" style="color:crimson">*Required</div>
+      <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
 
       <div class="form-group">
         <label for="userName">Username (Bison Email)</label>
@@ -12,7 +12,7 @@
       </div>
 
 
-      <div *ngIf="register.submitted && password.invalid" class="description" style="color:crimson">*Required</div>
+      <div *ngIf="register.submitted" class="description" style="color:crimson">*Required</div>
 
       <div class="form-group">
         <label for="password">Password (Howard ID Suggested)</label>
@@ -29,11 +29,11 @@
 
     <div class="form-group" required="gender" name="gender" >
     <fieldset id="gender">
-        <mat-radio-group name="gender" color="primary"
+        <mat-radio-group name="gender"
                          required [(ngModel)] = "selectedGender">
           <mat-radio-button *ngFor="let gender of genders;"
                             [value]="gender"
-                            (click)="selectedGender = gender">
+                            (click)="selectedGender = gender" color="primary">
             {{ gender }}
             <br>
           </mat-radio-button>
@@ -47,11 +47,11 @@
 
     <fieldset id="diet">
 
-        <mat-radio-group name="name" color="primary"
+        <mat-radio-group name="name"
                            required [(ngModel)] = "selectedDiet">
           <mat-radio-button *ngFor="let diet of diets;"
                             [value]="diet"
-                            (click)="selectedDiet = diet">
+                            (click)="selectedDiet = diet" color="primary">
           {{ diet }}
           </mat-radio-button>
           <br>

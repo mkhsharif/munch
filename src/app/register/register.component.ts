@@ -9,12 +9,6 @@ import {Interest} from '../_models/interest';
 import {AuthenticationService} from '../_services/authentication.service';
 
 
-
-class SelectedGenders {
-  genderType: Genders;
-  selected: boolean;
-}
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -77,10 +71,5 @@ export class RegisterComponent {
 
   hideRegister() {
     this.registerEvent.emit(this.registerShow);
-  }
-
-  showPick(): void {
-    console.log(this.user.gender);
-    console.log(this.user.diet);
   }
 }

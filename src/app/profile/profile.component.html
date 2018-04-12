@@ -5,14 +5,14 @@
     <mat-checkbox
       [(checked)]="interestSelections[i].selected"
       (change)="toggleInterest(i, $event)">
-      {{interest.name}}
+      {{ interest.name }}
     </mat-checkbox>
   </div>
   <br>
   <br>
   <br>
   <div class="centered">
-  <button class="btn btn-success" (click)="updateInterests()">Update</button>
+  <button class="btn btn-success" (click)="updateInterests(); openSnackBar()" >Update</button>
   <button class="btn btn-danger" routerLink="/munch/setup">Return</button>
   </div>
 </div>
