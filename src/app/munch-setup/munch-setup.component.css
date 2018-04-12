@@ -67,3 +67,16 @@
   padding: auto;
   font-family: Skia, serif;
 }
+
+mat-form-field.mat-form-field {
+  font-size: 20px;
+  color: black;
+  resize: vertical;
+}
+
+
+.textfield {
+  width: 100%;
+  height: 200px;
+  padding: 5px;
+}
