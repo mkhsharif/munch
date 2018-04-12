@@ -90,13 +90,13 @@ export class ProfileComponent implements OnInit {
   }
 
   openSnackBar() {
-    this.snackBar.open('Interests Updated!', 'Go Munch'{
+    this.snackBar.open('Interests Updated!', 'Go Munch', {
       duration: 5000,
     });
 
   this.snackBar._openedSnackBarRef.onAction().subscribe(() => {
     this.router.navigate(['/munch/setup']);
-  });
+   });
   }
 
 }

@@ -5,6 +5,8 @@ import {User} from '../_models/user';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../_services/user.service';
 import {Genders} from '../_models/genders';
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -22,7 +24,9 @@ export class UserSettingsComponent implements OnInit {
 
 
   constructor(public authService: AuthenticationService,
-              public userService: UserService) {}
+              public userService: UserService,
+              public snackBar: MatSnackBar,
+              private router: Router) {}
 
   ngOnInit() {
     console.log('settings');
@@ -54,6 +58,16 @@ export class UserSettingsComponent implements OnInit {
       console.log('User updated gender: ' + this.user.gender);
       });
     }
+
+  openSnackBar() {
+    this.snackBar.open('Preferences Updated!', 'Go Munch', {
+      duration: 5000,
+    });
+
+    this.snackBar._openedSnackBarRef.onAction().subscribe(() => {
+      this.router.navigate(['/munch/setup']);
+    });
+  }
 }
 
 
