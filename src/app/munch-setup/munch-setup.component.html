@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 100%; display: flex; flex-direction: column">
   <h2 class="black-text centered">Munch Setup</h2>
   <form (ngSubmit)="createRequest()" #munchForm="ngForm">
     <div class="state-1 centered form-group">
@@ -21,8 +21,7 @@
       <br><br>
     </div>
 
-    <div class="form-group state-2 inactive centered"
-         style="text-align: center">
+    <div class="form-group state-2 inactive">
       <h4><label>I want to eat with someone whose diet is...</label></h4>
       <mat-radio-group [(ngModel)]="selectedDiet" required
                        class="form-control" name="diet"
@@ -35,8 +34,7 @@
       </mat-radio-group>
     </div>
 
-    <div class="form-group state-3 inactive centered"
-         style="text-align: center">
+    <div class="form-group state-3 inactive">
       <h4>I prefer to eat with...</h4>
       <mat-radio-group [(ngModel)]="selectedGender" required
                        name="gender" class="form-control"
@@ -49,12 +47,12 @@
       </mat-radio-group>
     </div>
 
-    <div class="form-group state-4 inactive centered">
-      <mat-form-field>
+    <div class="form-group state-4 inactive">
+      <mat-form-field style="width: 100%;">
         <textarea [(ngModel)]="description" name="description" required
-                  placeholder="Describe your appearance in a few words"
+                  placeholder="Describe your appearance"
                   title="description"
-                  matInput matTextareaAutosize></textarea>
+                  matInput></textarea>
       </mat-form-field>
     </div>
 
