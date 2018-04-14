@@ -34,7 +34,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatFormFieldModule,
-  MatInputModule, MatSelectModule, MatSnackBarModule
+  MatInputModule, MatSelectModule, MatSnackBarModule, MatStepperModule
 } from '@angular/material';
 import {MatRadioModule} from '@angular/material';
 
@@ -70,7 +70,8 @@ import {MatRadioModule} from '@angular/material';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule
   ],
   providers: [
     AuthenticationService,

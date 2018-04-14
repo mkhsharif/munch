@@ -41,9 +41,6 @@ export class MunchSetupComponent implements OnInit {
     this.getUser().subscribe();
   }
 
-  test(): void {
-    console.log(this.description);
-  }
   getLocations(): Observable<MunchLocation[]> {
     return this.locationService.getLocations()
       .map((locations: MunchLocation[]) => {
@@ -90,56 +87,4 @@ export class MunchSetupComponent implements OnInit {
     });
   }
 
-  incrementState(): void {
-    if (this.state !== 1) {
-      this.isStateOne = false;
-    }
-    const nextButtonElements = document.getElementsByClassName('next-button');
-    const nextButtonElement = (nextButtonElements[0] as HTMLElement);
-    // we move on to the munch match after state 5
-    if (this.state !== 5) {
-      // if the next button is already greyed out, undo it
-      if (nextButtonElement.classList.contains('greyed-out')) {
-        nextButtonElement.classList.remove('greyed-out');
-      }
-      const stateString = this.state.toString();
-      const currentStateElements = document.getElementsByClassName('state-' + stateString);
-      const currentStateElement = (currentStateElements[0] as HTMLElement);
-      const newStateInt = this.state + 1;
-      const newStateClassName = 'state-' + newStateInt;
-      const newStateElements = document.getElementsByClassName(newStateClassName);
-      const newStateElement = newStateElements[0];
-      currentStateElement.classList.add('inactive');
-      newStateElement.classList.remove('inactive');
-      this.state = newStateInt;
-    } else {
-      nextButtonElement.classList.add('greyed-out');
-    }
-  }
-
-  decrementState(): void {
-    if (this.state !== 1) {
-      this.isStateOne = false;
-    }
-    // back next button shouldn't be grey if state is being decremented
-    const nextButtonElements = document.getElementsByClassName('next-button');
-    const nextButtonElement = (nextButtonElements[0] as HTMLElement);
-      // if the next button is already greyed out, undo it
-    if (nextButtonElement.classList.contains('greyed-out')) {
-      nextButtonElement.classList.remove('greyed-out');
-    }
-    // we move back to the dashboard before state 1
-    if (this.state !== 1) {
-      const stateString = this.state.toString();
-      const currentStateElements = document.getElementsByClassName('state-' + stateString);
-      const currentStateElement = (currentStateElements[0] as HTMLElement);
-      const newStateInt = this.state - 1;
-      const newStateClassName = 'state-' + newStateInt;
-      const newStateElements = document.getElementsByClassName(newStateClassName);
-      const newStateElement = newStateElements[0];
-      currentStateElement.classList.add('inactive');
-      newStateElement.classList.remove('inactive');
-      this.state = newStateInt;
-    }
-  }
 }
