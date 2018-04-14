@@ -34,17 +34,22 @@
       </mat-radio-group>
     </div>
 
-    <div class="form-group state-3 inactive">
+    <div class="form-group state-3 centered inactive">
       <h4>I prefer to eat with...</h4>
       <mat-radio-group [(ngModel)]="selectedGender" required
                        name="gender" class="form-control"
                        style="display: inline-flex; flex-direction: column;">
-        <mat-radio-button *ngFor="let gender of genders;"
-                          [value]="gender"
+        <mat-card *ngFor="let gender of genders;"
                           (click)="selectedGender = gender">
-          {{gender}}
-        </mat-radio-button>
+          <mat-card-title><b>{{gender}}</b></mat-card-title>
+          <i class="fas fa-female fa-7x" *ngIf="gender === 'Female' || gender === 'Any'"></i>
+          <i class="fas fa-male fa-7x" *ngIf="gender === 'Male' || gender === 'Any'"></i>
+          <mat-card-actions>
+            <mat-radio-button aria-label="" [value]="gender"></mat-radio-button>
+          </mat-card-actions>
+        </mat-card>
       </mat-radio-group>
+      <br><br>
     </div>
 
     <div class="form-group state-4 inactive">
