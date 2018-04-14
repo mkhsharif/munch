@@ -12,9 +12,7 @@
               <mat-card *ngFor="let location of locations"
                         (click)="selectedLocation = location; stepper.next()">
                 <mat-card-title><b>{{location.name}}</b></mat-card-title>
-                <mat-card-header>
-
-                </mat-card-header>
+                <mat-card-header></mat-card-header>
                 <img mat-card-image src={{location.picUrl}}>
                 <mat-card-actions>
                   <mat-radio-button aria-label="" [value]="location"></mat-radio-button>
@@ -32,11 +30,14 @@
             <mat-radio-group [(ngModel)]="selectedDiet" required
                              class="form-control" name="diet"
                              style="display: inline-flex; flex-direction: column;">
-              <mat-radio-button *ngFor="let diet of diets;"
-                                [value]="diet"
-                                (click)="selectedDiet = diet">
-                {{diet}}
-              </mat-radio-button>
+              <mat-card *ngFor="let diet of diets;"
+                                (click)="selectedDiet = diet; stepper.next()">
+                <mat-card-title><b>{{diet}}</b></mat-card-title>
+                <img mat-card-image src="../../assets/images/fish.jpg">
+                <mat-card-actions>
+                  <mat-radio-button aria-label="" [value]="diet"></mat-radio-button>
+                </mat-card-actions>
+              </mat-card>
             </mat-radio-group>
           </div>
           <div>
