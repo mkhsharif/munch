@@ -222,4 +222,11 @@ export class WaitingPageComponent implements OnInit {
     console.log(dietMatch && genderMatch && different_reqs);
     return dietMatch && genderMatch && different_reqs;
   }
+
+
+  cancelSearch(): void {
+    console.log('canceling search');
+  }
+
+
 }

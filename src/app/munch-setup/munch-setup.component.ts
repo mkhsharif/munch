@@ -10,6 +10,10 @@ import {MunchRequestService} from '../_services/munch-request.service';
 import {Router} from '@angular/router';
 import {Diets} from '../_models/diets';
 import {Genders} from '../_models/genders';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {NoInterestComponent} from '../dialog/no-interest/no-interest.component';
+import {UserInterest} from '../_models/user-interest';
+
 
 @Component({
   selector: 'app-munch-setup',
@@ -27,11 +31,13 @@ export class MunchSetupComponent implements OnInit {
   user: User;
   selectedLocation: MunchLocation;
   description: string;
+  nullIntertest: UserInterest[];
   constructor(
     private locationService: LocationService,
     private userService: UserService,
     private requestService: MunchRequestService,
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
     this.state = 1;
     this.isStateOne = true;
   }
@@ -87,4 +93,15 @@ export class MunchSetupComponent implements OnInit {
     });
   }
 
+  promptInterest() {
+    if (this.user.interests.length === 0) {
+      const dialogRef = this.dialog.open(NoInterestComponent, {
+        width: '600px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('dialog closed');
+      });
+    }
+  }
 }

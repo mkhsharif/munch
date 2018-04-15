@@ -32,11 +32,12 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatDialogModule,
   MatFormFieldModule,
   MatInputModule, MatSelectModule, MatSnackBarModule, MatStepperModule
 } from '@angular/material';
 import {MatRadioModule} from '@angular/material';
+import { NoInterestComponent } from './dialog/no-interest/no-interest.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {MatRadioModule} from '@angular/material';
     MunchMatchedComponent,
     LandingPageComponent,
     LandingPageComponent,
+    NoInterestComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import {MatRadioModule} from '@angular/material';
     MatFormFieldModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule
   ],
   providers: [
     AuthenticationService,

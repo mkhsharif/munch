@@ -11,6 +11,7 @@ import {MunchSetupComponent} from './munch-setup/munch-setup.component';
 import {MunchActiveComponent} from './munch-active/munch-active.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {UserSettingsComponent} from './user-settings/user-settings.component';
+import {NoInterestComponent} from './dialog/no-interest/no-interest.component';
 
 // TODO: add ID to munch session URLs
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'munch/active/:id', component: MunchActiveComponent},
   { path: 'landing-page', component: LandingPageComponent},
   { path: 'settings', component: UserSettingsComponent},
+  { path: 'dialog/no-interest', component: NoInterestComponent},
   { path: '', redirectTo: '/profile', pathMatch: 'full' }
 ];
 
