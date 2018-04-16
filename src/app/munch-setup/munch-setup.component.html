@@ -10,7 +10,7 @@
                              class="form-control" name="location"
                              style="display: inline-flex; flex-direction: column;">
               <mat-card *ngFor="let location of locations"
-                        (click)="selectedLocatiion = location; promptInterest(); stepper.next()">
+                        (click)="selectedLocation = location; promptInterest(); stepper.next()">
                 <mat-card-title><b>{{ location.name }}</b></mat-card-title>
                 <mat-card-header></mat-card-header>
                 <img mat-card-image src={{location.picUrl}}>
