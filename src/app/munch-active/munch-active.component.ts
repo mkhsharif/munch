@@ -182,11 +182,11 @@ export class MunchActiveComponent implements OnInit {
   }*/
 
     const changedData: Observable<CloudData[]> = Observable.of([
-      new CData(this.interests[0].name, 10),
-      new CData(this.interests[1].name, 8),
-      new CData(this.interests[2].name, 5),
-      new CData(this.interests[3].name, 3),
-      new CData(this.interests[4].name, 4),
+      new CData(this.interests[0].name, Math.floor((Math.random() * 10) + 1)),
+      new CData(this.interests[1].name, Math.floor((Math.random() * 10) + 1)),
+      new CData(this.interests[2].name, Math.floor((Math.random() * 10) + 1)),
+      new CData(this.interests[3].name, Math.floor((Math.random() * 10) + 1)),
+      new CData(this.interests[4].name, Math.floor((Math.random() * 10) + 1)),
     ]);
     changedData.subscribe(res => this.data = res);
 
