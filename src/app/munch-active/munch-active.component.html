@@ -1,15 +1,20 @@
-<h2 *ngIf="location">Enjoy your munch at {{ location.name }}</h2>
+<h2 class="title is-3" *ngIf="location">Enjoy your munch at {{ location.name }}</h2>
 <div *ngIf="interests" class="box">
-  <h3>Here's what you two have in common.</h3>
-  <h4>Start a conversation!</h4>
-  <div class="tags" *ngFor="let interest of interests" >
-    <span class="tag is-primary is-large">{{ interest.name }}</span>
+  <h3 class="subtitle is-4">Here's what you two have in common.</h3>
+  <h4 class="title is-5">Start a conversation!</h4>
+  <div class="cloud">
+  <angular-tag-cloud
+    [data]='data'
+    [width]='options.width'
+    [height]='options.height'
+    [overflow]='options.overflow'>
+  </angular-tag-cloud>
   </div>
 </div>
 
 <div class="description">
   <div class="h6">
-    <div class="i">You've matched with
+    <div class="title is-5">You've matched with
       <ng-container *ngIf="!isHost && clientUser">
         {{ clientUser.userName }}!
       </ng-container>
@@ -18,27 +23,15 @@
       </ng-container>
     </div>
   </div>
-  <div class="p box">Here's how they've described themselves:<br/>
-    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription  }}</ng-container>
+  <div class="is-boxed">Here's how they've described themselves:<br/>
+    <ng-container *ngIf="!isHost && clientUser">{{ hostDescription }}</ng-container>
     <ng-container *ngIf="isHost && hostUser">{{ clientDescription }}</ng-container>
   </div>
 </div>
 
-  <button (click)="leaveSession()" type="button" class="btn btn-danger">
+  <button (click)="leaveSession()" type="button" class="btn btn-danger" style="position: center">
     Close
   </button>
-
-
-
-<!--<div class="w1">-->
-  <!--<angular-tag-cloud-->
-    <!--[data]="data"-->
-    <!--[width]="options.width"-->
-    <!--[height]="options.height"-->
-    <!--[overflow]="options.overflow">-->
-  <!--</angular-tag-cloud>-->
-<!--</div>-->
-
 
 
 

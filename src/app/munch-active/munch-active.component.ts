@@ -11,7 +11,22 @@ import {MunchLocation} from '../_models/munch-location';
 import {UserDescription} from '../_models/user-description';
 import {User} from '../_models/user';
 import {UserService} from '../_services/user.service';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/from';
 
+
+class CData {
+
+  text: string;
+  weight: number;
+
+  constructor(text: string, weight: number) {
+    this.text = text;
+    this.weight = weight;
+  }
+}
 @Component({
   selector: 'app-munch-active',
   templateUrl: './munch-active.component.html',
@@ -34,12 +49,12 @@ export class MunchActiveComponent implements OnInit {
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
     width: 1,
-    height: 400,
+    height: 320,
     overflow: true,
   };
 
   data: CloudData[] = [
-    {text: 'Weight-8-link-color', weight: 10, link: 'https://google.com', color: '#ffaaee'},
+    {text: 'Weight-10-link', link: 'https://google.com', color: '#ffaaee'},
     {text: 'Weight-10-link', weight: 10, link: 'https://google.com' },
     {text: 'Weight-10-link', weight: 10, link: 'https://google.com' },
     {text: 'Weight-10-link', weight: 10, link: 'https://google.com' },
@@ -99,6 +114,7 @@ export class MunchActiveComponent implements OnInit {
       console.log(this.currentUser._id);
       console.log(data);
     }).subscribe();
+    this.newCloudData();
   }
 
   getSession(): Observable<MunchSession> {
@@ -152,4 +168,29 @@ export class MunchActiveComponent implements OnInit {
     });
     this.router.navigate(['/profile']);
   }
+
+  newCloudData() {
+    /*let i;
+    console.log('clicked');
+
+    .setTimeout(() => {
+      for (i = 0; i < this.interests.length; i++) {
+        this.data[i].text =  this.interests[i].name;
+      }
+    }, 5000);
+    console.log(this.data[0].text);
+  }*/
+
+    const changedData: Observable<CloudData[]> = Observable.of([
+      new CData(this.interests[0].name, 10),
+      new CData(this.interests[1].name, 8),
+      new CData(this.interests[2].name, 5),
+      new CData(this.interests[3].name, 3),
+      new CData(this.interests[4].name, 4),
+    ]);
+    changedData.subscribe(res => this.data = res);
+
+  }
+
+
 }

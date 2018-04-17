@@ -1,11 +1,10 @@
 <div class="container" style="width: 100%; display: flex; flex-direction: column">
-  <h2 class="centered">Munch Setup</h2>
   <form (ngSubmit)="createRequest()" #munchForm="ngForm" >
     <div class="centered">
       <mat-vertical-stepper #stepper="matVerticalStepper" [linear]="true">
         <mat-step label="Location" [stepControl]="!selectedLocation">
           <div class="form-group">
-            <h4><label>What are you hungry for? (Choose one)</label></h4>
+            <h4 class="subtitle is-5"><label>What are you hungry for? (Choose one)</label></h4>
             <mat-radio-group [(ngModel)]="selectedLocation" required
                              class="form-control" name="location"
                              style="display: inline-flex; flex-direction: column;">
